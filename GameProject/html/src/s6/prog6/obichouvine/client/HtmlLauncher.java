@@ -3,7 +3,7 @@ package s6.prog6.obichouvine.client;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.gwt.GwtApplication;
 import com.badlogic.gdx.backends.gwt.GwtApplicationConfiguration;
-import s6.prog6.obichouvine.Obichouvine;
+import s6.prog6.obichouvine.ObichouvineGame;
 
 public class HtmlLauncher extends GwtApplication {
 
@@ -14,6 +14,6 @@ public class HtmlLauncher extends GwtApplication {
 
         @Override
         public ApplicationListener getApplicationListener () {
-                return new Obichouvine();
+                return new ObichouvineGame();
         }
 }
