@@ -1,6 +1,7 @@
 package s6.prog6.obichouvine;
 
 import s6.prog6.obichouvine.screens.SplashScreen;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -13,6 +14,7 @@ public class ObichouvineGame extends Game {
 	
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = true;
+	public static final String VER = "v0.0.2";
 	
 	@Override
 	public void create () {
