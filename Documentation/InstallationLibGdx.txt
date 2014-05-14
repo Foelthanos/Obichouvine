@@ -1,0 +1,36 @@
+|_   _|         | |      | | |     | | (_)            
+  | |  _ __  ___| |_ __ _| | | __ _| |_ _  ___  _ __  
+  | | | '_ \/ __| __/ _` | | |/ _` | __| |/ _ \| '_ \ 
+ _| |_| | | \__ \ || (_| | | | (_| | |_| | (_) | | | |
+|_____|_| |_|___/\__\__,_|_|_|\__,_|\__|_|\___/|_| |_|
+                                                      
+                                                      
+        _      _ _      _____ _______   __
+       | |    (_) |    / ____|  __ \ \ / /
+       | |     _| |__ | |  __| |  | \ V / 
+       | |    | | '_ \| | |_ | |  | |> <  
+       | |____| | |_) | |__| | |__| / . \ 
+       |______|_|_.__/ \_____|_____/_/ \_\
+
+
+I.L'IDE
+-------
+J'imagine que vous savez tous comment télécharger et utiliser Eclipse. 
+Je ne m'étend donc pas sur le sujet.
+
+II.Java
+-------
+Il faut absolument la version 7 du JDK pour faire fonctionner correctement libGDX.
+En théorie, pas de soucis de ce coté-là non plus.
+
+III.Gradle
+----------
+Attention, c'est très compliqué. Il faut que vous alliez dans Help > Install new software...
+Une fois là, cliquez sur add et ajouter le site suivant : http://dist.springsource.com/release/TOOLS/gradle
+Vous n'aurez besoin que du minimum pour ce projet donc oubliez ceux marqué "optional". 
+Après le redémarrage d'Eclipse, Gradle est installé.
+
+IV.LibGDX
+---------
+En fait, pas besoin d'installer la LibGDX. Le projet créé contient tout ce qui est nécessaire. 
+A partir de là, vous devriez pouvoir commencer à coder.

@@ -1,0 +1,23 @@
+       db                            88 88                    
+      d88b                           88 ""   ,d               
+     d8'`8b                          88      88               
+    d8'  `8b    88       88  ,adPPYb,88 88 MM88MMM ,adPPYba,  
+   d8YaaaaY8b   88       88 a8"    `Y88 88   88    I8[    ""  
+  d8""""""""8b  88       88 8b       88 88   88     `"Y8ba,   
+ d8'        `8b "8a,   ,a88 "8a,   ,d88 88   88,   aa    ]8I  
+d8'          `8b `"YbbdP'Y8  `"8bbdP"Y8 88   "Y888 `"YbbdP"'  
+
+I.Introduction
+--------------
+Ce document a pour objecitf d'etablir un certain ordre en ce qui concerne les audits.
+N'hésitez pas à indiquer si vous êtes d'accord ou non avec tout ou partie de ce document.
+
+II.Procédures
+------------
+
+- Maxime va faire un rapport sur chaque amphi. Les documents résultants seront posé dans ce repertoire.
+- Si vous avez des questions pour un prochain amphi, utilisez un document nommé "QAuditXXX" où XXX est la date 
+de l'audit en question (exemple "QAudit14_05"). Si le fichier n'existe pas, créez-le.
+- 2 jours après une audit, tout les documents en rapport avec cette dernière sont transferé dans le 
+sous-repertoire "Old" et préfixé d'un numero permettant de les retrouver rapidement (exemple, pour l'audit 1,
+le préfixe sera 1).
