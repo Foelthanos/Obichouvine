@@ -1,5 +1,6 @@
 package s6.prog6.obichouvine;
 
+import s6.prog6.obichouvine.controllers.LevelManager;
 import s6.prog6.obichouvine.controllers.PreferencesManager;
 import s6.prog6.obichouvine.screens.MenuScreen;
 import s6.prog6.obichouvine.screens.SplashScreen;
@@ -8,19 +9,18 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ObichouvineGame extends Game {
 	private FPSLogger fps;
 	
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = true;
-	public static final String VER = "v0.0.2";
+	public static final String VER = "v0.0.3";
 	
 	private PreferencesManager preferencesManager;
-    /*private ProfileManager profileManager;
+    //private ProfileManager profileManager;
     private LevelManager levelManager;
-    private MusicManager musicManager;
+    /*private MusicManager musicManager;
     private SoundManager soundManager;*/ 
 
 	public PreferencesManager getPreferencesManager()
@@ -28,12 +28,21 @@ public class ObichouvineGame extends Game {
         return preferencesManager;
     }
 	
+	public LevelManager getLevelManager()
+    {
+        return levelManager;
+    }
+	
 	@Override
 	public void create () {
 		Gdx.app.log(ObichouvineGame.LOG, "Creating game on " + Gdx.app.getType());
 		
+		// create the preferences manager
 		preferencesManager = new PreferencesManager();
 		
+		// create the level manager
+        levelManager = new LevelManager();
+        
 		fps = new FPSLogger();	
 	}
 
