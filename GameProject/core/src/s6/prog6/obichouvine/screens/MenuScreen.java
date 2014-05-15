@@ -61,7 +61,7 @@ public class MenuScreen extends AbstractScreen {
 			{
 				super.touchUp( event, x, y, pointer, button );
 				game.getSoundManager().play( ObiSound.CLICK );
-				//game.setScreen( new OptionsScreen( game ) );
+				game.setScreen( new OptionsScreen( game ) );
 			}
 		} );
 		table.add( optionsButton ).uniform().fill().spaceBottom( 10 );
