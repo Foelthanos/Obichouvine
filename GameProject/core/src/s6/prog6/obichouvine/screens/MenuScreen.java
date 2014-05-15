@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.MusicManager.ObiMusic;
+import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
 public class MenuScreen extends AbstractScreen {
@@ -40,7 +41,7 @@ public class MenuScreen extends AbstractScreen {
 					int button )
 			{
 				super.touchUp( event, x, y, pointer, button );
-				//game.getSoundManager().play( TyrianSound.CLICK );
+				game.getSoundManager().play( ObiSound.CLICK );
 				//game.setScreen( new StartGameScreen( game ) );
 			}
 		} );
@@ -59,7 +60,7 @@ public class MenuScreen extends AbstractScreen {
 					int button )
 			{
 				super.touchUp( event, x, y, pointer, button );
-				//game.getSoundManager().play( TyrianSound.CLICK );
+				game.getSoundManager().play( ObiSound.CLICK );
 				//game.setScreen( new OptionsScreen( game ) );
 			}
 		} );

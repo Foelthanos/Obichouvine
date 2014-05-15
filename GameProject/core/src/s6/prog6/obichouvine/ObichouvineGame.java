@@ -3,6 +3,7 @@ package s6.prog6.obichouvine;
 import s6.prog6.obichouvine.controllers.LevelManager;
 import s6.prog6.obichouvine.controllers.MusicManager;
 import s6.prog6.obichouvine.controllers.PreferencesManager;
+import s6.prog6.obichouvine.controllers.SoundManager;
 import s6.prog6.obichouvine.screens.MenuScreen;
 import s6.prog6.obichouvine.screens.SplashScreen;
 
@@ -15,14 +16,13 @@ public class ObichouvineGame extends Game {
 	private FPSLogger fps;
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
-	public static final boolean DEV_MODE = false;
-	public static final String VER = "v0.0.4";
+	public static final boolean DEV_MODE = true;
+	public static final String VER = "v0.0.5";
 
 	private PreferencesManager preferencesManager;
-	//private ProfileManager profileManager;
 	private LevelManager levelManager;
 	private MusicManager musicManager;
-	/*private SoundManager soundManager;*/ 
+	private SoundManager soundManager;
 
 	public PreferencesManager getPreferencesManager()
 	{
@@ -38,20 +38,28 @@ public class ObichouvineGame extends Game {
 	{
 		return musicManager;
 	}
+	
+	public SoundManager getSoundManager()
+    {
+        return soundManager;
+    }
 
 	@Override
 	public void create () {
 		Gdx.app.log(ObichouvineGame.LOG, "Creating game on " + Gdx.app.getType());
+		
 		// create the preferences manager
 		preferencesManager = new PreferencesManager();
 		
 		// create the music manager
 		musicManager = new MusicManager();
-		musicManager.setVolume( preferencesManager.getVolume() );
-		musicManager.setEnabled( preferencesManager.isMusicEnabled() );
+		musicManager.setVolume( preferencesManager.getVolume());
+		musicManager.setEnabled( preferencesManager.isMusicEnabled());
 
-
-
+		// create the sound manager
+        soundManager = new SoundManager();
+        soundManager.setVolume( preferencesManager.getVolume());
+        soundManager.setEnabled( preferencesManager.isSoundEnabled());
 
 		// create the level manager
 		levelManager = new LevelManager();
