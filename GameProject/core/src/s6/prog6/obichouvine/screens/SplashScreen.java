@@ -30,7 +30,7 @@ public class SplashScreen extends AbstractScreen {
 			game.getMusicManager().play( ObiMusic.MENU );
 
 		// retrieve the splash image's region from the atlas
-		AtlasRegion splashRegion = getAtlas().findRegion( "splash-screen/splash-image" );
+		AtlasRegion splashRegion = getAtlas().findRegion( "splash" );
 		Drawable splashDrawable = new TextureRegionDrawable( splashRegion );
 
 		// here we create the splash image actor; its size is set when the

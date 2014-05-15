@@ -15,8 +15,8 @@ public class ObichouvineGame extends Game {
 	private FPSLogger fps;
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
-	public static final boolean DEV_MODE = true;
-	public static final String VER = "v0.0.3";
+	public static final boolean DEV_MODE = false;
+	public static final String VER = "v0.0.4";
 
 	private PreferencesManager preferencesManager;
 	//private ProfileManager profileManager;
