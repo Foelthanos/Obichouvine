@@ -42,15 +42,16 @@ public class ObichouvineGame extends Game {
 	@Override
 	public void create () {
 		Gdx.app.log(ObichouvineGame.LOG, "Creating game on " + Gdx.app.getType());
-
-		// create the music manager
-        musicManager = new MusicManager();
-        musicManager.setVolume( preferencesManager.getVolume() );
-        musicManager.setEnabled( preferencesManager.isMusicEnabled() );
-
-        
 		// create the preferences manager
 		preferencesManager = new PreferencesManager();
+		
+		// create the music manager
+		musicManager = new MusicManager();
+		musicManager.setVolume( preferencesManager.getVolume() );
+		musicManager.setEnabled( preferencesManager.isMusicEnabled() );
+
+
+
 
 		// create the level manager
 		levelManager = new LevelManager();

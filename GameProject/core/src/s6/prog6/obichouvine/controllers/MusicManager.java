@@ -19,7 +19,7 @@ public class MusicManager
     /**
      * The available music files.
      */
-    public enum TyrianMusic
+    public enum ObiMusic
     {
         MENU( "music/menu.ogg" ),
         LEVEL( "music/level.ogg" );
@@ -27,7 +27,7 @@ public class MusicManager
         private String fileName;
         private Music musicResource;
 
-        private TyrianMusic(
+        private ObiMusic(
             String fileName )
         {
             this.fileName = fileName;
@@ -53,7 +53,7 @@ public class MusicManager
     /**
      * Holds the music currently being played, if any.
      */
-    private TyrianMusic musicBeingPlayed;
+    private ObiMusic musicBeingPlayed;
 
     /**
      * The volume to be set on the music.
@@ -78,7 +78,7 @@ public class MusicManager
      * If there is already a music being played it is stopped automatically.
      */
     public void play(
-        TyrianMusic music )
+        ObiMusic music )
     {
         // check if the music is enabled
         if( ! enabled ) return;

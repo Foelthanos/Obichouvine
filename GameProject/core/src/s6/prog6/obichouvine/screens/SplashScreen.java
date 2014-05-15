@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.controllers.MusicManager.ObiMusic;
 
 public class SplashScreen extends AbstractScreen {
 
@@ -25,7 +26,8 @@ public class SplashScreen extends AbstractScreen {
 		super.show();
 
 		// start playing the menu music
-		//game.getMusicManager().play( TyrianMusic.MENU );
+		if(! ObichouvineGame.DEV_MODE )
+			game.getMusicManager().play( ObiMusic.MENU );
 
 		// retrieve the splash image's region from the atlas
 		AtlasRegion splashRegion = getAtlas().findRegion( "splash-screen/splash-image" );
