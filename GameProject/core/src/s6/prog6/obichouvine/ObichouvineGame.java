@@ -5,7 +5,9 @@ import s6.prog6.obichouvine.controllers.MusicManager;
 import s6.prog6.obichouvine.controllers.PreferencesManager;
 import s6.prog6.obichouvine.controllers.SoundManager;
 import s6.prog6.obichouvine.screens.MenuScreen;
+import s6.prog6.obichouvine.screens.OptionsScreen;
 import s6.prog6.obichouvine.screens.SplashScreen;
+import s6.prog6.obichouvine.screens.StartLocalGameScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -43,7 +45,29 @@ public class ObichouvineGame extends Game {
     {
         return soundManager;
     }
+	
+	// Screen methods
 
+    public SplashScreen getSplashScreen()
+    {
+        return new SplashScreen(this);
+    }
+    
+    public OptionsScreen getOptionsScreen()
+    {
+        return new OptionsScreen( this );
+    }
+    
+    public MenuScreen getMenuScreen()
+    {
+        return new MenuScreen( this );
+    }
+
+    public StartLocalGameScreen getStartLocalGameScreen()
+    {
+        return new StartLocalGameScreen( this );
+    }
+    
 	@Override
 	public void create () {
 		Gdx.app.log(ObichouvineGame.LOG, "Creating game on " + Gdx.app.getType());

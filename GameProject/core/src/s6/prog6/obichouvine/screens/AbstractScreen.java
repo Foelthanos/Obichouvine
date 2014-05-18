@@ -74,12 +74,12 @@ public abstract class AbstractScreen implements Screen{
 	protected Table getTable()
     {
         if( table == null ) {
-            table = new Table( getSkin() );
-            table.setFillParent( true );
+            table = new Table(getSkin());
+            table.setFillParent(true);
             if( ObichouvineGame.DEV_MODE ) {
                 table.debug();
             }
-            stage.addActor( table );
+            stage.addActor(table);
         }
         return table;
     }
@@ -97,7 +97,7 @@ public abstract class AbstractScreen implements Screen{
         // (1) process the game logic
 
         // update the actors
-        stage.act( delta );
+        stage.act(delta);
 
         // (2) draw the result
 
@@ -109,7 +109,7 @@ public abstract class AbstractScreen implements Screen{
         stage.draw();
 
         // draw the table debug lines
-        Table.drawDebug( stage );
+        Table.drawDebug(stage);
 
 	}
 
@@ -122,7 +122,7 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		Gdx.app.log( ObichouvineGame.LOG, "Showing screen: " + getName() );
+		Gdx.app.log( ObichouvineGame.LOG, "Showing screen: " + getName());
 
         // set the stage as the input processor
         Gdx.input.setInputProcessor( stage );
@@ -131,7 +131,7 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		Gdx.app.log( ObichouvineGame.LOG, "Hiding screen: " + getName() );
+		Gdx.app.log( ObichouvineGame.LOG, "Hiding screen: " + getName());
 
         // dispose the screen when leaving the screen;
         // note that the dipose() method is not called automatically by the
@@ -143,19 +143,19 @@ public abstract class AbstractScreen implements Screen{
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		Gdx.app.log( ObichouvineGame.LOG, "Pausing screen: " + getName() );
+		Gdx.app.log( ObichouvineGame.LOG, "Pausing screen: " + getName());
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-		Gdx.app.log( ObichouvineGame.LOG, "Resuming screen: " + getName() );
+		Gdx.app.log( ObichouvineGame.LOG, "Resuming screen: " + getName());
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		Gdx.app.log( ObichouvineGame.LOG, "Disposing screen: " + getName() );
+		Gdx.app.log( ObichouvineGame.LOG, "Disposing screen: " + getName());
 
         // the following call disposes the screen's stage, but on my computer it
         // crashes the game so I commented it out; more info can be found at:
