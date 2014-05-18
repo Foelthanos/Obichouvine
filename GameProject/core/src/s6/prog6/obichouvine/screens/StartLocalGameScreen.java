@@ -3,6 +3,9 @@ package s6.prog6.obichouvine.screens;
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
+import s6.prog6.obichouvine.utils.OptionPane;
+import s6.prog6.obichouvine.utils.OptionPane.Content;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -17,6 +20,7 @@ public class StartLocalGameScreen extends AbstractScreen
 	private SplitPane pane;
 
 	private Table t1;
+	private OptionPane oPane;
 	private TextButton specModeButton;	
 	private TextButton soloModeButton;
 	private TextButton multiModeButton;
@@ -109,12 +113,9 @@ public class StartLocalGameScreen extends AbstractScreen
 		t1.add(back).uniform().fill().spaceBottom(80);
 		t1.row();
 
-		Table t2 = new Table(getSkin());
-		t2.add("Parametres de la partie").spaceBottom(50).spaceLeft(30);
-		t2.top().left();
-		t2.row();
+		oPane = new OptionPane(Content.PvsIA, this.getSkin());
 
-		pane = new SplitPane(t1, t2, false, getSkin());
+		pane = new SplitPane(t1, oPane, false, getSkin());
 		pane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);
 		pane.setMinSplitAmount((float) 0.2);
 		pane.setMaxSplitAmount((float) 0.2001);
