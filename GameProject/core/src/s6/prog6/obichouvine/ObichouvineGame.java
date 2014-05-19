@@ -8,6 +8,7 @@ import s6.prog6.obichouvine.screens.MenuScreen;
 import s6.prog6.obichouvine.screens.OptionsScreen;
 import s6.prog6.obichouvine.screens.SplashScreen;
 import s6.prog6.obichouvine.screens.StartLocalGameScreen;
+import s6.prog6.obichouvine.screens.StartOnlineGameScreen;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -55,17 +56,22 @@ public class ObichouvineGame extends Game {
     
     public OptionsScreen getOptionsScreen()
     {
-        return new OptionsScreen( this );
+        return new OptionsScreen(this);
     }
     
     public MenuScreen getMenuScreen()
     {
-        return new MenuScreen( this );
+        return new MenuScreen(this);
     }
 
     public StartLocalGameScreen getStartLocalGameScreen()
     {
-        return new StartLocalGameScreen( this );
+        return new StartLocalGameScreen(this);
+    }
+    
+    public StartOnlineGameScreen getStartOnlineGameScreen()
+    {
+        return new StartOnlineGameScreen(this);
     }
     
 	@Override

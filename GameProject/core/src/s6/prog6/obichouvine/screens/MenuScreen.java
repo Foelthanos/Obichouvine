@@ -29,7 +29,7 @@ public class MenuScreen extends AbstractScreen {
 			game.getMusicManager().play( ObiMusic.MENU );
 		// retrieve the default table actor
 		Table table = super.getTable();
-		table.add( "Obichouvine "+ObichouvineGame.VER ).spaceBottom( 50 );
+		table.add("Obichouvine "+ObichouvineGame.VER).spaceBottom( 50 );
 		table.row();
 
 		// register the button "new game"
@@ -45,14 +45,14 @@ public class MenuScreen extends AbstractScreen {
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play( ObiSound.CLICK );
-				game.setScreen(new StartLocalGameScreen(game));
+				game.setScreen(game.getStartLocalGameScreen());
 			}
 		} );
 		table.add( startGameButton ).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
 		table.row();
 		// register the button "new game"
 		TextButton startOnlineGameButton = new TextButton( "Partie en reseau", this.getSkin() );
-		startOnlineGameButton.addListener( new DefaultInputListener() {
+		startOnlineGameButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
 					InputEvent event,
@@ -63,14 +63,14 @@ public class MenuScreen extends AbstractScreen {
 			{
 				super.touchUp( event, x, y, pointer, button );
 				game.getSoundManager().play( ObiSound.CLICK );
-				game.setScreen( new StartOnlineGameScreen( game ) );
+				game.setScreen(game.getStartOnlineGameScreen());
 			}
 		} );
 		table.add( startOnlineGameButton ).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
 		table.row();
 		// register the button "options"
-		TextButton optionsButton = new TextButton( "Options", getSkin() );
-		optionsButton.addListener( new DefaultInputListener() {
+		TextButton optionsButton = new TextButton("Options", getSkin() );
+		optionsButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
 					InputEvent event,
@@ -81,7 +81,7 @@ public class MenuScreen extends AbstractScreen {
 			{
 				super.touchUp( event, x, y, pointer, button );
 				game.getSoundManager().play( ObiSound.CLICK );
-				game.setScreen( new OptionsScreen( game ) );
+				game.setScreen(game.getOptionsScreen());
 			}
 		} );
 		table.add( optionsButton ).uniform().fill().spaceBottom( 10 );
@@ -89,7 +89,7 @@ public class MenuScreen extends AbstractScreen {
 
 		// register the button "quitter"
 		TextButton highScoresButton = new TextButton( "Regles", getSkin() );
-		highScoresButton.addListener( new DefaultInputListener() {
+		highScoresButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
 					InputEvent event,
@@ -98,7 +98,7 @@ public class MenuScreen extends AbstractScreen {
 					int pointer,
 					int button )
 			{
-				super.touchUp( event, x, y, pointer, button );
+				super.touchUp(event, x, y, pointer, button);
 				Gdx.app.exit();
 			}
 		} );
