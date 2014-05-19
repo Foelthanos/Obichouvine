@@ -20,7 +20,7 @@ public class ObichouvineGame extends Game {
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = true;
-	public static final String VER = "v0.0.6";
+	public static final String VER = "v0.0.7";
 
 	private PreferencesManager preferencesManager;
 	private LevelManager levelManager;

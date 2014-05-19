@@ -1,45 +1,46 @@
 package s6.prog6.obichouvine.models;
 
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
 public class Block {
 	
-	public enum BlockType 
+	public enum BlockState 
 	{
-		
-		  BLANC(0),
-		  ROUGE(1),
-		  TRONE(2),
-		  FORTERESSE(3);
-	  
-		  final int val;
-		  
-		  BlockType(int val){
-			  this.val = val;
-		  }
+		  BLANC,
+		  ROUGE,
+		  TRONE,
+		  FORTERESSE;
 	}
 
-	Pawn pion;
-	BlockType state;
+	Pawn pawn;
+	BlockState state;
 
+	public static final float SIZE = 40f;
 	
-	public Block(BlockType e,Pawn p) 
+	Vector2 position = new Vector2();
+	Rectangle bounds = new Rectangle();
+	
+	public Block(Vector2 pos, BlockState e, Pawn p) 
 	{
-		pion = p;
-		state = e;
+		this.position = pos;
+		this.pawn = p;
+		this.state = e;
 	}
 
 	public Pawn getPion() {
-		return pion;
+		return pawn;
 	}
 
-	public void setPion(Pawn pion) {
-		this.pion = pion;
+	public void setPion(Pawn pawn) {
+		this.pawn = pawn;
 	}
 
-	public BlockType getState() {
+	public BlockState getState() {
 		return state;
 	}
 
-	public void setState(BlockType state) {
+	public void setState(BlockState state) {
 		this.state = state;
 	}
 	

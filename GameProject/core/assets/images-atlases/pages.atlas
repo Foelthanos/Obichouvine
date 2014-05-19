@@ -3,9 +3,51 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-splash
+Escape-case
+  rotate: false
+  xy: 2, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Moscovit
+  rotate: false
+  xy: 804, 706
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Roi
   rotate: false
   xy: 2, 2
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Standard-case
+  rotate: false
+  xy: 104, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Suedois
+  rotate: false
+  xy: 804, 604
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+Throne-case
+  rotate: false
+  xy: 906, 706
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+splash
+  rotate: false
+  xy: 2, 206
   size: 800, 600
   orig: 800, 600
   offset: 0, 0
