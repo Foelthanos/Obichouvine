@@ -11,7 +11,7 @@ public class Coup {
 		xDep = x;
 		yDep = y;
 		xArr = x1;
-		yArr = y;
+		yArr = y1;
 	}
 	public int getxDep() {
 		return xDep;

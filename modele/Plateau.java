@@ -277,7 +277,7 @@ public class Plateau {
 	
 	private Coup[] DeplacementsPossibles(int x,int y) {
 
-		Coup[] coups= new Coup[xUaetalp*yUaetalp];
+		Coup[] coups= new Coup[xUaetalp+yUaetalp];
 			
 		int i = x;
 		
@@ -348,7 +348,7 @@ public class Plateau {
 			{
 				if (y < y1)
 				{
-					for (int i = y; i < y1+1; i++)
+					for (int i = y+1; i < y1+1; i++)
 					{
 						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
 							return false;
@@ -356,7 +356,7 @@ public class Plateau {
 					return true;
 				}else
 				{
-					for (int i = y1; i < y+1; i++)
+					for (int i = y1; i < y; i++)
 					{
 						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
 							return false;
@@ -368,7 +368,7 @@ public class Plateau {
 			{
 				if (x < x1)
 				{
-					for (int i = x; i < x1+1; i++)
+					for (int i = x+1; i < x1+1; i++)
 					{
 						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
 							return false;
@@ -376,7 +376,7 @@ public class Plateau {
 					return true;
 				}else
 				{
-					for (int i = x1; i < x+1; i++)
+					for (int i = x1; i < x; i++)
 					{
 						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
 							return false;
@@ -391,6 +391,10 @@ public class Plateau {
 	public static void main (String args[])
 	{
 		Plateau plat = new Plateau(9,9);
+		plat.AffichPlateau();
+		System.out.println("\n\n\n");
+		int test = plat.Deplacement(new Coup(0,2,0,1));
+		System.out.println("test : " + test +"\n\n\n");
 		plat.AffichPlateau();
 	}
 }
