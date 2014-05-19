@@ -74,6 +74,11 @@ public class ObichouvineGame extends Game {
         return new StartOnlineGameScreen(this);
     }
     
+    public GameScreen getGameScreen()
+    {
+        return new GameScreen(this);
+    }
+    
 	@Override
 	public void create () {
 		Gdx.app.log(ObichouvineGame.LOG, "Creating game on " + Gdx.app.getType());

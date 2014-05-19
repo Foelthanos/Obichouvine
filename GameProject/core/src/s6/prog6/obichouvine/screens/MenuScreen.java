@@ -14,7 +14,7 @@ public class MenuScreen extends AbstractScreen {
 
 	private final int BUTTONW = 150; 
 	private final int BUTTONH = 30; 
-	
+
 	public MenuScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
@@ -48,10 +48,10 @@ public class MenuScreen extends AbstractScreen {
 				game.setScreen(game.getStartLocalGameScreen());
 			}
 		} );
-		table.add( startGameButton ).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
+		table.add(startGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10);
 		table.row();
 		// register the button "new game"
-		TextButton startOnlineGameButton = new TextButton( "Partie en reseau", this.getSkin() );
+		TextButton startOnlineGameButton = new TextButton("Partie en reseau", this.getSkin());
 		startOnlineGameButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -59,17 +59,17 @@ public class MenuScreen extends AbstractScreen {
 					float x,
 					float y,
 					int pointer,
-					int button )
+					int button)
 			{
-				super.touchUp( event, x, y, pointer, button );
+				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play( ObiSound.CLICK );
 				game.setScreen(game.getStartOnlineGameScreen());
 			}
 		} );
-		table.add( startOnlineGameButton ).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
+		table.add(startOnlineGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
 		table.row();
 		// register the button "options"
-		TextButton optionsButton = new TextButton("Options", getSkin() );
+		TextButton optionsButton = new TextButton("Options", getSkin());
 		optionsButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -79,8 +79,8 @@ public class MenuScreen extends AbstractScreen {
 					int pointer,
 					int button )
 			{
-				super.touchUp( event, x, y, pointer, button );
-				game.getSoundManager().play( ObiSound.CLICK );
+				super.touchUp(event, x, y, pointer, button);
+				game.getSoundManager().play(ObiSound.CLICK);
 				game.setScreen(game.getOptionsScreen());
 			}
 		} );
@@ -104,7 +104,7 @@ public class MenuScreen extends AbstractScreen {
 		} );
 		table.add( highScoresButton ).uniform().fill().spaceBottom(10);
 		table.row();
-		
+
 		// register the button "quitter"
 		TextButton quit = new TextButton( "Quitter", getSkin() );
 		quit.addListener( new DefaultInputListener() {
