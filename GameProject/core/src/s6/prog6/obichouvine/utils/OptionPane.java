@@ -89,7 +89,7 @@ public class OptionPane extends Table{
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getMenuScreen());
+				game.setScreen(game.getGameScreen());
 			}
 		} );
 		this.add(validate).colspan(2).fillX();
