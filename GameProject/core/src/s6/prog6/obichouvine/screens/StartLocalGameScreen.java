@@ -36,7 +36,7 @@ public class StartLocalGameScreen extends AbstractScreen
 	public void show()
 	{
 		super.show();
-		oPane = new OptionPane(Content.PvsIA, this.getSkin());
+		oPane = new OptionPane(Content.PvsIA, this.getSkin(), this.game);
 		t1 = new Table(getSkin());
 		t1.add("Partie en local").spaceBottom(50).spaceLeft(30);
 		t1.top().left();

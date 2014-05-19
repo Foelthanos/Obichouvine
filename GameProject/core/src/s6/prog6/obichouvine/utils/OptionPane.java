@@ -1,23 +1,28 @@
 package s6.prog6.obichouvine.utils;
 
+import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
+
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 
 public class OptionPane extends Table{
 	private Skin skin;
+	private ObichouvineGame game;
 	
 	public enum Content{
 		IAvsIA, PvsIA, PvsP
 	}
 	
-	public OptionPane(Content content, Skin skin){
+	public OptionPane(Content content, Skin skin, ObichouvineGame game){
 		super(skin);
 		this.skin = skin;
 		this.updateContent(content);
+		this.game = game;
 	}
 	
 	public void updateContent(Content content){
@@ -32,14 +37,9 @@ public class OptionPane extends Table{
 
 	private void printPvsP() {
 		// TODO Auto-generated method stub
-		
-		
 		this.add("Parametres de la partie : Joueur vs Joueur").spaceBottom(50).spaceLeft(30).colspan(2);
 		this.row();
 		
-		
-		
-	
 	}
 
 	private void printPvsIA() {
@@ -57,7 +57,7 @@ public class OptionPane extends Table{
 		algo.add("Facile");
 		algo.add("Moyen");
 		
-		TextButton validate = new TextButton("Valider", skin);
+		
 		
 		ia1.setItems(algo);
 		ia2.setItems(algo);
@@ -73,10 +73,27 @@ public class OptionPane extends Table{
 		this.add(ia2).uniform().spaceBottom(30).fillX().expandY();
 		this.row();
 		
+		this.printValidate();
+	}
+	
+	private void printValidate(){
+		TextButton validate = new TextButton("Valider", skin);
+		validate.addListener(new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp(event, x, y, pointer, button);
+				game.getSoundManager().play(ObiSound.CLICK);
+				game.setScreen(game.getMenuScreen());
+			}
+		} );
 		this.add(validate).colspan(2).fillX();
 		this.row();
-		
-		
 	}
 	
 }
