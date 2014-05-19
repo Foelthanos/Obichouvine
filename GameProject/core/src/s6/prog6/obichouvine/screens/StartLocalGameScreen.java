@@ -21,6 +21,7 @@ public class StartLocalGameScreen extends AbstractScreen
 
 	private Table t1;
 	private OptionPane oPane;
+	
 	private TextButton specModeButton;	
 	private TextButton soloModeButton;
 	private TextButton multiModeButton;
@@ -35,7 +36,7 @@ public class StartLocalGameScreen extends AbstractScreen
 	public void show()
 	{
 		super.show();
-
+		oPane = new OptionPane(Content.PvsIA, this.getSkin());
 		t1 = new Table(getSkin());
 		t1.add("Partie en local").spaceBottom(50).spaceLeft(30);
 		t1.top().left();
@@ -53,7 +54,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				//Gdx.app.exit();
+				oPane.updateContent(Content.IAvsIA);
 			}
 		} );
 		t1.add(specModeButton).uniform().expand().spaceBottom(10).width(buttonW);
@@ -71,7 +72,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				//Gdx.app.exit();
+				oPane.updateContent(Content.PvsIA);
 			}
 		} );
 		t1.add(soloModeButton).uniform().expand().spaceBottom(10).width(buttonW);
@@ -89,7 +90,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				//Gdx.app.exit();
+				oPane.updateContent(Content.PvsP);
 			}
 		} );
 		t1.add(multiModeButton).uniform().expand().spaceBottom(100).width(buttonW);
@@ -113,7 +114,7 @@ public class StartLocalGameScreen extends AbstractScreen
 		t1.add(back).uniform().fill().spaceBottom(80);
 		t1.row();
 
-		oPane = new OptionPane(Content.PvsIA, this.getSkin());
+		
 
 		pane = new SplitPane(t1, oPane, false, getSkin());
 		pane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);
