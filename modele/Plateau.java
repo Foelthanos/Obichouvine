@@ -269,8 +269,9 @@ public class Plateau {
 		
 	}
 
-	private void verifManger(Coup c) {
+	public int manger(Coup c) {
 		
+		int total = 0;
 		int x1 = c.getxArr();
 		int y1 = c.getyArr();
 		Pion pionActuel = uaetalp[x1][y1].getPion();
@@ -289,6 +290,7 @@ public class Plateau {
 		try{
 				if ((uaetalp[x1+1][y1].getPion().getType() == pionAdverse.getType()) )
 				{
+					total += 4;
 					pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1+2][y1].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1+2][y1].getState() == TypeCase.FORTERESSE) )
@@ -307,6 +309,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1][y1+1].getPion().getType() == pionAdverse.getType())
 				{
+					 total +=  8;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1][y1+2].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1][y1+2].getState() == TypeCase.FORTERESSE) )
@@ -325,6 +328,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1-1][y1].getPion().getType() == pionAdverse.getType())
 				{
+					 total += 1;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1-2][y1].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1-2][y1].getState() == TypeCase.FORTERESSE) )
@@ -343,6 +347,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1][y1-1].getPion().getType() == pionAdverse.getType())
 				{
+					 total += 2;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1][y1-2].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1][y1-2].getState() == TypeCase.FORTERESSE) )
@@ -357,7 +362,7 @@ public class Plateau {
 		{
 						
 		}
-		
+		return total;
 	}
 	
 	public Coup[] getDeplacementsPossibles(int x,int y) {
