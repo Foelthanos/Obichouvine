@@ -1,6 +1,8 @@
 package modele;
 
 import modele.Case;
+import modele.Coup;
+import modele.Pion;
 import modele.Case.TypeCase;
 import modele.Pion.TypePion;
 import modele.Pion.TypeSuedois;
@@ -115,11 +117,13 @@ public class Plateau {
 			verifManger(c);
 			if (verifGagne(c))
 			{
-				return 1;
+				return 4;
 			}
-			return 2;
+			if (verifRaishiTuishi(c) == 0)
+				return 5;
+			return verifRaishiTuishi (c);
 		}
-		return 0;
+		return 3;
 	}
 	public int deplacementsansverif(Coup c) //optimiser pour IA
 	{	
@@ -127,6 +131,71 @@ public class Plateau {
 			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
 			int manger = verifManger(c);
 			return manger;
+	}
+	
+	private boolean verifDeplacment(Coup c) {
+		int x = c.getxDep();
+		int y = c.getyDep();
+		int x1 = c.getxArr();
+		int y1 = c.getyArr();
+		if (uaetalp[x][y].getPion().getType() != TypePion.VIDE)
+		{
+			if (x == x1)
+			{
+				if (y < y1)
+				{
+					for (int i = y+1; i < y1+1; i++)
+					{
+						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}else
+				{
+					for (int i = y1; i < y; i++)
+					{
+						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}
+				
+			}else if (y == y1)
+			{
+				if (x < x1)
+				{
+					for (int i = x+1; i < x1+1; i++)
+					{
+						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}else
+				{
+					for (int i = x1; i < x; i++)
+					{
+						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int verifRaishiTuishi (Coup c){
+		int posKing = GetPosKing();
+		Coup[] p  = getDeplacementsPossibles((posKing-posKing%10)/10, posKing%10);
+		int j = 0;
+		for(int i = 0; i <  p.length; i++)
+		{
+			if(uaetalp[p[i].getxArr()][p[i].getyArr()].getState() == TypeCase.FORTERESSE)
+				j++;
+				
+		}
+		return j;
+		
 	}
 	
 	public Boolean verifGagne(Coup c) {
