@@ -9,7 +9,6 @@ public class GameRenderer {
 	private TextureRegion escapeBlock;
 	private TextureRegion throneBlock;
 	
-	
 	private SpriteBatch spriteBatch;
 	
 	private int ppuX, ppuY;
