@@ -1,5 +1,6 @@
 package modele;
 
+import modele.Case;
 import modele.Case.TypeCase;
 import modele.Pion.TypePion;
 import modele.Pion.TypeSuedois;
@@ -438,5 +439,16 @@ public class Plateau {
 			}
 		}
 		return false;
+	}
+	
+	public Case[][] cpy()
+	{
+		Case[][] plat = uaetalp.clone(); 
+		
+		for (int i=0; i< xUaetalp;i++)
+		{
+			plat[i] = uaetalp[i].clone();
+		}
+		return plat;
 	}
 }
