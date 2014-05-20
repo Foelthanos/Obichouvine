@@ -1,5 +1,8 @@
 package s6.prog6.obichouvine;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -11,7 +14,7 @@ import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
-public class GameScreen extends AbstractScreen{
+public class GameScreen extends AbstractScreen implements InputProcessor{
 	GameController gController;
 	GameRenderer gRenderer;
 	
@@ -24,7 +27,9 @@ public class GameScreen extends AbstractScreen{
 
 	public void show(){
 		super.show();
-		
+		InputMultiplexer multiplexer = new InputMultiplexer();
+		multiplexer.addProcessor(stage);
+		multiplexer.addProcessor(this);
 		Table table = super.getTable();
 		table.top();
 		table.add("Joueur 1 : Joueur 2").spaceBottom(50).colspan(20).expandX().fillY();
@@ -105,7 +110,7 @@ public class GameScreen extends AbstractScreen{
 		} );
 		table.add(surrend).fillX();
 		table.row();
-		
+		Gdx.input.setInputProcessor(multiplexer);
 	}
 	
 	private void fillScreen(int fillSize, Table table){
@@ -116,6 +121,55 @@ public class GameScreen extends AbstractScreen{
 	public void render(float delta) {
 		super.render(delta);
 		gRenderer.render();
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		System.out.println("C'est bon !");
+		return true;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

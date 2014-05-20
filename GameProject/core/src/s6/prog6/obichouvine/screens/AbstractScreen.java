@@ -125,7 +125,7 @@ public abstract class AbstractScreen implements Screen{
 		Gdx.app.log( ObichouvineGame.LOG, "Showing screen: " + getName());
 
         // set the stage as the input processor
-        Gdx.input.setInputProcessor( stage );
+        Gdx.input.setInputProcessor(stage);
 	}
 
 	@Override
