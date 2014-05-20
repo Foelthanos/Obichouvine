@@ -3,6 +3,7 @@ package s6.prog6.obichouvine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -21,8 +22,9 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	public GameScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
-		this.gController = new GameController();
-		this.gRenderer = new GameRenderer(new Board(9, 9));
+		Board board = new Board(9, 9);
+		this.gController = new GameController(board);
+		this.gRenderer = new GameRenderer(board);
 	}
 
 	public void show(){
@@ -120,6 +122,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	
 	public void render(float delta) {
 		super.render(delta);
+		gController.update(delta);
 		gRenderer.render();
 	}
 
@@ -144,13 +147,14 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
-		return false;
+		gController.clickPressed(new Vector2(screenX, screenY), button);
+		return true;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		// TODO Auto-generated method stub
-		System.out.println("C'est bon !");
+		gController.clickReleased(new Vector2(screenX, screenY), button);
 		return true;
 	}
 

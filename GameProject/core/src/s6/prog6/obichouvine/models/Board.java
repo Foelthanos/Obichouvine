@@ -12,9 +12,8 @@ import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 
 public class Board {
 	Pawn p = null;
-	Block[][] board;
-	int xBoard;
-	int yBoard;
+	public Block[][] board;
+	public int offsetX, offsetY, xBoard, yBoard;
 	
 	public Board(int x ,int y)
 	{
@@ -22,8 +21,8 @@ public class Board {
 		yBoard = y;
 		board = new Block[x][y];
 				
-		int offsetX = (int) (Gdx.graphics.getWidth()/2 - (x*Block.SIZE)/2);
-		int offsetY = (int) (Gdx.graphics.getHeight()/2 - (y*Block.SIZE)/2);
+		offsetX = (int) (Gdx.graphics.getWidth()/2 - (x*Block.SIZE)/2);
+		offsetY = (int) (Gdx.graphics.getHeight()/2 - (y*Block.SIZE)/2);
 		
 		
 		for(int i =0; i < x; i++)
