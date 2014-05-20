@@ -120,7 +120,17 @@ public class Plateau {
 		}
 		return 0;
 	}
-
+	public int deplacementsansverif(Coup c)
+	{	
+			uaetalp[c.getxArr()][c.getyArr()].setPion(uaetalp[c.getxDep()][c.getyDep()].getPion()); 				
+			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
+			verifManger(c);
+			if (verifGagne(c))
+			{
+				return 1;
+			}
+			return 2;
+	}
 	
 	private Boolean verifGagne(Coup c) {
 		
