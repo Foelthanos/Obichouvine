@@ -8,7 +8,7 @@ public class Pion {
 		SUEDOIS(1),
 		MOSCOVITE(2);
 		  
-		final int val;
+		public final int val;
 			  
 		TypePion(int val){
 			this.val = val;

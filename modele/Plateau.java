@@ -5,10 +5,20 @@ import modele.Pion.TypePion;
 import modele.Pion.TypeSuedois;
 
 public class Plateau {
-	Pion p = null;
 	Case[][] uaetalp;
 	int xUaetalp;
 	int yUaetalp;
+	
+	public int getX() {
+		return xUaetalp;
+	}
+	public int getY() {
+		return yUaetalp;
+	}
+	public Case[][] getUaetalp() {
+		return uaetalp;
+	}
+	
 	
 	public Plateau(int x , int y)
 	{
@@ -52,7 +62,7 @@ public class Plateau {
 		}	
 	}
 	
-	public void AffichPlateau()
+	public void affichPlateau()
 	{
 		for (int i = 0; i < xUaetalp; i++)
 		{
@@ -95,7 +105,7 @@ public class Plateau {
 	}
 	
 	
-	public int Deplacement(Coup c)
+	public int deplacement(Coup c)
 	{
 		if (verifDeplacment(c))
 		{
@@ -109,7 +119,6 @@ public class Plateau {
 			return 2;
 		}
 		return 0;
-		
 	}
 
 	
@@ -275,63 +284,100 @@ public class Plateau {
 		
 	}
 	
-	private Coup[] DeplacementsPossibles(int x,int y) {
+	public Coup[] getDeplacementsPossibles(int x,int y) {
 
 		Coup[] coups= new Coup[xUaetalp+yUaetalp];
-			
-		int i = x;
 		
-		int l =0;
+		int l = 0;
 		
-		
-		while (i < xUaetalp && uaetalp[i][y].getPion().getType() == Pion.TypePion.VIDE)
+		int i = x+1;
+		while (i < xUaetalp-1 && uaetalp[i][y].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(i);
-				coups[l].setyArr(y);
+			if (uaetalp[i][y].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[i][y].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, i, y);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, i, y);
 				l++;
-				i++;
+			}
+			i++;
 		}
 		
-		i=x;
+		i=x-1;
 		
-		while (i > 0 && uaetalp[i][y].getPion().getType() == Pion.TypePion.VIDE)
+		while (i > -1 && uaetalp[i][y].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(i);
-				coups[l].setyArr(y);
+			if (uaetalp[i][y].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[i][y].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, i, y);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, i, y);
 				l++;
-				i--;
+			}
+			i--;
 		}
 		
-		i=x;
+		i=y-1;
 
-		while (i < yUaetalp && uaetalp[x][i].getPion().getType() == Pion.TypePion.VIDE)
+		while (i > -1 && uaetalp[x][i].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(x);
-				coups[l].setyArr(i);
+			if (uaetalp[x][i].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[x][i].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				|| uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, x, i);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, x, i);
 				l++;
-				i++;
+			}
+			i--;
 		}
 		
-		i=x;
-
-		while (i < yUaetalp && uaetalp[x][i].getPion().getType() == Pion.TypePion.VIDE)
+		i=y+1;
+		while (i < yUaetalp-1 && uaetalp[x][i].getPion().getType() == TypePion.VIDE )
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(x);
-				coups[l].setyArr(i);
+			if (uaetalp[x][i].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[x][i].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, x, i);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, x, i);
 				l++;
-				i--;
+			}
+			i++;
 		}
 		
-		
-		return coups;
+		Coup[] coupss= new Coup[l];
+		for (int k = 0; k < l; k++)
+		{
+			coupss[k] = new Coup(coups[k].getxDep(), coups[k].getyDep(), coups[k].getxArr(), coups[k].getyArr());
+		}
+		return coupss;
 		
 	}
 
@@ -386,15 +432,5 @@ public class Plateau {
 			}
 		}
 		return false;
-	}
-
-	public static void main (String args[])
-	{
-		Plateau plat = new Plateau(9,9);
-		plat.AffichPlateau();
-		System.out.println("\n\n\n");
-		int test = plat.Deplacement(new Coup(0,2,0,1));
-		System.out.println("test : " + test +"\n\n\n");
-		plat.AffichPlateau();
 	}
 }
