@@ -1,14 +1,27 @@
 package modele;
 
+import modele.Case;
+import modele.Coup;
+import modele.Pion;
 import modele.Case.TypeCase;
 import modele.Pion.TypePion;
 import modele.Pion.TypeSuedois;
 
 public class Plateau {
-	Pion p = null;
 	Case[][] uaetalp;
 	int xUaetalp;
 	int yUaetalp;
+	
+	public int getX() {
+		return xUaetalp;
+	}
+	public int getY() {
+		return yUaetalp;
+	}
+	public Case[][] getUaetalp() {
+		return uaetalp;
+	}
+	
 	
 	public Plateau(int x , int y)
 	{
@@ -52,7 +65,7 @@ public class Plateau {
 		}	
 	}
 	
-	public void AffichPlateau()
+	public void affichPlateau()
 	{
 		for (int i = 0; i < xUaetalp; i++)
 		{
@@ -95,7 +108,7 @@ public class Plateau {
 	}
 	
 	
-	public int Deplacement(Coup c)
+	public int deplacement(Coup c)
 	{
 		if (verifDeplacment(c))
 		{
@@ -104,16 +117,88 @@ public class Plateau {
 			verifManger(c);
 			if (verifGagne(c))
 			{
-				return 1;
+				return 4;
 			}
-			return 2;
+			if (verifRaishiTuishi(c) == 0)
+				return 5;
+			return verifRaishiTuishi (c);
 		}
-		return 0;
+		return 3;
+	}
+	public int deplacementsansverif(Coup c) //optimiser pour IA
+	{	
+			uaetalp[c.getxArr()][c.getyArr()].setPion(uaetalp[c.getxDep()][c.getyDep()].getPion()); 				
+			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
+			int manger = verifManger(c);
+			return manger;
+	}
+	
+	private boolean verifDeplacment(Coup c) {
+		int x = c.getxDep();
+		int y = c.getyDep();
+		int x1 = c.getxArr();
+		int y1 = c.getyArr();
+		if (uaetalp[x][y].getPion().getType() != TypePion.VIDE)
+		{
+			if (x == x1)
+			{
+				if (y < y1)
+				{
+					for (int i = y+1; i < y1+1; i++)
+					{
+						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}else
+				{
+					for (int i = y1; i < y; i++)
+					{
+						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}
+				
+			}else if (y == y1)
+			{
+				if (x < x1)
+				{
+					for (int i = x+1; i < x1+1; i++)
+					{
+						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}else
+				{
+					for (int i = x1; i < x; i++)
+					{
+						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
+							return false;
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public int verifRaishiTuishi (Coup c){
+		int posKing = GetPosKing();
+		Coup[] p  = getDeplacementsPossibles((posKing-posKing%10)/10, posKing%10);
+		int j = 0;
+		for(int i = 0; i <  p.length; i++)
+		{
+			if(uaetalp[p[i].getxArr()][p[i].getyArr()].getState() == TypeCase.FORTERESSE)
+				j++;
+				
+		}
+		return j;
 		
 	}
-
 	
-	private Boolean verifGagne(Coup c) {
+	public Boolean verifGagne(Coup c) {
 		
 		int posY = this.GetPosKing()%10;
 		int posX = (this.GetPosKing() - posY)/10;
@@ -184,8 +269,9 @@ public class Plateau {
 		
 	}
 
-	private void verifManger(Coup c) {
+	public int manger(Coup c) {
 		
+		int total = 0;
 		int x1 = c.getxArr();
 		int y1 = c.getyArr();
 		Pion pionActuel = uaetalp[x1][y1].getPion();
@@ -204,6 +290,7 @@ public class Plateau {
 		try{
 				if ((uaetalp[x1+1][y1].getPion().getType() == pionAdverse.getType()) )
 				{
+					total += 4;
 					pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1+2][y1].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1+2][y1].getState() == TypeCase.FORTERESSE) )
@@ -222,6 +309,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1][y1+1].getPion().getType() == pionAdverse.getType())
 				{
+					 total +=  8;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1][y1+2].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1][y1+2].getState() == TypeCase.FORTERESSE) )
@@ -240,6 +328,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1-1][y1].getPion().getType() == pionAdverse.getType())
 				{
+					 total += 1;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1-2][y1].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1-2][y1].getState() == TypeCase.FORTERESSE) )
@@ -258,6 +347,7 @@ public class Plateau {
 		try{
 				 if (uaetalp[x1][y1-1].getPion().getType() == pionAdverse.getType())
 				{
+					 total += 2;
 					 pionAdverse = uaetalp[x1+1][y1].getPion();
 					if ((uaetalp[x1][y1-2].getPion().getType() == pionActuel.getType()) 
 							|| (uaetalp[x1][y1-2].getState() == TypeCase.FORTERESSE) )
@@ -272,66 +362,103 @@ public class Plateau {
 		{
 						
 		}
-		
+		return total;
 	}
 	
-	private Coup[] DeplacementsPossibles(int x,int y) {
+	public Coup[] getDeplacementsPossibles(int x,int y) {
 
 		Coup[] coups= new Coup[xUaetalp+yUaetalp];
-			
-		int i = x;
 		
-		int l =0;
+		int l = 0;
 		
-		
-		while (i < xUaetalp && uaetalp[i][y].getPion().getType() == Pion.TypePion.VIDE)
+		int i = x+1;
+		while (i < xUaetalp-1 && uaetalp[i][y].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(i);
-				coups[l].setyArr(y);
+			if (uaetalp[i][y].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[i][y].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, i, y);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, i, y);
 				l++;
-				i++;
+			}
+			i++;
 		}
 		
-		i=x;
+		i=x-1;
 		
-		while (i > 0 && uaetalp[i][y].getPion().getType() == Pion.TypePion.VIDE)
+		while (i > -1 && uaetalp[i][y].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(i);
-				coups[l].setyArr(y);
+			if (uaetalp[i][y].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[i][y].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, i, y);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, i, y);
 				l++;
-				i--;
+			}
+			i--;
 		}
 		
-		i=x;
+		i=y-1;
 
-		while (i < yUaetalp && uaetalp[x][i].getPion().getType() == Pion.TypePion.VIDE)
+		while (i > -1 && uaetalp[x][i].getPion().getType() == TypePion.VIDE)
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(x);
-				coups[l].setyArr(i);
+			if (uaetalp[x][i].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[x][i].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				|| uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, x, i);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, x, i);
 				l++;
-				i++;
+			}
+			i--;
 		}
 		
-		i=x;
-
-		while (i < yUaetalp && uaetalp[x][i].getPion().getType() == Pion.TypePion.VIDE)
+		i=y+1;
+		while (i < yUaetalp-1 && uaetalp[x][i].getPion().getType() == TypePion.VIDE )
 		{
-				coups[l].setxDep(x);
-				coups[l].setyDep(y);
-				coups[l].setxArr(x);
-				coups[l].setyArr(i);
+			if (uaetalp[x][i].getState() == TypeCase.FORTERESSE 
+					|| uaetalp[x][i].getState() == TypeCase.TRONE)
+			{
+				if( uaetalp[x][y].getPion().getType() == TypePion.SUEDOIS 
+				&& uaetalp[x][y].getPion().getTypesuede() == TypeSuedois.KING)
+				{
+					coups[l] = new Coup(x, y, x, i);
+					l++;
+				}
+			}else
+			{
+				coups[l] = new Coup(x, y, x, i);
 				l++;
-				i--;
+			}
+			i++;
 		}
 		
-		
-		return coups;
+		Coup[] coupss= new Coup[l];
+		for (int k = 0; k < l; k++)
+		{
+			coupss[k] = new Coup(coups[k].getxDep(), coups[k].getyDep(), coups[k].getxArr(), coups[k].getyArr());
+		}
+		return coupss;
 		
 	}
 
@@ -387,14 +514,15 @@ public class Plateau {
 		}
 		return false;
 	}
-
-	public static void main (String args[])
+	
+	public Case[][] cpy()
 	{
-		Plateau plat = new Plateau(9,9);
-		plat.AffichPlateau();
-		System.out.println("\n\n\n");
-		int test = plat.Deplacement(new Coup(0,2,0,1));
-		System.out.println("test : " + test +"\n\n\n");
-		plat.AffichPlateau();
+		Case[][] plat = uaetalp.clone(); 
+		
+		for (int i=0; i< xUaetalp;i++)
+		{
+			plat[i] = uaetalp[i].clone();
+		}
+		return plat;
 	}
 }
