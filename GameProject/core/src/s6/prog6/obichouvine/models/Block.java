@@ -43,6 +43,11 @@ public class Block {
 	public void setState(BlockState state) {
 		this.state = state;
 	}
+
+	public Vector2 getPosition() {
+		// TODO Auto-generated method stub
+		return this.position;
+	}
 	
 
 

@@ -2,6 +2,8 @@ package s6.prog6.obichouvine.models;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+
 import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
@@ -11,13 +13,13 @@ import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 public class Board {
 	Pawn p = null;
 	Block[][] board;
-	int xUaetalp;
-	int yUaetalp;
+	int xBoard;
+	int yBoard;
 	
-	public Board(int x , int y)
+	public Board(int x ,int y)
 	{
-		xUaetalp = x;
-		yUaetalp = y;
+		xBoard = x;
+		yBoard = y;
 		board = new Block[x][y];
 				
 		int offsetX = (int) (Gdx.graphics.getWidth()/2 - (x*Block.SIZE)/2);
@@ -61,9 +63,9 @@ public class Board {
 	
 	public void AffichPlateau()
 	{
-		for (int i = 0; i < xUaetalp; i++)
+		for (int i = 0; i < xBoard; i++)
 		{
-			for (int j = 0; j < yUaetalp; j++)
+			for (int j = 0; j < yBoard; j++)
 			{
 				BlockState state = board[i][j].getState();
 				PawnType typepion = board[i][j].getPion().getType();
@@ -119,6 +121,18 @@ public class Board {
 		
 	}
 
+	public Array<Block> getBlocks() {
+		// TODO Auto-generated method stub
+		Array<Block> res = new Array<Block>();
+		for(int i =0; i < xBoard; i++)
+		{
+			for(int j = 0; j < yBoard; j++)
+			{
+				res.add(board[i][j]);
+			}
+		}
+		return res;
+	}
 	
 	private Boolean verifGagne(Move c) {
 		
@@ -128,7 +142,7 @@ public class Board {
 				|| board[posX+1][posY].getState() == BlockState.FORTERESSE 
 				|| board[posX+1][posY].getState() == BlockState.TRONE ))
 		{	
-			if ((posX <  xUaetalp - 1 ) && (board[posX+1][posY].getPion().getType() == PawnType.MOSCOVITE
+			if ((posX <  xBoard - 1 ) && (board[posX+1][posY].getPion().getType() == PawnType.MOSCOVITE
 					|| board[posX+1][posY].getState() == BlockState.FORTERESSE 
 					|| board[posX+1][posY].getState() == BlockState.TRONE ))
 			{
@@ -136,7 +150,7 @@ public class Board {
 						|| board[posX][posY-1].getState() == BlockState.FORTERESSE 
 						|| board[posX][posY-1].getState() == BlockState.TRONE) )
 				{
-					if((posY < yUaetalp - 1) && (board[posX][posY+1].getPion().getType() == PawnType.MOSCOVITE
+					if((posY < yBoard - 1) && (board[posX][posY+1].getPion().getType() == PawnType.MOSCOVITE
 							|| board[posX][posY+1].getState() == BlockState.FORTERESSE 
 							|| board[posX][posY+1].getState() == BlockState.TRONE ))
 					{
@@ -159,9 +173,9 @@ public class Board {
 		{
 			pionAdverse = new Pawn(PawnType.SUEDOIS, TypeSuedois.PION);
 		}
-		for(int i =0; i < xUaetalp; i++)
+		for(int i =0; i < xBoard; i++)
 		{
-			for(int j = 0; j < yUaetalp; j++)
+			for(int j = 0; j < yBoard; j++)
 			{
 				if (board[i][j].getPion().getType() == pionAdverse.getType() )
 					return false;
@@ -177,9 +191,9 @@ public class Board {
 	{
 		
 
-		for(int i =0; i < xUaetalp; i++)
+		for(int i =0; i < xBoard; i++)
 		{
-			for(int j = 0; j < yUaetalp; j++)
+			for(int j = 0; j < yBoard; j++)
 			{
 				if (board[i][j].getPion().getType() == PawnType.SUEDOIS 
 						&& board[i][j].getPion().getTypesuede() == TypeSuedois.KING)
@@ -284,14 +298,14 @@ public class Board {
 	
 	private Move[] DeplacementsPossibles(int x,int y) {
 
-		Move[] coups= new Move[xUaetalp+yUaetalp];
+		Move[] coups= new Move[xBoard+yBoard];
 			
 		int i = x;
 		
 		int l =0;
 		
 		
-		while (i < xUaetalp && board[i][y].getPion().getType() == Pawn.PawnType.VIDE)
+		while (i < xBoard && board[i][y].getPion().getType() == Pawn.PawnType.VIDE)
 		{
 				coups[l].setxDep(x);
 				coups[l].setyDep(y);
@@ -315,7 +329,7 @@ public class Board {
 		
 		i=x;
 
-		while (i < yUaetalp && board[x][i].getPion().getType() == Pawn.PawnType.VIDE)
+		while (i < yBoard && board[x][i].getPion().getType() == Pawn.PawnType.VIDE)
 		{
 				coups[l].setxDep(x);
 				coups[l].setyDep(y);
@@ -327,7 +341,7 @@ public class Board {
 		
 		i=x;
 
-		while (i < yUaetalp && board[x][i].getPion().getType() == Pawn.PawnType.VIDE)
+		while (i < yBoard && board[x][i].getPion().getType() == Pawn.PawnType.VIDE)
 		{
 				coups[l].setxDep(x);
 				coups[l].setyDep(y);

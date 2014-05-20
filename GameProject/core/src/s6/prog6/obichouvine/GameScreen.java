@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import s6.prog6.obichouvine.controllers.GameController;
 import s6.prog6.obichouvine.controllers.GameRenderer;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
+import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
@@ -18,7 +19,7 @@ public class GameScreen extends AbstractScreen{
 		super(game);
 		// TODO Auto-generated constructor stub
 		this.gController = new GameController();
-		this.gRenderer = new GameRenderer();
+		this.gRenderer = new GameRenderer(new Board(9, 9));
 	}
 
 	public void show(){
@@ -70,7 +71,7 @@ public class GameScreen extends AbstractScreen{
 		
 		this.fillScreen(16, table);
 	
-		TextButton save = new TextButton("Sauvegarder", this.getSkin());
+		TextButton save = new TextButton("Save", this.getSkin());
 		save.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -87,7 +88,7 @@ public class GameScreen extends AbstractScreen{
 		} );
 		table.add(save).fillX();
 		
-		TextButton surrend = new TextButton("Abandonner", this.getSkin());
+		TextButton surrend = new TextButton("Surrend", this.getSkin());
 		surrend.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -110,6 +111,11 @@ public class GameScreen extends AbstractScreen{
 	private void fillScreen(int fillSize, Table table){
 		for(int i=0; i<fillSize; i++)
 			table.add().expandX();
+	}
+	
+	public void render(float delta) {
+		super.render(delta);
+		gRenderer.render();
 	}
 	
 }
