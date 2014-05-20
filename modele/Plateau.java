@@ -114,13 +114,11 @@ public class Plateau {
 		{
 			uaetalp[c.getxArr()][c.getyArr()].setPion(uaetalp[c.getxDep()][c.getyDep()].getPion()); 				
 			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
-			verifManger(c);
+			manger(c);
 			if (verifGagne(c))
 			{
 				return 4;
 			}
-			if (verifRaishiTuishi(c) == 0)
-				return 5;
 			return verifRaishiTuishi (c);
 		}
 		return 3;
