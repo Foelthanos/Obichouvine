@@ -55,7 +55,7 @@ public class Historique {
 		}
 	}
 	
-	public void sauver(int longueur, int largeur, int tour)
+	public void sauver(int longueur, int largeur)
 	{
 		Coup cp;
 		while(li.hasPrevious())
@@ -63,7 +63,6 @@ public class Historique {
 		try {
 			PrintWriter fo = new PrintWriter(historiqueName);
 			fo.println(longueur + " " + largeur);
-			fo.println(tour);
 			while (li.hasNext())
 			{
 				cp = (Coup) li.next();
@@ -77,23 +76,28 @@ public class Historique {
 		
 	}
 	
-	public void charger()
+	public Plateau charger()
 	{
 		BufferedReader br = null;
-		 
+		int longueur = 0, largeur = 0;
 		
 		try {
  
 			String sCurrentLine;
 			int i =0;
 			br = new BufferedReader(new FileReader(historiqueName));
-
+			
 			while ((sCurrentLine = br.readLine()) != null) {
-				if (i>=2)
+				if (i>=1)
 				{
 					String[] j = sCurrentLine.split(" ");
 					Coup cp = new Coup(Integer.parseInt(j[0]),Integer.parseInt(j[1]),Integer.parseInt(j[2]),Integer.parseInt(j[3]));
 					li.add(cp);
+				}else if(i == 0) 
+				{
+					String [] taille = sCurrentLine.split(" ");
+					longueur = Integer.parseInt(taille[0]);
+					largeur = Integer.parseInt(taille[1]);
 				}
 				i++;
 			}
@@ -101,8 +105,17 @@ public class Historique {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}  
-
- 
+		Plateau plat =  new Plateau(longueur, largeur);
+		while (li.hasPrevious())
+		{
+			li.previous();
+		}
+		while (li.hasNext())
+		{
+			Coup c = li.next();
+			plat.deplacement(c);
+		}
+		return plat ;
 	}
 
 	
