@@ -30,11 +30,11 @@ public class Pion {
 	TypeSuedois typesuede;
 	TypePion type;
 
-	Pion(TypePion type, TypeSuedois k){
+	public Pion(TypePion type, TypeSuedois k){
 		typesuede = k;
 		this.type = type;
 	}
-	Pion(TypePion type){
+	public Pion(TypePion type){
 		typesuede = TypeSuedois.VIDE;
 		this.type = type;
 	}
