@@ -6,6 +6,7 @@ import s6.prog6.obichouvine.controllers.PreferencesManager;
 import s6.prog6.obichouvine.controllers.SoundManager;
 import s6.prog6.obichouvine.screens.MenuScreen;
 import s6.prog6.obichouvine.screens.OptionsScreen;
+import s6.prog6.obichouvine.screens.RulesScreen;
 import s6.prog6.obichouvine.screens.SplashScreen;
 import s6.prog6.obichouvine.screens.StartLocalGameScreen;
 import s6.prog6.obichouvine.screens.StartOnlineGameScreen;
@@ -49,6 +50,11 @@ public class ObichouvineGame extends Game {
 	
 	// Screen methods
 
+	public RulesScreen getRulesScreen()
+    {
+        return new RulesScreen(this);
+    }
+	
     public SplashScreen getSplashScreen()
     {
         return new SplashScreen(this);
