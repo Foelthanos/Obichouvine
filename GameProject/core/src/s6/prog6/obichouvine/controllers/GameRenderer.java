@@ -2,6 +2,8 @@ package s6.prog6.obichouvine.controllers;
 
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
+import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -53,8 +55,18 @@ public class GameRenderer {
 		for (Block block : board.getBlocks()) {
 			if(block.getState()==Block.BlockState.TRONE)
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getState()==Block.BlockState.ROUGE)
+				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			
+			if(block.getPion().getType()==PawnType.MOSCOVITE)
+				spriteBatch.draw(moscoPawn, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getPion().getType()==PawnType.SUEDOIS)
+				if(block.getPion().getTypesuede()==TypeSuedois.KING)
+					spriteBatch.draw(viKing, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				else if(block.getPion().getTypesuede()==TypeSuedois.PION)
+					spriteBatch.draw(vikingSoldier, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 		}
 	}
 
