@@ -15,6 +15,7 @@ public class GameRenderer {
 	private TextureRegion normalBlock;
 	private TextureRegion escapeBlock;
 	private TextureRegion throneBlock;
+	private TextureRegion moscovitBlock;
 
 	private SpriteBatch spriteBatch;
 
@@ -40,6 +41,7 @@ public class GameRenderer {
 		normalBlock = atlas.findRegion("Standard-case");
 		escapeBlock = atlas.findRegion("Escape-case");
 		throneBlock = atlas.findRegion("Throne-case");
+		moscovitBlock = atlas.findRegion("Moscovit-case");
 		moscoPawn = atlas.findRegion("Moscovit");
 		vikingSoldier = atlas.findRegion("Suedois");
 		viKing = atlas.findRegion("Roi");
@@ -58,7 +60,7 @@ public class GameRenderer {
 			else if(block.getState()==Block.BlockState.FORTERESSE)
 				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.ROUGE)
-				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.BLANC)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
