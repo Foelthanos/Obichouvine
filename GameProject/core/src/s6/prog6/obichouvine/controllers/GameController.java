@@ -9,6 +9,7 @@ import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Pawn;
+import s6.prog6.obichouvine.models.Block.BlockState;
 
 public class GameController {
 	private Board board;
@@ -33,7 +34,6 @@ public class GameController {
 
 	public void update(float delta) {
 		processInput();
-		System.out.println(this.selectedPawn);
 	}
 
 	public void clickReleased(Vector2 cursorPos, int button) {
@@ -55,16 +55,20 @@ public class GameController {
 	private void processInput() {
 		// TODO Auto-generated method stub
 		if(keys.get(Keys.CLICK)){
+			//this.refactorCursorPos();
 			if(this.selectedPawn==null)
 				this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
 			else{
-				board.Deplacement(new Move((int)this.selectedPawn.getPosition().x,
-						(int)this.selectedPawn.getPosition().y,
+				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
+				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
+				board.deplacementsansverif(new Move(xStart,
+						yStart,
 						(int)cursorPos.x, 
 						(int)cursorPos.y));
 				this.selectedPawn = null;
 			}
 			keys.get(keys.put(Keys.CLICK, false));
+			board.AffichPlateau();
 		}
 	}
 

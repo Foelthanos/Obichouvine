@@ -105,6 +105,7 @@ public class Board {
 	
 	public int Deplacement(Move c)
 	{
+		System.out.println(verifDeplacment(c));
 		if (verifDeplacment(c))
 		{
 			board[c.getxArr()][c.getyArr()].setPion(board[c.getxDep()][c.getyDep()].getPion()); 				
