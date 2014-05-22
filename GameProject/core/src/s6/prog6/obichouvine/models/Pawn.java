@@ -30,11 +30,11 @@ public class Pawn {
 	TypeSuedois typesuede;
 	PawnType type;
 
-	Pawn(PawnType type, TypeSuedois k){
+	public Pawn(PawnType type, TypeSuedois k){
 		typesuede = k;
 		this.type = type;
 	}
-	Pawn(PawnType type){
+	public Pawn(PawnType type){
 		typesuede = TypeSuedois.VIDE;
 		this.type = type;
 	}
