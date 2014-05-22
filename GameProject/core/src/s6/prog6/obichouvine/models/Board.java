@@ -105,7 +105,7 @@ public class Board {
 	
 	public int Deplacement(Move c)
 	{
-		System.out.println(verifDeplacment(c));
+		System.out.println("Verif : "+verifDeplacment(c));
 		if (verifDeplacment(c))
 		{
 			board[c.getxArr()][c.getyArr()].setPion(board[c.getxDep()][c.getyDep()].getPion()); 				
@@ -198,9 +198,11 @@ public class Board {
 		int posKing = GetPosKing();
 		Move[] p  = DeplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
+		System.out.println("Possibilité : "+p);
 		for(int i = 0; i <  p.length; i++)
 		{
-			if(board[p[i].getxArr()][p[i].getyArr()].getState() == BlockState.FORTERESSE)
+			System.out.println(p[i]);
+			if(p[i] != null && board[p[i].getxArr()][p[i].getyArr()].getState() == BlockState.FORTERESSE)
 				j++;
 		}
 		return j;

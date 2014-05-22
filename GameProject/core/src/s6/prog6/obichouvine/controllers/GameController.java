@@ -10,6 +10,7 @@ import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Pawn;
 import s6.prog6.obichouvine.models.Block.BlockState;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
 
 public class GameController {
 	private Board board;
@@ -18,6 +19,8 @@ public class GameController {
 	private int button;
 
 	private Block selectedPawn;
+	
+	private PawnType turn;
 
 	enum Keys {
 		CLICK
@@ -30,6 +33,7 @@ public class GameController {
 
 	public GameController(Board board){
 		this.board = board;
+		this.turn = PawnType.MOSCOVITE;
 	}
 
 	public void update(float delta) {
@@ -55,13 +59,13 @@ public class GameController {
 	private void processInput() {
 		// TODO Auto-generated method stub
 		if(keys.get(Keys.CLICK)){
-			//this.refactorCursorPos();
 			if(this.selectedPawn==null)
-				this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+				//if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPion().getType() != PawnType.VIDE)
+					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
 			else{
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
-				board.deplacementsansverif(new Move(xStart,
+				board.Deplacement(new Move(xStart,
 						yStart,
 						(int)cursorPos.x, 
 						(int)cursorPos.y));
