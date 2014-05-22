@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 public class OptionPane extends Table{
 	private Skin skin;
 	private ObichouvineGame game;
+	private TextArea pseudo1, pseudo2;
+
 	
 	public enum Content{
 		IAvsIA, PvsIA, PvsP
@@ -23,6 +25,8 @@ public class OptionPane extends Table{
 		this.skin = skin;
 		this.updateContent(content);
 		this.game = game;
+		pseudo1 = new TextArea("pseudo j1", skin);
+		pseudo2 = new TextArea("pseudo j2", skin);
 	}
 	
 	public void updateContent(Content content){
@@ -36,9 +40,15 @@ public class OptionPane extends Table{
 	}
 
 	private void printPvsP() {
-		// TODO Auto-generated method stub
 		this.add("Parametres de la partie : Joueur vs Joueur").spaceBottom(50).spaceLeft(30).colspan(2);
 		this.row();
+		this.add("joueur 1 :").spaceBottom(30).fillX().center().expandY();
+		this.add(pseudo1).spaceBottom(30).fillX().center().expandY();
+		this.row();
+		this.add("Joueur 2 :").spaceBottom(30).fillX().center().expandY();
+		this.add(pseudo2).spaceBottom(30).fillX().center().expandY();
+		this.row();
+		this.printValidate();
 		
 	}
 
@@ -65,11 +75,11 @@ public class OptionPane extends Table{
 		this.add("Parametres de la partie : IA vs IA").spaceBottom(50).spaceLeft(30).expandX().colspan(2);
 		this.row();
 		
-		this.add("Difficulté IA 1 :").spaceBottom(30).fillX().center().expandY();
+		this.add("Difficultï¿½ IA 1 :").spaceBottom(30).fillX().center().expandY();
 		this.add(ia1).uniform().spaceBottom(30).fillX().expandY();
 		this.row();
 		
-		this.add("Difficulté IA 2 :").spaceBottom(30).fillX().center().expandY();
+		this.add("Difficultï¿½ IA 2 :").spaceBottom(30).fillX().center().expandY();
 		this.add(ia2).uniform().spaceBottom(30).fillX().expandY();
 		this.row();
 		
