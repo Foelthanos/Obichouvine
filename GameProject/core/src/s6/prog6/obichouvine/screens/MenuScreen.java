@@ -99,7 +99,7 @@ public class MenuScreen extends AbstractScreen {
 					int button )
 			{
 				super.touchUp(event, x, y, pointer, button);
-				Gdx.app.exit();
+				game.setScreen(game.getRulesScreen());
 			}
 		} );
 		table.add( highScoresButton ).uniform().fill().spaceBottom(10);

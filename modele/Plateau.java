@@ -114,23 +114,19 @@ public class Plateau {
 		{
 			uaetalp[c.getxArr()][c.getyArr()].setPion(uaetalp[c.getxDep()][c.getyDep()].getPion()); 				
 			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
-			verifManger(c);
+			manger(c);
 			if (verifGagne(c))
 			{
 				return 4;
 			}
-			if (verifRaishiTuishi(c) == 0)
-				return 5;
 			return verifRaishiTuishi (c);
 		}
 		return 3;
 	}
-	public int deplacementsansverif(Coup c) //optimiser pour IA
+	public void deplacementsansverif(Coup c) //optimiser pour IA
 	{	
 			uaetalp[c.getxArr()][c.getyArr()].setPion(uaetalp[c.getxDep()][c.getyDep()].getPion()); 				
 			uaetalp[c.getxDep()][c.getyDep()].setPion(new Pion(TypePion.VIDE));
-			int manger = verifManger(c);
-			return manger;
 	}
 	
 	private boolean verifDeplacment(Coup c) {
@@ -197,7 +193,46 @@ public class Plateau {
 		return j;
 		
 	}
-	
+	public boolean verifCoupGagnant(Coup c) {
+		if(uaetalp[c.getxDep()][c.getyDep()].getPion().getType() == TypePion.SUEDOIS) {
+			if(uaetalp[c.getxArr()][c.getyArr()].getState() == TypeCase.FORTERESSE)
+				return true;
+		}
+		else {
+			int tmpX = c.getxArr();
+			int tmpY = c.getyArr();
+			int roiX = 0;
+			int roiY = 0; 
+			if(tmpX !=0 && uaetalp[tmpX-1][tmpY].getPion().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX-1;
+				roiY = tmpY;
+			}
+			else if(tmpY !=0 && uaetalp[tmpX][tmpY-1].getPion().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX;
+				roiY = tmpY-1;
+			}
+			else if(tmpX !=xUaetalp && uaetalp[tmpX+1][tmpY].getPion().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX+1;
+				roiY = tmpY;
+			}
+			else if(tmpY != yUaetalp && uaetalp[tmpX][tmpY+1].getPion().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX;
+				roiY = tmpY+1;
+			}
+			if(roiX != 0 && roiY != 0){
+				if(roiX ==0 ||uaetalp[roiX-1][roiY].getPion().getType() == TypePion.MOSCOVITE || uaetalp[roiX-1][roiY].getState() == TypeCase.FORTERESSE){
+					if(roiY ==0 ||uaetalp[roiX][roiY-1].getPion().getType() == TypePion.MOSCOVITE || uaetalp[roiX][roiY-1].getState() == TypeCase.FORTERESSE){
+						if(roiX ==xUaetalp ||uaetalp[roiX+1][roiY].getPion().getType() == TypePion.MOSCOVITE || uaetalp[roiX+1][roiY].getState() == TypeCase.FORTERESSE){
+							if(roiX ==yUaetalp ||uaetalp[roiX][roiY+1].getPion().getType() == TypePion.MOSCOVITE || uaetalp[roiX][roiY+1].getState() == TypeCase.FORTERESSE){
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 	public Boolean verifGagne(Coup c) {
 		
 		int posY = this.GetPosKing()%10;
@@ -462,59 +497,6 @@ public class Plateau {
 		
 	}
 
-	
-
-	private boolean verifDeplacment(Coup c) {
-		int x = c.getxDep();
-		int y = c.getyDep();
-		int x1 = c.getxArr();
-		int y1 = c.getyArr();
-		if (uaetalp[x][y].getPion().getType() != TypePion.VIDE)
-		{
-			if (x == x1)
-			{
-				if (y < y1)
-				{
-					for (int i = y+1; i < y1+1; i++)
-					{
-						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
-							return false;
-					}
-					return true;
-				}else
-				{
-					for (int i = y1; i < y; i++)
-					{
-						if(uaetalp[x][i].getPion().getType() != TypePion.VIDE)
-							return false;
-					}
-					return true;
-				}
-				
-			}else if (y == y1)
-			{
-				if (x < x1)
-				{
-					for (int i = x+1; i < x1+1; i++)
-					{
-						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
-							return false;
-					}
-					return true;
-				}else
-				{
-					for (int i = x1; i < x; i++)
-					{
-						if(uaetalp[i][y].getPion().getType() != TypePion.VIDE)
-							return false;
-					}
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
 	public Case[][] cpy()
 	{
 		Case[][] plat = uaetalp.clone(); 

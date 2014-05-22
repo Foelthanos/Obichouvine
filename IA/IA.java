@@ -6,7 +6,9 @@ import java.util.Random;
 
 import modele.Case;
 import modele.Coup;
+import modele.Pion;
 import modele.Plateau;
+import modele.Pion.TypePion;
 
 public class IA {
 	int profondeur;
@@ -39,8 +41,8 @@ public class IA {
 					Coup[] c = p.getDeplacementsPossibles(i, j);
 					for(int k=0 ; k < c.length ; k++) {
 						//Simulation du coup actuel
-						p.deplacement(c[k]);
-						
+						p.deplacementsansverif(c[k]);
+						int mange = p.manger(c[k]);
 						val = min(p, t, profondeur);
 						if(val > maxVal) {
 							maxVal = val;
@@ -52,7 +54,8 @@ public class IA {
 							itCoup.add(c[k]);
 						}
 						//Suppression de la simulation
-						p.deplacement(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
+						demanger(plateau, t, mange, c[k]);
+						p.deplacementsansverif(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
 					}
 				}
 			}
@@ -63,7 +66,7 @@ public class IA {
 	
 	private int min(Plateau p, int t, int profondeur) {
 		if(profondeur == 0 /*|| p.victoire()*/)
-			return eval(p, t);//1000 si victoire -1000 si defaite
+			return eval(p, t,t);//1000 si victoire -1000 si defaite
 		else {
 			if(t == 1)
 				t = 2;
@@ -79,13 +82,14 @@ public class IA {
 						for(int k=0 ; k < c.length ; k++) {
 							//Simulation du coup actuel
 							p.deplacementsansverif(c[k]);
-							
+							int mange = p.manger(c[k]);
 							val = max(p, t, profondeur);
 							if(val < minVal) {
 								minVal = val;
 							}
 							//Suppression de la simulation
-							p.deplacement(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
+							demanger(plateau, t, mange, c[k]);
+							p.deplacementsansverif(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
 						}
 					}
 				}
@@ -95,12 +99,13 @@ public class IA {
 	}
 	
 	private int max(Plateau p, int t, int profondeur) {
+		int pred = t;
 		if(t == 1)
 			t = 2;
 		else
 			t = 1;
 		if(profondeur == 0 /*|| p.victoire()*/)
-			return eval(p, t);//1000 si victoire -1000 si defaite
+			return eval(p, t,pred);//1000 si victoire -1000 si defaite
 		else {
 			int maxVal = Integer.MAX_VALUE;
 			int val = 0;
@@ -111,14 +116,15 @@ public class IA {
 						Coup[] c = p.getDeplacementsPossibles(i, j);
 						for(int k=0 ; k < c.length ; k++) {
 							//Simulation du coup actuel
-							p.deplacement(c[k]);
-							
+							p.deplacementsansverif(c[k]);
+							int mange = p.manger(c[k]);
 							val = min(p, t, profondeur);
 							if(val > maxVal) {
 								maxVal = val;
 							}
 							//Suppression de la simulation
-							p.deplacement(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
+							demanger(plateau, t, mange, c[k]);
+							p.deplacementsansverif(new Coup(c[k].getxArr(),c[k].getyArr(),c[k].getxDep(),c[k].getyDep()));
 						}
 					}
 				}
@@ -127,16 +133,50 @@ public class IA {
 		}
 	}
 	
-	private int eval(Plateau p, int t) {
-		/*int retour = 0;
-		if(p.victoire(t))
+	private int eval(Plateau p, int t,int dernier) { // t= joueur qui est incarné par IA
+		/* TODO a fixer
+		int retour = 0;
+		if(p.verifGagne(retour))
+		if(p.verifGagne(c)(t))
 			retour += 10000;
 		else if(p.defaite(t))
 			retour -= 10000;
 		*/
 		return 0;
 	}
-}
+
+	private void demanger(Case[][] plateau, int t,int mange,Coup c){
+		if(t == 1){ // si Suedois
+			if((mange & 1) == 1){
+				plateau[c.getxArr()-1][c.getyArr()].setPion(new Pion(TypePion.MOSCOVITE));
+			}
+			if((mange & 2) == 2){
+				plateau[c.getxArr()][c.getyArr()-1].setPion(new Pion(TypePion.MOSCOVITE));
+			}
+			if((mange & 4) == 4){
+				plateau[c.getxArr()+1][c.getyArr()].setPion(new Pion(TypePion.MOSCOVITE));
+			}
+			if((mange & 8) == 8){
+				plateau[c.getxArr()][c.getyArr()+1].setPion(new Pion(TypePion.MOSCOVITE));
+			}
+		}
+		else{ // si Moscovite
+			if((mange & 1) == 1){
+				plateau[c.getxArr()-1][c.getyArr()].setPion(new Pion(TypePion.SUEDOIS));
+			}
+			if((mange & 2) == 2){
+				plateau[c.getxArr()][c.getyArr()-1].setPion(new Pion(TypePion.SUEDOIS));
+			}
+			if((mange & 4) == 4){
+				plateau[c.getxArr()+1][c.getyArr()].setPion(new Pion(TypePion.SUEDOIS));
+			}
+			if((mange & 8) == 8){
+				plateau[c.getxArr()][c.getyArr()+1].setPion(new Pion(TypePion.SUEDOIS));
+			}
+		}
+	}
+	
+}	
 /*
  * gagner/perdre : 10000 manger un pion/perdre un pion : 10 distance
  * roi/coin (combien de deplacement pour atteindre)(40-7/coup) le roi est
