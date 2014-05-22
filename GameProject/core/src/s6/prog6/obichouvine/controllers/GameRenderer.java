@@ -55,9 +55,11 @@ public class GameRenderer {
 		for (Block block : board.getBlocks()) {
 			if(block.getState()==Block.BlockState.TRONE)
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.ROUGE)
+			else if(block.getState()==Block.BlockState.FORTERESSE)
 				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else
+			else if(block.getState()==Block.BlockState.ROUGE)
+				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getState()==Block.BlockState.BLANC)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
 			if(block.getPion().getType()==PawnType.MOSCOVITE)
