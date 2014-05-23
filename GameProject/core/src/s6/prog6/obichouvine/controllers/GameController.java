@@ -61,7 +61,7 @@ public class GameController {
 			else{
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
-				board.deplacementsansverif(new Move(xStart,
+				board.deplacement(new Move(xStart,
 						yStart,
 						(int)cursorPos.x, 
 						(int)cursorPos.y));
@@ -75,11 +75,13 @@ public class GameController {
 	private void refactorCursorPos(){
 		if(cursorPos.x < board.offsetX)
 			cursorPos.x = board.offsetX;
-		else if(cursorPos.x > board.offsetX + board.xBoard*Block.SIZE)
-			cursorPos.x = (board.offsetX + board.xBoard*Block.SIZE);
+		else if(cursorPos.x > board.offsetX + (board.xBoard - 1)*Block.SIZE)
+			cursorPos.x = (board.offsetX + (board.xBoard - 1)*Block.SIZE);
 		else
 			cursorPos.x = cursorPos.x;
 
+		//TODO finir la gestion des clic en y (les clic depassent le tableaux)
+		
 		if(cursorPos.y < board.offsetY)
 			cursorPos.y = board.offsetY;
 		else if(cursorPos.y > board.offsetY + board.yBoard*Block.SIZE)
