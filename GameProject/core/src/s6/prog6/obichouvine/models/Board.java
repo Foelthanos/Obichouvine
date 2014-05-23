@@ -103,7 +103,7 @@ public class Board {
 	}
 	
 	
-	public int Deplacement(Move c)
+	public int deplacement(Move c)
 	{
 		System.out.println(verifDeplacment(c));
 		if (verifDeplacment(c))
@@ -182,7 +182,6 @@ public class Board {
 	}
 
 	public Array<Block> getBlocks() {
-		// TODO Auto-generated method stub
 		Array<Block> res = new Array<Block>();
 		for(int i =0; i < xBoard; i++)
 		{
@@ -196,7 +195,7 @@ public class Board {
 	
 	public int verifRaishiTuishi (Move c){
 		int posKing = GetPosKing();
-		Move[] p  = DeplacementsPossibles((posKing-posKing%10)/10, posKing%10);
+		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
 		for(int i = 0; i <  p.length; i++)
 		{
@@ -414,7 +413,7 @@ public class Board {
 		
 	}
 	
-	private Move[] DeplacementsPossibles(int x,int y) {
+	private Move[] deplacementsPossibles(int x,int y) {
 
 		Move[] coups= new Move[xBoard+yBoard];
 			
@@ -517,7 +516,7 @@ public class Board {
 		Board plat = new Board(9,9);
 		plat.AffichPlateau();
 		System.out.println("\n\n\n");
-		int test = plat.Deplacement(new Move(0,2,0,1));
+		int test = plat.deplacement(new Move(0,2,0,1));
 		System.out.println("test : " + test +"\n\n\n");
 		plat.AffichPlateau();
 	}

@@ -1,4 +1,4 @@
-package modele;
+package s6.prog6.obichouvine.models;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -11,18 +11,18 @@ import java.util.ListIterator;
 
 public class Historique {
 
-	LinkedList<Coup> l ;
-	ListIterator<Coup> li;
-	LinkedList<Coup> lRefaire ;
-	ListIterator<Coup> liRefaire;
+	LinkedList<Move> l ;
+	ListIterator<Move> li;
+	LinkedList<Move> lRefaire ;
+	ListIterator<Move> liRefaire;
 	String historiqueName;
 	
 	public Historique(String n)
 	{
 		historiqueName = n;
-		l = new LinkedList<Coup>();
+		l = new LinkedList<Move>();
 		li =  l.listIterator();
-		lRefaire = new LinkedList<Coup>();
+		lRefaire = new LinkedList<Move>();
 		liRefaire =  lRefaire.listIterator();
 	}
 	
@@ -43,7 +43,7 @@ public class Historique {
 	{
 		if (liRefaire.hasPrevious())
 		{
-			Coup cp = liRefaire.previous();
+			Move cp = liRefaire.previous();
 			li.add(cp);
 			liRefaire.remove();
 			
@@ -57,7 +57,7 @@ public class Historique {
 	
 	public void sauver(int longueur, int largeur)
 	{
-		Coup cp;
+		Move cp;
 		while(li.hasPrevious())
 			li.previous();
 		try {
@@ -65,7 +65,7 @@ public class Historique {
 			fo.println(longueur + " " + largeur);
 			while (li.hasNext())
 			{
-				cp = (Coup) li.next();
+				cp = (Move) li.next();
 				fo.println((int)cp.getxDep() + " " + (int)cp.getyDep() + " " + (int)cp.getxArr() + " " + (int)cp.getyArr());
 
 			}
@@ -76,7 +76,7 @@ public class Historique {
 		
 	}
 	
-	public Plateau charger()
+	public Board charger()
 	{
 		BufferedReader br = null;
 		int longueur = 0, largeur = 0;
@@ -91,7 +91,7 @@ public class Historique {
 				if (i>=1)
 				{
 					String[] j = sCurrentLine.split(" ");
-					Coup cp = new Coup(Integer.parseInt(j[0]),Integer.parseInt(j[1]),Integer.parseInt(j[2]),Integer.parseInt(j[3]));
+					Move cp = new Move(Integer.parseInt(j[0]),Integer.parseInt(j[1]),Integer.parseInt(j[2]),Integer.parseInt(j[3]));
 					li.add(cp);
 				}else if(i == 0) 
 				{
@@ -105,14 +105,14 @@ public class Historique {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}  
-		Plateau plat =  new Plateau(longueur, largeur);
+		Board plat =  new Board(longueur, largeur);
 		while (li.hasPrevious())
 		{
 			li.previous();
 		}
 		while (li.hasNext())
 		{
-			Coup c = li.next();
+			Move c = li.next();
 			plat.deplacement(c);
 		}
 		return plat ;
