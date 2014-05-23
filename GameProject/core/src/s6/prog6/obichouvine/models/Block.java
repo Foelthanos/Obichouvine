@@ -28,11 +28,11 @@ public class Block {
 		this.state = e;
 	}
 
-	public Pawn getPion() {
+	public Pawn getPawn() {
 		return pawn;
 	}
 
-	public void setPion(Pawn pawn) {
+	public void setPawn(Pawn pawn) {
 		this.pawn = pawn;
 	}
 
