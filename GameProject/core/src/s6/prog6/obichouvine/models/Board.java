@@ -5,18 +5,23 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import s6.prog6.obichouvine.models.Block.BlockState;
+import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
+import s6.prog6.obichouvine.models.Parameter.KingCaptureMethod;
+import s6.prog6.obichouvine.models.Parameter.KingMoveMethod;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 
 
 
 public class Board {
+	static Parameter parameter;
 	Pawn p = null;
 	public Block[][] board;
 	public int offsetX, offsetY, xBoard, yBoard;
 	
-	public Board(int x ,int y)
+	public Board(int x ,int y, Parameter p)
 	{
+		Board.parameter =p;
 		xBoard = x;
 		yBoard = y;
 		board = new Block[x][y];
@@ -29,32 +34,98 @@ public class Board {
 		{
 			for(int j = 0; j < y; j++)
 			{
-				if ((i == 0 && (j == 0 || j == y-1)) || (i == x-1 && (j == 0 || j == y-1)))
+				if(parameter.getEsc() == EscapeMethod.Corner)
 				{
-					board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.FORTERESSE,new Pawn(PawnType.VIDE));
+					if ((i == 0 && (j == 0 || j == y-1)) || (i == x-1 && (j == 0 || j == y-1)))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.FORTERESSE,new Pawn(PawnType.VIDE));
+					}
+					else if((i == 0 &&(j == y/2 || j == (y/2)-1 || j == (y/2)+1) 
+							||(i == 1 && j == y/2) 
+							||(i == x-2 && j == y/2) 
+							||(i == x-1 && (j == y/2 || j == (y/2)-1 || j == (y/2)+1))
+							||(j == 0 && (i == y/2 || i == (y/2)-1 || i == (y/2)+1))
+							||(j == y-1 && (i == x/2 || i == (x/2)-1 || i == (x/2)+1))
+							||(j == 1 && i == x/2)
+							||(j == y-2 && i == x/2)))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.ROUGE,new Pawn(PawnType.MOSCOVITE));
+					}
+					else if((i == x/2 && j==y/2))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.TRONE,new Pawn(PawnType.SUEDOIS,TypeSuedois.KING));
+					}
+					else if(i == x/2 || j == y/2)
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.SUEDOIS,TypeSuedois.PION));
+					}
+					else
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.VIDE));
+					}
 				}
-				else if((i == 0 &&(j == y/2 || j == (y/2)-1 || j == (y/2)+1) 
-						||(i == 1 && j == y/2) 
-						||(i == x-2 && j == y/2) 
-						||(i == x-1 && (j == y/2 || j == (y/2)-1 || j == (y/2)+1))
-						||(j == 0 && (i == y/2 || i == (y/2)-1 || i == (y/2)+1))
-						||(j == y-1 && (i == x/2 || i == (x/2)-1 || i == (x/2)+1))
-						||(j == 1 && i == x/2)
-						||(j == y-2 && i == x/2)))
+				else if (parameter.getEsc() == EscapeMethod.Edge)
 				{
-					board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.ROUGE,new Pawn(PawnType.MOSCOVITE));
+					if ((i == 1 && j == y/2) 
+							||(i == x-2 && j == y/2) 
+							||(j == 1 && i == x/2)
+							||(j == y-2 && i == x/2))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.ROUGE,new Pawn(PawnType.MOSCOVITE));
+					}
+					else if((i == 0 &&(j == y/2 || j == (y/2)-1 || j == (y/2)+1) 
+							||(i == x-1 && (j == y/2 || j == (y/2)-1 || j == (y/2)+1))
+							||(j == 0 && (i == y/2 || i == (y/2)-1 || i == (y/2)+1))
+							||(j == y-1 && (i == x/2 || i == (x/2)-1 || i == (x/2)+1))))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.ROUGEEXIT,new Pawn(PawnType.MOSCOVITE));
+					}
+					else if((i == x/2 && j==y/2))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.TRONE,new Pawn(PawnType.SUEDOIS,TypeSuedois.KING));
+					}
+					else if(i == x/2 || j == y/2)
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.SUEDOIS,TypeSuedois.PION));
+					}
+					else if (i == 0 || i == xBoard - 1 || j == 0 || j == yBoard - 1)
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANCEXIT,new Pawn(PawnType.VIDE));
+					}
+					else
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.VIDE));
+					}
 				}
-				else if((i == x/2 && j==y/2))
+				else if (parameter.getEsc() == EscapeMethod.EdgeWithoutMosco)
 				{
-					board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.TRONE,new Pawn(PawnType.SUEDOIS,TypeSuedois.KING));
-				}
-				else if(i == x/2 || j == y/2)
-				{
-					board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.SUEDOIS,TypeSuedois.PION));
-				}
-				else
-				{
-					board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.VIDE));
+					if((i == 0 &&(j == y/2 || j == (y/2)-1 || j == (y/2)+1) 
+							||(i == 1 && j == y/2) 
+							||(i == x-2 && j == y/2) 
+							||(i == x-1 && (j == y/2 || j == (y/2)-1 || j == (y/2)+1))
+							||(j == 0 && (i == y/2 || i == (y/2)-1 || i == (y/2)+1))
+							||(j == y-1 && (i == x/2 || i == (x/2)-1 || i == (x/2)+1))
+							||(j == 1 && i == x/2)
+							||(j == y-2 && i == x/2)))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)), BlockState.ROUGE,new Pawn(PawnType.MOSCOVITE));
+					}
+					else if((i == x/2 && j==y/2))
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.TRONE,new Pawn(PawnType.SUEDOIS,TypeSuedois.KING));
+					}
+					else if(i == x/2 || j == y/2)
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.SUEDOIS,TypeSuedois.PION));
+					}
+					else if (i == 0 || i == xBoard - 1 || j == 0 || j == yBoard - 1)
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANCEXIT,new Pawn(PawnType.VIDE));
+					}
+					else
+					{
+						board[i][j] = new Block(new Vector2(offsetX+(i*Block.SIZE), offsetY+(j*Block.SIZE)),BlockState.BLANC,new Pawn(PawnType.VIDE));
+					}
 				}
 			}
 		}	
@@ -210,18 +281,6 @@ public class Board {
 			}
 		}
 		return false;
-	}
-
-	public Array<Block> getBlocks() {
-		Array<Block> res = new Array<Block>();
-		for(int i =0; i < xBoard; i++)
-		{
-			for(int j = 0; j < yBoard; j++)
-			{
-				res.add(board[i][j]);
-			}
-		}
-		return res;
 	}
 	
 	public int verifRaishiTuishi (Move c){
@@ -548,13 +607,63 @@ public class Board {
  		}
  		return plat;
 	}
+	
+	public int GetxBoard()
+	{
+		return xBoard;	
+	}
+	
+	public int GetyBoard()
+	{
+		return yBoard;	
+	}
+	
+	public Parameter GetParameter()
+	{
+		return parameter;	
+	}
+	
+	public void SetParameter(Parameter p)
+	{
+		Board.parameter=p;	
+	}
+	
+	public void SetBlocks(Block[][] b)
+	{
+		this.board = b;
+	}
+	
+	public Array<Block> getBlocks() {
+		Array<Block> res = new Array<Block>();
+		for(int i =0; i < xBoard; i++)
+		{
+			for(int j = 0; j < yBoard; j++)
+			{
+				res.add(board[i][j]);
+			}
+		}
+		return res;
+	}
+	
+	public Block[][] getBlock() {
+		return board;
+		
+	}
+	
 	public static void main (String args[])
 	{
-		Board plat = new Board(9,9);
-		plat.AffichPlateau();
+		GameState gs = new GameState();
+		
+		parameter = new Parameter(EscapeMethod.Edge,KingCaptureMethod.Can,KingMoveMethod.FourBlock);
+		
+		
+		Board plat = new Board(9,9,parameter);
+		Board plat2 =gs.Sauver(plat);
+		
+		plat2.AffichPlateau();
 		System.out.println("\n\n\n");
 		int test = plat.deplacement(new Move(0,2,0,1));
 		System.out.println("test : " + test +"\n\n\n");
-		plat.AffichPlateau();
+		plat2.AffichPlateau();
 	}
 }
