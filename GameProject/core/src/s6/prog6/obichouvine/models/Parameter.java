@@ -33,14 +33,40 @@ public class Parameter {
 		}
 	}
 
-	public EscapeMethod esc;
-	public KingCaptureMethod kingCap;
-	public KingMoveMethod kingMove;
+	private EscapeMethod esc;
+	private KingCaptureMethod kingCap;
+	private KingMoveMethod kingMove;
 
 	public Parameter(EscapeMethod esc, KingCaptureMethod kingCap, KingMoveMethod kingMove){
 		this.esc = esc;
 		this.kingCap = kingCap;
 		this.kingMove = kingMove;
 	}
+	
+	public EscapeMethod getEsc() {
+		return esc;
+	}
+
+	public void setEsc(EscapeMethod esc) {
+		this.esc = esc;
+	}
+
+	public KingCaptureMethod getKingCap() {
+		return kingCap;
+	}
+
+	public void setKingCap(KingCaptureMethod kingCap) {
+		this.kingCap = kingCap;
+	}
+
+	public KingMoveMethod getKingMove() {
+		return kingMove;
+	}
+
+	public void setKingMove(KingMoveMethod kingMove) {
+		this.kingMove = kingMove;
+	}
+
+	
 
 }

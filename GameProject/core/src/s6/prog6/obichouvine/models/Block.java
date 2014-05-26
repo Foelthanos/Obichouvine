@@ -9,8 +9,11 @@ public class Block {
 	{
 		  BLANC,
 		  ROUGE,
+		  BLANCEXIT,
+		  ROUGEEXIT,
 		  TRONE,
 		  FORTERESSE;
+		  
 	}
 
 	Pawn pawn;
