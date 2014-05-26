@@ -6,7 +6,7 @@ public class Parameter {
 
 		Edge("Bord"), Corner("Coin"), EdgeWithoutMosco("Bord sauf rouge");
 
-		String text;
+		public String text;
 
 		EscapeMethod(String text){
 			this.text = text;
@@ -16,7 +16,7 @@ public class Parameter {
 	public enum KingCaptureMethod{
 		Can("Possible"), Cannot("Impossible"), NotAPillar("Pas un pilier");
 
-		String text;
+		public String text;
 
 		KingCaptureMethod(String text){
 			this.text = text;
@@ -26,7 +26,7 @@ public class Parameter {
 	public enum KingMoveMethod{
 		Unlimited("Illimité"), FourBlock("4 cases"), WithoutMosco("Obstrué"); 
 		
-		String text;
+		public String text;
 
 		KingMoveMethod(String text){
 			this.text = text;
