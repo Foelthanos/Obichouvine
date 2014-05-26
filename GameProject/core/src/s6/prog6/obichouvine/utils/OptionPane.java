@@ -39,7 +39,10 @@ public class OptionPane extends Table{
 		esc= new SelectBox<String>(skin);
 		//esc.setCullingArea(new Rectangle(0, 0, esc.getPrefWidth(), esc.getItemHeight()));
 		kingCap = new SelectBox<String>(skin);
-		kingMove = new SelectBox<String>(skin);                                                
+		kingMove = new SelectBox<String>(skin);  
+		 if( ObichouvineGame.DEV_MODE ) {
+             this.debug();
+         }
 	}
 	
 	public void updateContent(Content content){

@@ -105,7 +105,7 @@ public class Historique {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}  
-		Board plat =  new Board(longueur, largeur);
+		Board plat =  new Board(longueur, largeur, null);
 		while (li.hasPrevious())
 		{
 			li.previous();
