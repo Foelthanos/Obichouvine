@@ -1,4 +1,4 @@
-package s6.prog6.obichouvine;
+package s6.prog6.obichouvine.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -8,10 +8,12 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
+import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.GameController;
 import s6.prog6.obichouvine.controllers.GameRenderer;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Board;
+import s6.prog6.obichouvine.models.Parameter;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
@@ -19,10 +21,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	GameController gController;
 	GameRenderer gRenderer;
 	
-	public GameScreen(ObichouvineGame game) {
+	public GameScreen(ObichouvineGame game, Parameter param) {
 		super(game);
 		// TODO Auto-generated constructor stub
-		Board board = new Board(9, 9);
+		Board board = new Board(9, 9, param);
 		this.gController = new GameController(board);
 		this.gRenderer = new GameRenderer(board);
 	}
@@ -54,7 +56,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen());
+				//game.setScreen(game.getGameScreen());
 			}
 		} );
 		table.add(cancel).fillX();
@@ -90,7 +92,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen());
+				//game.setScreen(game.getGameScreen());
 			}
 		} );
 		table.add(save).fillX();
