@@ -64,12 +64,12 @@ public class GameRenderer {
 			else if(block.getState()==Block.BlockState.BLANC)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
-			if(block.getPion().getType()==PawnType.MOSCOVITE)
+			if(block.getPawn().getType()==PawnType.MOSCOVITE)
 				spriteBatch.draw(moscoPawn, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getPion().getType()==PawnType.SUEDOIS)
-				if(block.getPion().getTypesuede()==TypeSuedois.KING)
+			else if(block.getPawn().getType()==PawnType.SUEDOIS)
+				if(block.getPawn().getTypesuede()==TypeSuedois.KING)
 					spriteBatch.draw(viKing, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-				else if(block.getPion().getTypesuede()==TypeSuedois.PION)
+				else if(block.getPawn().getTypesuede()==TypeSuedois.PION)
 					spriteBatch.draw(vikingSoldier, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 		}
 	}

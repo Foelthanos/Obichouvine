@@ -1,5 +1,8 @@
 package modele;
 
+import modele.Pion;
+import modele.Case.TypeCase;
+
 public class Case {
 	
 	public enum TypeCase 

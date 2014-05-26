@@ -1,5 +1,8 @@
 package modele;
 
+import modele.Pion.TypePion;
+import modele.Pion.TypeSuedois;
+
 public class Pion {
 	
 	public enum TypePion 
