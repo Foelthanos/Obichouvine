@@ -229,7 +229,11 @@ public class Board {
 							return false;
 					else
 					{
-						return true;
+						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
+								return y1 - y < 5;
+							else 
+								return true;
 					}
 					
 				} else {
@@ -252,10 +256,13 @@ public class Board {
 							return false;
 					else
 					{
-						return true;
+						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
+								return y - y1 < 5;
+							else 
+								return true;
 					}
 				}
-
 			} else if (y == y1) {
 				if (x < x1) {
 					for (int i = x + 1; i < x1 + 1; i++) {
@@ -277,7 +284,11 @@ public class Board {
 							return false;
 					else
 					{
-						return true;
+						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
+								return x1 - x < 5;
+							else 
+								return true;
 					}
 				} else {
 					for (int i = x1; i < x; i++) {
@@ -299,7 +310,11 @@ public class Board {
 							return false;
 					else
 					{
-						return true;
+						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
+								return x - x1 < 5;
+							else 
+								return true;
 					}
 				}
 			}
@@ -311,7 +326,7 @@ public class Board {
 		int posKing = GetPosKing();
 		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
-		System.out.println("Possibilité : "+p);
+		System.out.println("Possibilitï¿½ : "+p);
 		for(int i = 0; i <  p.length; i++)
 		{
 			System.out.println(p[i]);
@@ -550,13 +565,22 @@ public class Board {
 					|| board[i][y].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					coups[l] = new Move(x, y, i, y);
-					l++;
+					if (i - x < 5)
+					{
+						coups[l] = new Move(x, y, i, y);
+						l++;
+					}
 				}
 			}else
 			{
-				coups[l] = new Move(x, y, i, y);
-				l++;
+				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
+					if (i - x < 5)
+					{
+						coups[l] = new Move(x, y, i, y);
+						l++;
+					}
+				}
 			}
 			i++;
 		}
@@ -569,13 +593,22 @@ public class Board {
 					|| board[i][y].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					coups[l] = new Move(x, y, i, y);
-					l++;
+					if (x - i < 5)
+					{
+						coups[l] = new Move(x, y, i, y);
+						l++;
+					}
 				}
 			}else
 			{
-				coups[l] = new Move(x, y, i, y);
-				l++;
+				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
+					if (x - i < 5)
+					{
+						coups[l] = new Move(x, y, i, y);
+						l++;
+					}
+				}
 			}
 			i--;
 		}
@@ -588,13 +621,22 @@ public class Board {
 					|| board[x][i].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					coups[l] = new Move(x, y, x, i);
-					l++;
+					if (i - y < 5)
+					{
+						coups[l] = new Move(x, y, x, i);
+						l++;
+					}
 				}
 			}else
 			{
-				coups[l] = new Move(x, y, x, i);
-				l++;
+				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
+					if (i - y < 5)
+					{
+						coups[l] = new Move(x, y, x, i);
+						l++;
+					}
+				}
 			}
 			i++;
 		}
@@ -607,13 +649,22 @@ public class Board {
 					|| board[x][i].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					coups[l] = new Move(x, y, x, i);
-					l++;
+					if (y - i < 5)
+					{
+						coups[l] = new Move(x, y, x, i);
+						l++;
+					}
 				}
 			}else
 			{
-				coups[l] = new Move(x, y, x, i);
-				l++;
+				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
+					if (y - i < 5)
+					{
+						coups[l] = new Move(x, y, x, i);
+						l++;
+					}
+				}
 			}
 			i--;
 		}
