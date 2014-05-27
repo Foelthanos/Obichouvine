@@ -11,6 +11,9 @@ public class Parameter {
 		EscapeMethod(String text){
 			this.text = text;
 		}
+		public String toString(){
+			return this.text;
+		}
 	}
 
 	public enum KingCaptureMethod{
@@ -21,6 +24,9 @@ public class Parameter {
 		KingCaptureMethod(String text){
 			this.text = text;
 		}
+		public String toString(){
+			return this.text;
+		}
 	}
 
 	public enum KingMoveMethod{
@@ -30,6 +36,9 @@ public class Parameter {
 
 		KingMoveMethod(String text){
 			this.text = text;
+		}
+		public String toString(){
+			return this.text;
 		}
 	}
 

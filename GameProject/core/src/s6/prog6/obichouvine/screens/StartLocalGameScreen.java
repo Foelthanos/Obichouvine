@@ -2,13 +2,8 @@ package s6.prog6.obichouvine.screens;
 
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
-import s6.prog6.obichouvine.models.Parameter;
-import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
-import s6.prog6.obichouvine.models.Parameter.KingCaptureMethod;
-import s6.prog6.obichouvine.models.Parameter.KingMoveMethod;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.OptionPane;
-import s6.prog6.obichouvine.utils.OptionPane.Content;
 import s6.prog6.obichouvine.utils.PlayerSelection;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -34,7 +29,7 @@ public class StartLocalGameScreen extends AbstractScreen
 	public void show()
 	{
 		super.show();
-		oPane = new OptionPane(Content.PvsIA, this.getSkin(), this.game);
+		oPane = new OptionPane(this.getSkin());
 		mainTable = new Table(getSkin());
 		mainTable.debug();
 		mainTable.add("Partie locale");
@@ -79,7 +74,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen(new Parameter(EscapeMethod.Corner, KingCaptureMethod.Can, KingMoveMethod.Unlimited )));
+				game.setScreen(game.getGameScreen(oPane.generateParameter()));
 			}
 		} );
 		buttonTable.add(validate).fillY().expand().uniform();
