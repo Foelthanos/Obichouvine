@@ -1,8 +1,6 @@
 package s6.prog6.obichouvine.utils;
 
 import s6.prog6.obichouvine.ObichouvineGame;
-import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
-
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -10,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
-import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup;
+
 
 public class PlayerSelection extends Table{
 
@@ -20,6 +18,7 @@ public class PlayerSelection extends Table{
 	TextField pseudo;
 
 	public PlayerSelection(String pseudo, String name, Skin skin){
+		super(skin);
 		this.name = new Label(name, skin);
 		this.pseudoL = new Label("Pseudonyme", skin);
 		this.diffL = new Label("Difficulté", skin);

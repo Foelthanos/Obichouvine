@@ -72,28 +72,24 @@ public class GameController {
 				this.selectedPawn = null;
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-			board.AffichPlateau();
+			//board.AffichPlateau();
 		}
 	}
 
 	private void refactorCursorPos(){
 		if(cursorPos.x < board.offsetX)
-			cursorPos.x = board.offsetX;
-		else if(cursorPos.x > board.offsetX + (board.xBoard - 1)*Block.SIZE)
-			cursorPos.x = (board.offsetX + (board.xBoard - 1)*Block.SIZE);
+			cursorPos.x = 0;
+		else if(cursorPos.x > board.offsetX + (board.xBoard)*Block.SIZE)
+			cursorPos.x = board.xBoard-1;//(board.offsetX + (board.xBoard - 1)*Block.SIZE);
 		else
-			cursorPos.x = cursorPos.x;
+			cursorPos.x = (int)((cursorPos.x - board.offsetX)/Block.SIZE);
 
-		//TODO finir la gestion des clic en y (les clic depassent le tableaux)
-		
 		if(cursorPos.y < board.offsetY)
-			cursorPos.y = board.offsetY;
-		else if(cursorPos.y > board.offsetY + board.yBoard*Block.SIZE)
-			cursorPos.y = board.offsetY + board.yBoard*Block.SIZE;
+			cursorPos.y = board.yBoard-1;//board.offsetY;
+		else if(cursorPos.y > board.offsetY + (board.yBoard)*Block.SIZE)
+			cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
 		else
-			cursorPos.y = cursorPos.y;
+			cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 
-		cursorPos.x = (int)((cursorPos.x - board.offsetX)/Block.SIZE);
-		cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 	}	
 }
