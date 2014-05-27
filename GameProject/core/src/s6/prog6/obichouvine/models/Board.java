@@ -368,8 +368,21 @@ public class Board {
 	
 			}
 		}
-		if (board[posX][posY].getState() == BlockState.FORTERESSE)
-			return true;
+		if(parameter.getEsc() == EscapeMethod.Corner)
+		{
+			if (board[posX][posY].getState() == BlockState.FORTERESSE)
+				return true;
+		}else if (parameter.getEsc() == EscapeMethod.Edge)
+		{
+			if (board[posX][posY].getState() == BlockState.BLANCEXIT 
+					|| board[posX][posY].getState() == BlockState.ROUGEEXIT)
+				return true;
+		}else if (parameter.getEsc() == EscapeMethod.EdgeWithoutMosco)
+		{
+			if (board[posX][posY].getState() == BlockState.BLANCEXIT)
+				return true;
+		}
+		
 		Pawn pionActuel =  board[c.getxArr()][c.getyArr()].getPawn();
 		Pawn pionAdverse = null;
 		if (pionActuel.getType() == PawnType.SUEDOIS )
@@ -394,8 +407,20 @@ public class Board {
 
 	public boolean verifCoupGagnant(Move c) {
 		if(board[c.getxDep()][c.getyDep()].getPawn().getType() == PawnType.SUEDOIS && board[c.getxDep()][c.getyDep()].getPawn().getTypesuede() == TypeSuedois.KING) {
-			if(board[c.getxArr()][c.getyArr()].getState() == BlockState.FORTERESSE)
-				return true;
+			if(parameter.getEsc() == EscapeMethod.Corner)
+			{
+				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.FORTERESSE)
+					return true;
+			}else if (parameter.getEsc() == EscapeMethod.Edge)
+			{
+				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.BLANCEXIT 
+						|| board[c.getxArr()][c.getyArr()].getState() == BlockState.ROUGEEXIT)
+					return true;
+			}else if (parameter.getEsc() == EscapeMethod.EdgeWithoutMosco)
+			{
+				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.BLANCEXIT)
+					return true;
+			}
 		}
 		else {
 			int tmpX = c.getxArr();
@@ -438,24 +463,6 @@ public class Board {
 			}
 		}
 		return false;
-	}
-	
-	public int GetPosKing()
-	{
-		
-
-		for(int i =0; i < xBoard; i++)
-		{
-			for(int j = 0; j < yBoard; j++)
-			{
-				if (board[i][j].getPawn().getType() == PawnType.SUEDOIS 
-						&& board[i][j].getPawn().getTypesuede() == TypeSuedois.KING)
-					return (i*10+j);
-			}
-			
-		}
-		return 0;
-		
 	}
 
 	public int manger(Move c) {
@@ -724,6 +731,24 @@ public class Board {
 	
 	public Block[][] getBlock() {
 		return board;
+		
+	}
+	
+	public int GetPosKing()
+	{
+		
+
+		for(int i =0; i < xBoard; i++)
+		{
+			for(int j = 0; j < yBoard; j++)
+			{
+				if (board[i][j].getPawn().getType() == PawnType.SUEDOIS 
+						&& board[i][j].getPawn().getTypesuede() == TypeSuedois.KING)
+					return (i*10+j);
+			}
+			
+		}
+		return 0;
 		
 	}
 	
