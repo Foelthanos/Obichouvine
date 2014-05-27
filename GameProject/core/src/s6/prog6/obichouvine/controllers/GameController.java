@@ -19,7 +19,7 @@ public class GameController {
 	private int button;
 
 	private Block selectedPawn;
-	
+
 	private PawnType turn;
 
 	enum Keys {
@@ -59,9 +59,13 @@ public class GameController {
 	private void processInput() {
 		// TODO Auto-generated method stub
 		if(keys.get(Keys.CLICK)){
-			if(this.selectedPawn==null)
-				//if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPion().getType() != PawnType.VIDE)
+			if(this.selectedPawn==null){
+				System.out.println("Test");
+				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE){
+					System.out.println("Selected");
 					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+				}
+			}
 			else{
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
@@ -72,7 +76,6 @@ public class GameController {
 				this.selectedPawn = null;
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-			//board.AffichPlateau();
 		}
 	}
 
