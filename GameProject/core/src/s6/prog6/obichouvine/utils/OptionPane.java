@@ -68,6 +68,15 @@ public class OptionPane extends Table{
 		this.add("Capture  :").fillX().center().expand();
 		this.add(kingCap).fillX().center().expand();
 		this.row();
+		this.add("Mouvement du roi  :").fillX().center().expand();
+		this.add(kingMove).fillX().center().expand();
+		this.row();
+		tmpArray = new Array<String>();
+		for (KingMoveMethod esc : KingMoveMethod.values()) {
+			  // do what you want
+			tmpArray.add(esc.text);
+			}
+		kingMove.setItems(tmpArray);
 	}
 	
 	public Parameter generateParameter(){
