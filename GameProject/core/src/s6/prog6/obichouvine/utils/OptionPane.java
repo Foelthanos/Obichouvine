@@ -34,28 +34,21 @@ public class OptionPane extends Table{
 	public OptionPane(Content content, Skin skin, ObichouvineGame game){
 		super(skin);
 		this.skin = skin;
-		this.updateContent(Content.IAvsIA);
+		
 		this.game = game;		
 		esc= new SelectBox<String>(skin);
-		//esc.setCullingArea(new Rectangle(0, 0, esc.getPrefWidth(), esc.getItemHeight()));
 		kingCap = new SelectBox<String>(skin);
 		kingMove = new SelectBox<String>(skin);  
 		 if( ObichouvineGame.DEV_MODE ) {
              this.debug();
          }
+		 //this.updateContent(Content.PvsP);
+		 this.printCommonContent();
 	}
 	
-	public void updateContent(Content content){
-		this.clear();
-		if(content == Content.IAvsIA)
-			this.printIAvsIA();
-		else if(content == Content.PvsIA)
-			this.printPvsIA();
-		else if(content == Content.PvsP)
-			this.printPvsP();
-	}
-
 	private void printCommonContent(){
+		this.add("Parametres de la partie").spaceBottom(50).colspan(2);
+		this.row();
 		tmpArray = new Array<String>();
 		for (EscapeMethod esc : EscapeMethod.values()) {
 			  // do what you want
@@ -63,8 +56,8 @@ public class OptionPane extends Table{
 			}
 		esc.setItems(tmpArray);
 		
-		this.add("Escape  :").spaceBottom(30).fillX().center().expandY();
-		this.add(esc).spaceBottom(30).fillX().center().expandY();
+		this.add("Escape  :").fillX().center().expandY();
+		this.add(esc).fillX().center().expandY();
 		this.row();
 		tmpArray = new Array<String>();
 		for (KingCaptureMethod esc : KingCaptureMethod.values()) {
@@ -72,59 +65,12 @@ public class OptionPane extends Table{
 			tmpArray.add(esc.text);
 			}
 		kingCap.setItems(tmpArray);
-		this.add("Capture  :").spaceBottom(30).fillX().center().expandY();
-		this.add(kingCap).spaceBottom(30).fillX().center().expandY();
+		this.add("Capture  :").fillX().center().expand();
+		this.add(kingCap).fillX().center().expand();
 		this.row();
-	}
-	private void printPvsP() {
-		pseudo1 = new TextArea("pseudo j1", skin);
-		pseudo2 = new TextArea("pseudo j2", skin);
-		this.add("Parametres de la partie : Joueur vs Joueur").spaceBottom(50).spaceLeft(30).colspan(2);
-		this.row();
-		this.printCommonContent();
-		this.add("joueur 1 :").spaceBottom(30).fillX().center().expandY();
-		this.add(pseudo1).spaceBottom(30).fillX().center().expandY();
-		this.row();
-		this.add("Joueur 2 :").spaceBottom(30).fillX().center().expandY();
-		this.add(pseudo2).spaceBottom(30).fillX().center().expandY();
-		this.row();
-		this.printValidate();
-		
-	}
-
-	private void printPvsIA() {
-		// TODO Auto-generated method stub
-		this.add("Parametres de la partie : Joueur vs IA").spaceBottom(50).spaceLeft(30);
-		this.top().left();
-		this.row();
-	}
-
-	private void printIAvsIA() {
-		// TODO Auto-generated method stub
-		List<String> ia1 = new List<String>(skin);
-		List<String> ia2 = new List<String>(skin);
-		tmpArray = new Array<String>();
-		tmpArray.add("Facile");
-		tmpArray.add("Moyen");
-		
-		ia1.setItems(tmpArray);
-		ia2.setItems(tmpArray);
-		
-		this.add("Parametres de la partie : IA vs IA").spaceBottom(50).spaceLeft(30).expandX().colspan(2);
-		this.row();
-		
-		this.add("Difficulté IA 1 :").spaceBottom(30).fillX().center().expandY();
-		this.add(ia1).uniform().spaceBottom(30).fillX().expandY();
-		this.row();
-		
-		this.add("Difficulté IA 2 :").spaceBottom(30).fillX().center().expandY();
-		this.add(ia2).uniform().spaceBottom(30).fillX().expandY();
-		this.row();
-		
-		this.printValidate();
 	}
 	
-	private Parameter generateParameter(){
+	public Parameter generateParameter(){
 		
 		
 		return null;

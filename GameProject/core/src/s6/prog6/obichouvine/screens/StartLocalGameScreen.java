@@ -37,12 +37,12 @@ public class StartLocalGameScreen extends AbstractScreen
 		oPane = new OptionPane(Content.PvsIA, this.getSkin(), this.game);
 		mainTable = new Table(getSkin());
 		mainTable.debug();
-		mainTable.add("Partie locale").spaceBottom(50).spaceLeft(30);
-		mainTable.top().left();
+		mainTable.add("Partie locale");
+		mainTable.top();
 		mainTable.row();
-		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 1", this.getSkin())).fillX().padBottom(50);
+		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 1", this.getSkin())).fillX().expandY();
 		mainTable.row();
-		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 2", this.getSkin())).fillX().padBottom(50);
+		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 2", this.getSkin())).fillX().expandY();
 		mainTable.row();
 		
 		
