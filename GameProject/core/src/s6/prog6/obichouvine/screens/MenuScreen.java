@@ -33,7 +33,7 @@ public class MenuScreen extends AbstractScreen {
 		table.row();
 
 		// register the button "new game"
-		TextButton startGameButton = new TextButton( "Partie local", this.getSkin() );
+		TextButton startGameButton = new TextButton( "Partie locale", this.getSkin() );
 		startGameButton.addListener( new DefaultInputListener() {
 			@Override
 			public void touchUp(

@@ -10,6 +10,7 @@ import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Pawn;
 import s6.prog6.obichouvine.models.Block.BlockState;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
 
 public class GameController {
 	private Board board;
@@ -18,6 +19,8 @@ public class GameController {
 	private int button;
 
 	private Block selectedPawn;
+
+	private PawnType turn;
 
 	enum Keys {
 		CLICK
@@ -30,6 +33,7 @@ public class GameController {
 
 	public GameController(Board board){
 		this.board = board;
+		this.turn = PawnType.MOSCOVITE;
 	}
 
 	public void update(float delta) {
@@ -55,39 +59,40 @@ public class GameController {
 	private void processInput() {
 		// TODO Auto-generated method stub
 		if(keys.get(Keys.CLICK)){
-			//this.refactorCursorPos();
-			if(this.selectedPawn==null)
-				this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+			if(this.selectedPawn==null){
+				System.out.println("Test");
+				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE){
+					System.out.println("Selected");
+					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+				}
+			}
 			else{
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
-				board.deplacementsansverif(new Move(xStart,
+				board.deplacement(new Move(xStart,
 						yStart,
 						(int)cursorPos.x, 
 						(int)cursorPos.y));
 				this.selectedPawn = null;
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-			board.AffichPlateau();
 		}
 	}
 
 	private void refactorCursorPos(){
 		if(cursorPos.x < board.offsetX)
-			cursorPos.x = board.offsetX;
-		else if(cursorPos.x > board.offsetX + board.xBoard*Block.SIZE)
-			cursorPos.x = (board.offsetX + board.xBoard*Block.SIZE);
+			cursorPos.x = 0;
+		else if(cursorPos.x > board.offsetX + (board.xBoard)*Block.SIZE)
+			cursorPos.x = board.xBoard-1;//(board.offsetX + (board.xBoard - 1)*Block.SIZE);
 		else
-			cursorPos.x = cursorPos.x;
+			cursorPos.x = (int)((cursorPos.x - board.offsetX)/Block.SIZE);
 
 		if(cursorPos.y < board.offsetY)
-			cursorPos.y = board.offsetY;
-		else if(cursorPos.y > board.offsetY + board.yBoard*Block.SIZE)
-			cursorPos.y = board.offsetY + board.yBoard*Block.SIZE;
+			cursorPos.y = board.yBoard-1;//board.offsetY;
+		else if(cursorPos.y > board.offsetY + (board.yBoard)*Block.SIZE)
+			cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
 		else
-			cursorPos.y = cursorPos.y;
+			cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 
-		cursorPos.x = (int)((cursorPos.x - board.offsetX)/Block.SIZE);
-		cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 	}	
 }

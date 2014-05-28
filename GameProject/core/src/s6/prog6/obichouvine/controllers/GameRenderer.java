@@ -15,6 +15,7 @@ public class GameRenderer {
 	private TextureRegion normalBlock;
 	private TextureRegion escapeBlock;
 	private TextureRegion throneBlock;
+	private TextureRegion moscovitBlock;
 
 	private SpriteBatch spriteBatch;
 
@@ -40,6 +41,7 @@ public class GameRenderer {
 		normalBlock = atlas.findRegion("Standard-case");
 		escapeBlock = atlas.findRegion("Escape-case");
 		throneBlock = atlas.findRegion("Throne-case");
+		moscovitBlock = atlas.findRegion("Moscovit-case");
 		moscoPawn = atlas.findRegion("Moscovit");
 		vikingSoldier = atlas.findRegion("Suedois");
 		viKing = atlas.findRegion("Roi");
@@ -57,17 +59,17 @@ public class GameRenderer {
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.FORTERESSE)
 				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.ROUGE)
-				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.BLANC)
+			else if(block.getState()==Block.BlockState.ROUGE || block.getState()==Block.BlockState.ROUGEEXIT)
+				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getState()==Block.BlockState.BLANC  || block.getState()==Block.BlockState.BLANCEXIT)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
-			if(block.getPion().getType()==PawnType.MOSCOVITE)
+			if(block.getPawn().getType()==PawnType.MOSCOVITE)
 				spriteBatch.draw(moscoPawn, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getPion().getType()==PawnType.SUEDOIS)
-				if(block.getPion().getTypesuede()==TypeSuedois.KING)
+			else if(block.getPawn().getType()==PawnType.SUEDOIS)
+				if(block.getPawn().getTypesuede()==TypeSuedois.KING)
 					spriteBatch.draw(viKing, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-				else if(block.getPion().getTypesuede()==TypeSuedois.PION)
+				else if(block.getPawn().getTypesuede()==TypeSuedois.PION)
 					spriteBatch.draw(vikingSoldier, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 		}
 	}
