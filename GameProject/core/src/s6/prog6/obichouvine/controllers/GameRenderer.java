@@ -59,9 +59,9 @@ public class GameRenderer {
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.FORTERESSE)
 				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.ROUGE)
+			else if(block.getState()==Block.BlockState.ROUGE || block.getState()==Block.BlockState.ROUGEEXIT)
 				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.BLANC)
+			else if(block.getState()==Block.BlockState.BLANC  || block.getState()==Block.BlockState.BLANCEXIT)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
 			if(block.getPawn().getType()==PawnType.MOSCOVITE)
