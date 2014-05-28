@@ -627,7 +627,7 @@ public class Board {
 		
 	}
 	
-	private Move[] deplacementsPossibles(int x,int y) {
+	public Move[] deplacementsPossibles(int x,int y) {
 
 		Move[] coups= new Move[xBoard+yBoard];
 			
