@@ -22,6 +22,7 @@ public class GameController {
 
 	private PawnType turn;
 
+	private Move[] moves;
 	enum Keys {
 		CLICK
 	}
@@ -62,8 +63,9 @@ public class GameController {
 			if(this.selectedPawn==null){
 				System.out.println("Test");
 				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE){
-					System.out.println("Selected");
+					System.out.println("Selected ["+cursorPos.x+","+cursorPos.y+"]");
 					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+					this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
 				}
 			}
 			else{
@@ -74,11 +76,13 @@ public class GameController {
 						(int)cursorPos.x, 
 						(int)cursorPos.y));
 				this.selectedPawn = null;
+				this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, false);
 			}
 			keys.get(keys.put(Keys.CLICK, false));
 		}
 	}
 
+	
 	private void refactorCursorPos(){
 		if(cursorPos.x < board.offsetX)
 			cursorPos.x = 0;

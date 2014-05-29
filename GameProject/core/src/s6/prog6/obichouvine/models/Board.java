@@ -131,6 +131,20 @@ public class Board {
 		}	
 	}
 	
+	private void surbrillance (Move[] moveArray, boolean b) {
+		int i;
+		for(i = 0; i < moveArray.length; i++) {
+			board[moveArray[i].getxArr()][moveArray[i].getyArr()].setSurbrillance(b);
+		}
+	}
+	
+	public Move[] highlightMoves(int x, int y, boolean b){
+		Move[] moves = deplacementsPossibles(x, y);
+		System.out.println("surbrillance");
+		surbrillance(moves, b);
+		return moves;
+	}
+	
 	public void AffichPlateau()
 	{
 		for (int i = 0; i < xBoard; i++)
@@ -326,7 +340,7 @@ public class Board {
 		int posKing = GetPosKing();
 		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
-		System.out.println("Possibilitï¿½ : "+p);
+		System.out.println("Possibilité : "+p);
 		for(int i = 0; i <  p.length; i++)
 		{
 			System.out.println(p[i]);

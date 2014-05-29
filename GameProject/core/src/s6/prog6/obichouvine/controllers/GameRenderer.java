@@ -63,6 +63,10 @@ public class GameRenderer {
 				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.BLANC  || block.getState()==Block.BlockState.BLANCEXIT)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			if(block.isSurbrillance()){
+				System.out.println("test");
+				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			}
 			
 			if(block.getPawn().getType()==PawnType.MOSCOVITE)
 				spriteBatch.draw(moscoPawn, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
@@ -71,6 +75,10 @@ public class GameRenderer {
 					spriteBatch.draw(viKing, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 				else if(block.getPawn().getTypesuede()==TypeSuedois.PION)
 					spriteBatch.draw(vikingSoldier, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			
+			//Ajout du shader plus tard
+			//if(block.isSurbrillance());
+				//spriteBatch.
 		}
 	}
 

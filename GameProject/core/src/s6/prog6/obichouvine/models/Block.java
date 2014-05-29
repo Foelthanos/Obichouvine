@@ -18,6 +18,7 @@ public class Block {
 
 	Pawn pawn;
 	BlockState state;
+	boolean surbrillance;
 
 	public static final float SIZE = 40f;
 	
@@ -29,6 +30,7 @@ public class Block {
 		this.position = pos;
 		this.pawn = p;
 		this.state = e;
+		this.surbrillance = false;
 	}
 
 	public Pawn getPawn() {
@@ -50,6 +52,13 @@ public class Block {
 	public Vector2 getPosition() {
 		// TODO Auto-generated method stub
 		return this.position;
+	}
+	public boolean isSurbrillance() {
+		return surbrillance;
+	}
+
+	public void setSurbrillance(boolean surbrillance) {
+		this.surbrillance = surbrillance;
 	}
 	
 
