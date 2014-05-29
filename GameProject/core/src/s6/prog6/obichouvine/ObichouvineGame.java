@@ -5,6 +5,7 @@ import s6.prog6.obichouvine.controllers.MusicManager;
 import s6.prog6.obichouvine.controllers.PreferencesManager;
 import s6.prog6.obichouvine.controllers.SoundManager;
 import s6.prog6.obichouvine.models.Parameter;
+import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.screens.GameScreen;
 import s6.prog6.obichouvine.screens.MenuScreen;
 import s6.prog6.obichouvine.screens.OptionsScreen;
@@ -23,7 +24,7 @@ public class ObichouvineGame extends Game {
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = true;
-	public static final String VER = "v0.0.8";
+	public static final String VER = "v0.0.9";
 
 	private PreferencesManager preferencesManager;
 	private LevelManager levelManager;
@@ -82,9 +83,9 @@ public class ObichouvineGame extends Game {
         return new StartOnlineGameScreen(this);
     }
     
-    public GameScreen getGameScreen(Parameter param)
+    public GameScreen getGameScreen(Parameter param, Player p1, Player p2)
     {
-        return new GameScreen(this, param);
+        return new GameScreen(this, param, p1, p2);
     }
     
 	@Override

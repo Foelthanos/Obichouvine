@@ -2,6 +2,19 @@ package s6.prog6.obichouvine.models;
 
 public class Parameter {
 
+	public enum FirstStrike {
+		
+		Moscovite("Moscovite"), Suedois("Suedois");
+		
+		public String text;
+
+		FirstStrike(String text){
+			this.text = text;
+		}
+		public String toString(){
+			return this.text;
+		}
+	}
 	public enum EscapeMethod {
 
 		Edge("Bord"), Corner("Coin"), EdgeWithoutMosco("Bord sauf rouge");
@@ -45,11 +58,14 @@ public class Parameter {
 	private EscapeMethod esc;
 	private KingCaptureMethod kingCap;
 	private KingMoveMethod kingMove;
+	private FirstStrike fStrike;
 
-	public Parameter(EscapeMethod esc, KingCaptureMethod kingCap, KingMoveMethod kingMove){
+	
+	public Parameter(EscapeMethod esc, KingCaptureMethod kingCap, KingMoveMethod kingMove, FirstStrike fStrike){
 		this.esc = esc;
 		this.kingCap = kingCap;
 		this.kingMove = kingMove;
+		this.fStrike = fStrike;
 	}
 	
 	public EscapeMethod getEsc() {
@@ -74,6 +90,14 @@ public class Parameter {
 
 	public void setKingMove(KingMoveMethod kingMove) {
 		this.kingMove = kingMove;
+	}
+	
+	public FirstStrike getfStrike() {
+		return fStrike;
+	}
+
+	public void setfStrike(FirstStrike fStrike) {
+		this.fStrike = fStrike;
 	}
 
 	

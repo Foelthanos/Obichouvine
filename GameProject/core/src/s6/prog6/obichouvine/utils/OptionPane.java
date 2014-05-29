@@ -3,8 +3,10 @@ package s6.prog6.obichouvine.utils;
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.models.Parameter;
 import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
+import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Parameter.KingCaptureMethod;
 import s6.prog6.obichouvine.models.Parameter.KingMoveMethod;
+
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -14,9 +16,11 @@ public class OptionPane extends Table{
 	private SelectBox<EscapeMethod> esc;
 	private SelectBox<KingMoveMethod> kingMove; 
 	private SelectBox<KingCaptureMethod> kingCap ;
+	private SelectBox<FirstStrike> firstStrike ;
 	private Array<EscapeMethod> escArray;
 	private Array<KingMoveMethod> kingMoveArray; 
 	private Array<KingCaptureMethod> kingCapArray;
+	private Array<FirstStrike> firstStrikeArray;
 
 	
 	public OptionPane(Skin skin){
@@ -25,6 +29,7 @@ public class OptionPane extends Table{
 		esc= new SelectBox<EscapeMethod>(skin);
 		kingCap = new SelectBox<KingCaptureMethod>(skin);
 		kingMove = new SelectBox<KingMoveMethod>(skin);  
+		firstStrike = new SelectBox<Parameter.FirstStrike>(skin);
 		 if( ObichouvineGame.DEV_MODE ) {
              this.debug();
          }
@@ -33,6 +38,16 @@ public class OptionPane extends Table{
 	
 	private void printCommonContent(){
 		this.add("Parametres de la partie").spaceBottom(50).colspan(2);
+		this.row();
+		firstStrikeArray = new Array<FirstStrike>();
+		for (FirstStrike first : FirstStrike.values()) {
+			  // do what you want
+			firstStrikeArray.add(first);
+			}
+		firstStrike.setItems(firstStrikeArray);
+		
+		this.add("Escape  :").fillX().center().expandY();
+		this.add(firstStrike).fillX().center().expandY();
 		this.row();
 		escArray = new Array<EscapeMethod>();
 		for (EscapeMethod esc : EscapeMethod.values()) {
@@ -67,6 +82,6 @@ public class OptionPane extends Table{
 	}
 	
 	public Parameter generateParameter(){
-		return new Parameter(esc.getSelected(), kingCap.getSelected(), kingMove.getSelected());
+		return new Parameter(esc.getSelected(), kingCap.getSelected(), kingMove.getSelected(), firstStrike.getSelected());
 	}	
 }

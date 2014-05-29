@@ -2,6 +2,7 @@ package s6.prog6.obichouvine.screens;
 
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
+import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.OptionPane;
 import s6.prog6.obichouvine.utils.PlayerSelection;
@@ -74,7 +75,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen(oPane.generateParameter()));
+				game.setScreen(game.getGameScreen(oPane.generateParameter(), new Player("Test"), new Player("Hank Bot")));
 			}
 		} );
 		buttonTable.add(validate).fillY().expand().uniform();

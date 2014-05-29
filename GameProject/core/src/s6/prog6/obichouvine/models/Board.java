@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 
 import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
+import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Parameter.KingCaptureMethod;
 import s6.prog6.obichouvine.models.Parameter.KingMoveMethod;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
@@ -840,7 +841,7 @@ public class Board {
 	{
 		GameState gs = new GameState();
 		
-		parameter = new Parameter(EscapeMethod.Edge,KingCaptureMethod.Can,KingMoveMethod.FourBlock);
+		parameter = new Parameter(EscapeMethod.Edge,KingCaptureMethod.Can,KingMoveMethod.FourBlock, FirstStrike.Moscovite);
 		
 		
 		Board plat = new Board(9,9,parameter);

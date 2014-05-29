@@ -22,7 +22,6 @@ public class GameController {
 
 	private PawnType turn;
 
-	private Move[] moves;
 	enum Keys {
 		CLICK
 	}
@@ -32,9 +31,9 @@ public class GameController {
 		keys.put(Keys.CLICK, false);
 	};
 
-	public GameController(Board board){
+	public GameController(Board board, PawnType turn){
 		this.board = board;
-		this.turn = PawnType.MOSCOVITE;
+		this.turn = turn;
 	}
 
 	public void update(float delta) {
@@ -62,7 +61,8 @@ public class GameController {
 		if(keys.get(Keys.CLICK)){
 			if(this.selectedPawn==null){
 				System.out.println("Test");
-				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE){
+				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE &&
+						this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() == turn){
 					System.out.println("Selected ["+cursorPos.x+","+cursorPos.y+"]");
 					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
 					this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
@@ -77,12 +77,18 @@ public class GameController {
 						(int)cursorPos.y));
 				this.selectedPawn = null;
 				this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, false);
+				this.switchTurn();
 			}
 			keys.get(keys.put(Keys.CLICK, false));
 		}
 	}
 
 	
+	private void switchTurn() {
+		// TODO Auto-generated method stub
+		turn = (turn==PawnType.MOSCOVITE)? PawnType.SUEDOIS : PawnType.MOSCOVITE;
+	}
+
 	private void refactorCursorPos(){
 		if(cursorPos.x < board.offsetX)
 			cursorPos.x = 0;

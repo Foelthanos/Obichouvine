@@ -14,6 +14,9 @@ import s6.prog6.obichouvine.controllers.GameRenderer;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Parameter;
+import s6.prog6.obichouvine.models.Parameter.FirstStrike;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
+import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
@@ -21,11 +24,11 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	GameController gController;
 	GameRenderer gRenderer;
 	
-	public GameScreen(ObichouvineGame game, Parameter param) {
+	public GameScreen(ObichouvineGame game, Parameter param, Player p1, Player p2) {
 		super(game);
 		// TODO Auto-generated constructor stub
 		Board board = new Board(9, 9, param);
-		this.gController = new GameController(board);
+		this.gController = new GameController(board, (param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS);
 		this.gRenderer = new GameRenderer(board);
 	}
 
