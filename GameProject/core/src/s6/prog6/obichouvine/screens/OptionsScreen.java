@@ -14,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 /**
@@ -36,9 +38,25 @@ public class OptionsScreen extends AbstractScreen {
         Table table = super.getTable();
         table.defaults().spaceBottom( 30 );
         table.columnDefaults( 0 ).padRight( 20 );
-        table.add( "Options" ).colspan( 3 );
+        table.add("Options").colspan( 3 );
 
         // create the labels widgets
+        final TextField pseudoTextField = new TextField(game.getPreferencesManager().getPseudo(), getSkin());
+        //System.out.println(game.getPreferencesManager().getPseudo());
+        pseudoTextField.setTextFieldListener(new TextFieldListener() {
+			
+			@Override
+			public void keyTyped(TextField textField, char c) {
+				// TODO Auto-generated method stub
+				String changedPseudo = pseudoTextField.getText();
+                System.out.println(changedPseudo);
+                game.getPreferencesManager().setPseudo(changedPseudo);
+			}
+		});
+        table.row();
+        table.add("Pseudonyme");
+        table.add(pseudoTextField).colspan(2).left();
+        
         final CheckBox soundEffectsCheckbox = new CheckBox( "", getSkin() );
         soundEffectsCheckbox.setChecked( game.getPreferencesManager().isSoundEnabled() );
         soundEffectsCheckbox.addListener( new ChangeListener() {
@@ -54,7 +72,7 @@ public class OptionsScreen extends AbstractScreen {
             }
         } );
         table.row();
-        table.add( "Sound Effects" );
+        table.add( "Effets sonores" );
         table.add( soundEffectsCheckbox ).colspan( 2 ).left();
 
         final CheckBox musicCheckbox = new CheckBox( "", getSkin() );
@@ -75,7 +93,7 @@ public class OptionsScreen extends AbstractScreen {
             }
         } );
         table.row();
-        table.add( "Music" );
+        table.add( "Musique" );
         table.add( musicCheckbox ).colspan( 2 ).left();
 
         // range is [0.0,1.0]; step is 0.1f
@@ -106,7 +124,7 @@ public class OptionsScreen extends AbstractScreen {
         table.add( volumeValue ).width( 40 );
 
         // register the back button
-        TextButton backButton = new TextButton( "Back to main menu", getSkin() );
+        TextButton backButton = new TextButton( "Retour au menu principale", getSkin() );
         backButton.addListener( new DefaultInputListener() {
             @Override
             public void touchUp(
@@ -121,6 +139,7 @@ public class OptionsScreen extends AbstractScreen {
                 game.setScreen( new MenuScreen( game ) );
             }
         } );
+        
         table.row();
         table.add( backButton ).size( 250, 60 ).colspan( 3 );
     }

@@ -21,6 +21,8 @@ public class GameController {
 	private Block selectedPawn;
 
 	private PawnType turn;
+	
+	private boolean isIA;
 
 	enum Keys {
 		CLICK

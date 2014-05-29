@@ -12,11 +12,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 public class PlayerSelection extends Table{
 
-	Label name, diffL, pseudoL;
-	CheckBox isBot;
-	SelectBox<String> difficulty;
-	TextField pseudo;
+	private Label name, diffL, pseudoL;
+	private CheckBox isBot;
+	private SelectBox<String> difficulty;
+	private TextField pseudo;
 
+	public String getPseudo(){
+		return this.pseudo.getText();
+	}
+	
 	public PlayerSelection(String pseudo, String name, Skin skin){
 		super(skin);
 		this.name = new Label(name, skin);

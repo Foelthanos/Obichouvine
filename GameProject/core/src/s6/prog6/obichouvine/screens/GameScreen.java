@@ -5,6 +5,7 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
@@ -23,6 +24,9 @@ import s6.prog6.obichouvine.utils.DefaultInputListener;
 public class GameScreen extends AbstractScreen implements InputProcessor{
 	GameController gController;
 	GameRenderer gRenderer;
+	
+	Label headMessage, p1Pseudo, p1Status, p2Pseudo, p2Status;
+	TextButton quit, save, load, quickStart;
 	
 	public GameScreen(ObichouvineGame game, Parameter param, Player p1, Player p2) {
 		super(game);

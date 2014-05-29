@@ -18,7 +18,8 @@ public class StartLocalGameScreen extends AbstractScreen
 
 	private Table mainTable, buttonTable;
 	private OptionPane oPane;
-	
+
+	private PlayerSelection p1,p2;
 
 
 	public StartLocalGameScreen(ObichouvineGame game)
@@ -32,20 +33,25 @@ public class StartLocalGameScreen extends AbstractScreen
 		super.show();
 		oPane = new OptionPane(this.getSkin());
 		mainTable = new Table(getSkin());
-		mainTable.debug();
+		if( ObichouvineGame.DEV_MODE )
+			mainTable.debug();
+		
+		p1 = new PlayerSelection(game.getPreferencesManager().getPseudo(), "Moscovites", this.getSkin());
+		p2 = new PlayerSelection("Hank Bot", "Suedois", this.getSkin());
+		
 		mainTable.add("Partie locale");
 		mainTable.top();
 		mainTable.row();
-		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 1", this.getSkin())).fillX().expandY();
+		mainTable.add(p1).fillX().expandY();
 		mainTable.row();
-		mainTable.add(new PlayerSelection("Hank Bot", "Joueur 2", this.getSkin())).fillX().expandY();
+		mainTable.add(p2).fillX().expandY();
 		mainTable.row();
-		
-		
+
+
 		this.buttonTable = new Table();
 		if( ObichouvineGame.DEV_MODE ) {
 			buttonTable.debug();
-        }
+		}
 		TextButton back = new TextButton("Retour", getSkin());
 		back.addListener(new DefaultInputListener() {
 			@Override
@@ -62,7 +68,7 @@ public class StartLocalGameScreen extends AbstractScreen
 			}
 		} );
 		buttonTable.add(back).fillY().expand();
-		
+
 		TextButton validate = new TextButton("Jouer", getSkin());
 		validate.addListener(new DefaultInputListener() {
 			@Override
@@ -75,19 +81,19 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen(oPane.generateParameter(), new Player("Test"), new Player("Hank Bot")));
+				game.setScreen(game.getGameScreen(oPane.generateParameter(), new Player(p1.getPseudo()), new Player(p2.getPseudo())));
 			}
 		} );
 		buttonTable.add(validate).fillY().expand().uniform();
 
-		
+
 
 		paramPane = new SplitPane(mainTable, oPane, false, getSkin());
 
 		paramPane.setMinSplitAmount((float) 0.2);
 		paramPane.setMaxSplitAmount((float) 0.2001);
 		paramPane.setSplitAmount((float) 0.2);
-		
+
 		mainPane = new SplitPane(paramPane, buttonTable, true, getSkin());
 		mainPane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);
 		mainPane.setMinSplitAmount((float) 0.9);
@@ -95,5 +101,5 @@ public class StartLocalGameScreen extends AbstractScreen
 		mainPane.setSplitAmount((float) 0.9);
 		stage.addActor(mainPane);
 	}
- 
+
 }
