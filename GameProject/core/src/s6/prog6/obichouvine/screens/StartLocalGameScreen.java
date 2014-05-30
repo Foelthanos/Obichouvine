@@ -34,7 +34,7 @@ public class StartLocalGameScreen extends AbstractScreen
 		super.show();
 		oPane = new OptionPane(this.getSkin());
 		mainTable = new Table(getSkin());
-		if( ObichouvineGame.DEV_MODE )
+		if(ObichouvineGame.DEV_MODE)
 			mainTable.debug();
 		
 		p1 = new PlayerSelection(game.getPreferencesManager().getPseudo(), "Moscovites", this.getSkin());

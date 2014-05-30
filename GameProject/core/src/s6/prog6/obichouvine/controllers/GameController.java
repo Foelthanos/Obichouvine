@@ -22,7 +22,7 @@ public class GameController {
 
 	private PawnType turn;
 	
-	private boolean isIA;
+	private boolean isIATurn = false;
 
 	enum Keys {
 		CLICK
@@ -36,6 +36,8 @@ public class GameController {
 	public GameController(Board board, PawnType turn){
 		this.board = board;
 		this.turn = turn;
+		
+		
 	}
 
 	public void update(float delta) {

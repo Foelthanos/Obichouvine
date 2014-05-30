@@ -1,6 +1,11 @@
 package s6.prog6.obichouvine.utils;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
+import s6.prog6.obichouvine.models.HumanPlayer;
+import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.ia.MiniMax;
+
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -52,6 +57,15 @@ public class PlayerSelection extends Table{
 		this.printWidget();
 	}
 
+	public Player getPlayerParameters(){
+		if(isBot.isChecked()){
+			//if(this.difficulty.getSelected().equals(""))
+			return new MiniMax(5, 5, (this.name.equals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+		}
+		else
+			return new HumanPlayer(pseudo.getText(), (this.name.equals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+	}
+	
 	private void printWidget(){
 		this.clear();
 		this.add(name).expand();
