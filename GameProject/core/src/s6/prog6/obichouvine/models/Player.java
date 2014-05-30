@@ -10,6 +10,7 @@ public class Player {
 	public Player(String name, PawnType team) {
 		pseudo = name;
 		this.team = team;
+		System.out.println("Joueur : "+this.pseudo+" est "+team.toString());
 	}
 
 	public String getPseudo() {

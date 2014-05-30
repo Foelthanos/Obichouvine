@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
 public class PlayerSelection extends Table{
-
+	
 	private Label name, diffL, pseudoL;
 	private CheckBox isBot;
 	private SelectBox<String> difficulty;
@@ -60,10 +60,10 @@ public class PlayerSelection extends Table{
 	public Player getPlayerParameters(){
 		if(isBot.isChecked()){
 			//if(this.difficulty.getSelected().equals(""))
-			return new MiniMax(5, 5, (this.name.equals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+			return new MiniMax(2, 5, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
 		}
 		else
-			return new HumanPlayer(pseudo.getText(), (this.name.equals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+			return new HumanPlayer(pseudo.getText(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
 	}
 	
 	private void printWidget(){

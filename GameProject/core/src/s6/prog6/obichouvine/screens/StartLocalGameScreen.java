@@ -83,17 +83,17 @@ public class StartLocalGameScreen extends AbstractScreen
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
 				game.setScreen(game.getGameScreen(oPane.generateParameter(), 
-						new Player(p1.getPseudo(), PawnType.MOSCOVITE), 
-						new Player(p2.getPseudo(), PawnType.SUEDOIS)));
+						p1.getPlayerParameters(), 
+						p2.getPlayerParameters()));
 			}
 		} );
 		buttonTable.add(validate).fillY().expand().uniform();
 		
 		paramPane = new SplitPane(mainTable, oPane, false, getSkin());
 
-		paramPane.setMinSplitAmount((float) 0.2);
-		paramPane.setMaxSplitAmount((float) 0.2001);
-		paramPane.setSplitAmount((float) 0.2);
+		paramPane.setMinSplitAmount((float) 0.25);
+		paramPane.setMaxSplitAmount((float) 0.2501);
+		paramPane.setSplitAmount((float) 0.25);
 
 		mainPane = new SplitPane(paramPane, buttonTable, true, getSkin());
 		mainPane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);

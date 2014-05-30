@@ -11,6 +11,8 @@ import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Pawn;
 import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
+import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.ia.IA;
 
 public class GameController {
 	private Board board;
@@ -33,10 +35,18 @@ public class GameController {
 		keys.put(Keys.CLICK, false);
 	};
 
-	public GameController(Board board, PawnType turn){
+	public GameController(Board board, PawnType turn, Player p1, Player p2){
 		this.board = board;
 		this.turn = turn;
-		
+		System.out.println(p1.getTeam());
+		System.out.println(p2.getTeam());
+		System.out.println(turn);
+		if(turn.equals(p1.getTeam()) && p1 instanceof IA){
+			System.out.println("Mosco IA first");
+		}
+		else if(turn.equals(p2.getTeam())&& p2 instanceof IA){
+			System.out.println("suedois IA first");
+		}
 		
 	}
 

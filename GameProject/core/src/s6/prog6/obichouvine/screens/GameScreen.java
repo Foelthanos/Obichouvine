@@ -16,10 +16,13 @@ import s6.prog6.obichouvine.controllers.GameRenderer;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
+import s6.prog6.obichouvine.models.HumanPlayer;
 import s6.prog6.obichouvine.models.Parameter;
 import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.ia.IA;
+import s6.prog6.obichouvine.models.ia.MiniMax;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.GameStateButtonGroup;
@@ -30,7 +33,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	GameController gController;
 	GameRenderer gRenderer;
 	
-	Label headMessage, p1Pseudo, p1Status, p2Pseudo, p2Status;
+	Label headMessage;
 	TextButton quit;
 	
 	GameStateButtonGroup gameStateButtons;
@@ -44,13 +47,11 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		// TODO Auto-generated constructor stub
 		Board board = new Board(9, 9, param);
 		this.gController = new GameController(board, 
-				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
+						p1, p2);
 		this.gRenderer = new GameRenderer(board);
 		
 		headMessage = new Label("Placeholder Placeholder", getSkin());
-		p1Pseudo = new Label(p1.getPseudo(), getSkin());
-		p2Pseudo = new Label(p2.getPseudo(), getSkin());
-		
 		quit = new TextButton("Quitter", this.getSkin());
 		
 		gameStateButtons = new GameStateButtonGroup(getSkin());
