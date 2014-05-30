@@ -1,10 +1,15 @@
 package s6.prog6.obichouvine.models;
 
+import s6.prog6.obichouvine.models.Pawn.PawnType;
+
 public class Player {
-	String pseudo;
+	private String pseudo;
+	private PawnType team;
 	
-	public Player(String name) {
+	
+	public Player(String name, PawnType team) {
 		pseudo = name;
+		this.team = team;
 	}
 
 	public String getPseudo() {
@@ -14,4 +19,13 @@ public class Player {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
+	
+	public PawnType getTeam() {
+		return team;
+	}
+
+	public void setTeam(PawnType team) {
+		this.team = team;
+	}
+
 }

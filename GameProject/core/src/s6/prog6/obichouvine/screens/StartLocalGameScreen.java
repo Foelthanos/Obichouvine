@@ -3,6 +3,7 @@ package s6.prog6.obichouvine.screens;
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.OptionPane;
 import s6.prog6.obichouvine.utils.PlayerSelection;
@@ -81,13 +82,13 @@ public class StartLocalGameScreen extends AbstractScreen
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play(ObiSound.CLICK);
-				game.setScreen(game.getGameScreen(oPane.generateParameter(), new Player(p1.getPseudo()), new Player(p2.getPseudo())));
+				game.setScreen(game.getGameScreen(oPane.generateParameter(), 
+						new Player(p1.getPseudo(), PawnType.MOSCOVITE), 
+						new Player(p2.getPseudo(), PawnType.SUEDOIS)));
 			}
 		} );
 		buttonTable.add(validate).fillY().expand().uniform();
-
-
-
+		
 		paramPane = new SplitPane(mainTable, oPane, false, getSkin());
 
 		paramPane.setMinSplitAmount((float) 0.2);

@@ -15,7 +15,7 @@ public class IA extends Player{
 	PawnType adv;
 
 	public IA(int t, int p, PawnType c) {
-		super("Hank Bot");
+		super("Bender", c);
 		type = t;
 		profondeur = p;
 		camp = c;

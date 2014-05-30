@@ -38,7 +38,7 @@ public class OptionsScreen extends AbstractScreen {
         Table table = super.getTable();
         table.defaults().spaceBottom( 30 );
         table.columnDefaults( 0 ).padRight( 20 );
-        table.add("Options").colspan( 3 );
+        table.add("Options").colspan(3);
 
         // create the labels widgets
         final TextField pseudoTextField = new TextField(game.getPreferencesManager().getPseudo(), getSkin());
@@ -49,7 +49,6 @@ public class OptionsScreen extends AbstractScreen {
 			public void keyTyped(TextField textField, char c) {
 				// TODO Auto-generated method stub
 				String changedPseudo = pseudoTextField.getText();
-                System.out.println(changedPseudo);
                 game.getPreferencesManager().setPseudo(changedPseudo);
 			}
 		});
@@ -72,8 +71,8 @@ public class OptionsScreen extends AbstractScreen {
             }
         } );
         table.row();
-        table.add( "Effets sonores" );
-        table.add( soundEffectsCheckbox ).colspan( 2 ).left();
+        table.add("Effets sonores");
+        table.add(soundEffectsCheckbox).colspan(2).left();
 
         final CheckBox musicCheckbox = new CheckBox( "", getSkin() );
         musicCheckbox.setChecked( game.getPreferencesManager().isMusicEnabled() );
@@ -124,7 +123,7 @@ public class OptionsScreen extends AbstractScreen {
         table.add( volumeValue ).width( 40 );
 
         // register the back button
-        TextButton backButton = new TextButton( "Retour au menu principale", getSkin() );
+        TextButton backButton = new TextButton( "Retour au menu principal", getSkin() );
         backButton.addListener( new DefaultInputListener() {
             @Override
             public void touchUp(
