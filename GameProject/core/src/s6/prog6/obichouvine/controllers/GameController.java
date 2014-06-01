@@ -13,6 +13,7 @@ import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.IA;
+import s6.prog6.obichouvine.models.ia.MiniMax;
 
 public class GameController {
 	private Board board;
@@ -23,9 +24,9 @@ public class GameController {
 	private Block selectedPawn;
 
 	private PawnType turn;
-	
-	private boolean isIATurn = false;
 
+	private boolean isIATurn = false;
+	private Player p1, p2;
 	enum Keys {
 		CLICK
 	}
@@ -38,16 +39,18 @@ public class GameController {
 	public GameController(Board board, PawnType turn, Player p1, Player p2){
 		this.board = board;
 		this.turn = turn;
+		this.p1 = p1;
+		this.p2 = p2;
 		System.out.println(p1.getTeam());
 		System.out.println(p2.getTeam());
 		System.out.println(turn);
 		if(turn.equals(p1.getTeam()) && p1 instanceof IA){
-			System.out.println("Mosco IA first");
+			isIATurn = true;
 		}
 		else if(turn.equals(p2.getTeam())&& p2 instanceof IA){
-			System.out.println("suedois IA first");
+			isIATurn = true;
 		}
-		
+
 	}
 
 	public void update(float delta) {
@@ -92,12 +95,35 @@ public class GameController {
 				this.selectedPawn = null;
 				this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, false);
 				this.switchTurn();
+				if(this.nextTurnIa())
+					this.isIATurn = true;
 			}
 			keys.get(keys.put(Keys.CLICK, false));
 		}
+		if(this.isIATurn){
+			while(this.nextTurnIa()){
+				if(turn.equals(p1.getTeam()) && p1 instanceof IA){
+					MiniMax ia = (MiniMax)p1;
+					ia.jouer(board);
+				}
+				if(turn.equals(p2.getTeam()) && p2 instanceof IA){
+					MiniMax ia = (MiniMax)p2;
+					ia.jouer(board);
+				}
+			}
+		}
 	}
 
-	
+
+	private boolean nextTurnIa() {
+		// TODO Auto-generated method stub
+		if(this.turn==PawnType.MOSCOVITE)
+			return p1 instanceof IA;
+		else if (this.turn==PawnType.SUEDOIS)
+			return p2 instanceof IA;
+		return false;
+	}
+
 	private void switchTurn() {
 		// TODO Auto-generated method stub
 		turn = (turn==PawnType.MOSCOVITE)? PawnType.SUEDOIS : PawnType.MOSCOVITE;

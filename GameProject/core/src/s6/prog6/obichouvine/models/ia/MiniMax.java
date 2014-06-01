@@ -24,6 +24,7 @@ public class MiniMax extends IA{
 		int val = 0;
 		LinkedList<Move> lCoup = new LinkedList<Move>();
 		ListIterator<Move> itCoup = lCoup.listIterator();
+		System.out.println("Coups possible de l'ia :"+lCoup);
 		Block[][] plateau = p.getBlock();
 		for (int i = 0; i < p.GetxBoard(); i++) {
 			for (int j = 0; j < p.GetyBoard(); j++) {
