@@ -3,49 +3,49 @@ pages.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Escape-case
+Moscovit
   rotate: false
   xy: 2, 206
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-Moscovit
-  rotate: false
-  xy: 2, 104
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-Moscovit-case
+Roi
   rotate: false
   xy: 804, 808
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-Roi
+Suedois
+  rotate: false
+  xy: 2, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeBlock
   rotate: false
   xy: 104, 206
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-Standard-case
+escapeRussianBlock
   rotate: false
   xy: 804, 706
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-Suedois
+normalBlock
   rotate: false
   xy: 906, 808
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-Throne-case
+russianBlock
   rotate: false
   xy: 2, 2
   size: 100, 100
@@ -57,5 +57,12 @@ splash
   xy: 2, 308
   size: 800, 600
   orig: 800, 600
+  offset: 0, 0
+  index: -1
+vikingBlock
+  rotate: false
+  xy: 104, 104
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1

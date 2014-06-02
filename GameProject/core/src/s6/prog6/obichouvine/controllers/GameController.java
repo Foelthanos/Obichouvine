@@ -99,7 +99,7 @@ public class GameController {
 							yStart,
 							(int)cursorPos.x, 
 							(int)cursorPos.y, this.turn, (int)this.turnNum);
-					this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, false);
+					this.board.highlightMoves(xStart, yStart, false);
 					this.switchTurn();
 					if(this.nextTurnIa())
 						this.isIATurn = true;

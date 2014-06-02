@@ -14,6 +14,7 @@ public class GameRenderer {
 
 	private TextureRegion normalBlock;
 	private TextureRegion escapeBlock;
+	private TextureRegion escapeRussianBlock;
 	private TextureRegion throneBlock;
 	private TextureRegion moscovitBlock;
 
@@ -38,10 +39,11 @@ public class GameRenderer {
 
 	public void loadTextures(){
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
-		normalBlock = atlas.findRegion("Standard-case");
-		escapeBlock = atlas.findRegion("Escape-case");
-		throneBlock = atlas.findRegion("Throne-case");
-		moscovitBlock = atlas.findRegion("Moscovit-case");
+		normalBlock = atlas.findRegion("normalBlock");
+		escapeBlock = atlas.findRegion("escapeBlock");
+		throneBlock = atlas.findRegion("vikingBlock");
+		moscovitBlock = atlas.findRegion("russianBlock");
+		escapeRussianBlock = atlas.findRegion("escapeRussianBlock");
 		moscoPawn = atlas.findRegion("Moscovit");
 		vikingSoldier = atlas.findRegion("Suedois");
 		viKing = atlas.findRegion("Roi");
@@ -59,12 +61,15 @@ public class GameRenderer {
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.FORTERESSE)
 				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.ROUGE || block.getState()==Block.BlockState.ROUGEEXIT)
+			else if(block.getState()==Block.BlockState.ROUGE)
 				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getState()==Block.BlockState.BLANC  || block.getState()==Block.BlockState.BLANCEXIT)
+			else if(block.getState()==Block.BlockState.ROUGEEXIT)
+				spriteBatch.draw(escapeRussianBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getState()==Block.BlockState.BLANC)
 				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			else if(block.getState()==Block.BlockState.BLANCEXIT)
+				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			if(block.isSurbrillance()){
-				System.out.println("test");
 				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			}
 			
