@@ -141,7 +141,7 @@ public class Board {
 	
 	public Move[] highlightMoves(int x, int y, boolean b){
 		Move[] moves = deplacementsPossibles(x, y);
-		System.out.println("surbrillance");
+		System.out.println("surbrillance : "+moves.length);
 		surbrillance(moves, b);
 		return moves;
 	}

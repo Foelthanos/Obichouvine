@@ -1,8 +1,11 @@
 package s6.prog6.obichouvine.utils;
 
+import java.util.Iterator;
+
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Historique;
+import s6.prog6.obichouvine.models.Move;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -21,7 +24,6 @@ public class HistoryWidget extends Table{
             this.debug();
         }
 		
-		
 		this.left();
 		this.moveArea = new TextArea("", skin);
 		this.moveArea.setDisabled(true);
@@ -37,6 +39,22 @@ public class HistoryWidget extends Table{
 		
 	}
 	
+	public void refreshWidget(){
+		String res = "";
+		Move c;
+		Iterator<Move> it = history.l.iterator();
+		while(it.hasNext()){
+			c = it.next();
+			//System.out.println(c);
+			res = res+c.toHistory()+"\n";
+		}
+		this.moveArea.setText(res);
+	}
+	
+	public void add(Move c){
+		this.history.l.add(c);
+		this.refreshWidget();
+	}
 	public void show(){
 		
 	}

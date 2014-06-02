@@ -11,8 +11,8 @@ import java.util.ListIterator;
 
 public class Historique {
 
-	LinkedList<Move> l ;
-	ListIterator<Move> li;
+	public LinkedList<Move> l ;
+	public ListIterator<Move> li;
 	LinkedList<Move> lRefaire ;
 	ListIterator<Move> liRefaire;
 	String historiqueName;

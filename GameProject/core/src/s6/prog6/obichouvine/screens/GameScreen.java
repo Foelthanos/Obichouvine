@@ -17,6 +17,7 @@ import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.HumanPlayer;
+import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Parameter;
 import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
@@ -99,7 +100,9 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	
 	public void render(float delta) {
 		super.render(delta);
-		gController.update(delta);
+		Move c = gController.update(delta);
+		if(c != null)
+			history.add(c);
 		gRenderer.render();
 	}
 
