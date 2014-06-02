@@ -4,3 +4,12 @@ Tout le monde doit être présent !!!
 Audit IA AUJOURD'HUI (28/05) en F112 à 14h45. TOUS LES MEMBRES DU PROJET DOIVENT ETRE PRESENTS !!!
 
 Test des vidéoprojecteurs vendredi 06/06 à 10h en salle Mac au premier.
+
+A faire aujourd'hui (02/06):
+- Correction de l'IA pour la rendre fonctionnelle dans le jeu. -> Arthur/Laurent
+- Ajout de la surbrillance (le bug vient de la methode deplacementPossible, le plus simple est de creer 
+une autre méthode personnalisé) -> Maxime
+- Refonte du skin -> Brahim
+- Recherche des bugs/Correction des bugs -> Eymeric/Mika
+- Ajout de la transparence ( conception seulement) -> Maxime
+- Preparation du plan de la future presentation -> Eymeric/Mika
