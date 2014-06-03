@@ -18,6 +18,8 @@ import s6.prog6.obichouvine.models.ia.MiniMax;
 public class GameController {
 	private Board board;
 
+	private Move moves[];
+	
 	private Vector2 cursorPos;
 	private int button;
 
@@ -108,7 +110,7 @@ public class GameController {
 						this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() == turn){
 					System.out.println("Selected ["+cursorPos.x+","+cursorPos.y+"]");
 					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
-					this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
+					this.moves = this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
 				}
 			}
 			else{
@@ -127,7 +129,7 @@ public class GameController {
 							yStart,
 							(int)cursorPos.x, 
 							(int)cursorPos.y, this.turn, (int)this.turnNum);
-					this.board.highlightMoves(xStart, yStart, false);
+					this.board.highlightMoves(this.moves, false);
 					this.switchTurn();
 					this.isIATurn = this.nextTurnIa();
 					this.turnNum += 0.5;

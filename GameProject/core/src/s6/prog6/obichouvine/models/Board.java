@@ -141,7 +141,11 @@ public class Board {
 	
 	public Move[] highlightMoves(int x, int y, boolean b){
 		Move[] moves = deplacementsPossibles(x, y);
-		System.out.println("surbrillance : "+moves.length);
+		surbrillance(moves, b);
+		return moves;
+	}
+	
+	public Move[] highlightMoves(Move[] moves,  boolean b){
 		surbrillance(moves, b);
 		return moves;
 	}
@@ -341,7 +345,7 @@ public class Board {
 		int posKing = GetPosKing();
 		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
-		System.out.println("Possibilité : "+p);
+		System.out.println("Possibilitï¿½ : "+p);
 		for(int i = 0; i <  p.length; i++)
 		{
 			System.out.println(p[i]);

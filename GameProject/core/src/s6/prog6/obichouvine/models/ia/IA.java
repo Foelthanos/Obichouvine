@@ -22,7 +22,10 @@ public class IA extends Player{
 		private IaType(String label){
 			this.label = label;
 		}
-		
+
+		public String toString(){
+			return label;
+		}
 	}
 	
 	public IA(int t, int p, PawnType c) {
