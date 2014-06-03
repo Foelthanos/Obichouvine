@@ -672,7 +672,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(y == 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == 0)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard - 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 				}
 			}else
@@ -693,7 +733,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(y == 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == 0)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard - 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 					
 				}else
@@ -726,7 +806,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(y == 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == 0)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard - 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 				}
 			}else
@@ -747,7 +867,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(y == 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == 0)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard - 1)
+						{
+							if (x < 4 && i > 4 || x > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(y == xBoard)
+						{
+							if (x < 3 && i > 3 || x > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, i, y);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 					
 				}else
@@ -782,8 +942,48 @@ public class Board {
 							}
 						}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 						{
-							;
+							if(x == 1)
+							{
+								if (y < 4 && i > 4 || y > 4 && i < 4)
+								{
+									Move aVerif = new Move(x, y, x, i);
+									if (verifRouge(aVerif)){
+										coups[l] = aVerif;
+										l++;
+									}
+								}
+							}else if(x == 0)
+							{
+								if (y < 3 && i > 3 || y > 5 && i < 5)
+								{
+									Move aVerif = new Move(x, y, x, i);
+									if (verifRouge(aVerif)){
+										coups[l] = aVerif;
+										l++;
+									}
+								}
+							}else if(x == xBoard - 1)
+							{
+								if (y < 4 && i > 4 || y > 4 && i < 4)
+								{
+									Move aVerif = new Move(x, y, x, i);
+									if (verifRouge(aVerif)){
+										coups[l] = aVerif;
+										l++;
+									}
+								}
+							}else if(x == xBoard)
+							{
+								if (y < 3 && i > 3 || y > 5 && i < 5)
+								{
+									Move aVerif = new Move(x, y, x, i);
+									if (verifRouge(aVerif)){
+										coups[l] = aVerif;
+										l++;
+								}
+							}
 						}
+					}
 				}
 			}else
 			{
@@ -803,7 +1003,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(x == 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == 0)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard - 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 					
 				}else
@@ -836,7 +1076,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(x == 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == 0)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard - 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 
 				}
@@ -858,7 +1138,47 @@ public class Board {
 						}
 					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
 					{
-						;
+						if(x == 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == 0)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard - 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}else if(x == xBoard)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
+							{
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
+							}
+						}
 					}
 					
 				}else
@@ -877,6 +1197,68 @@ public class Board {
 		}
 		
 		return coupss;
+	}
+	
+	public boolean verifRouge(Move aVerif) 
+	{
+		if (aVerif.getxDep() == aVerif.getxArr())
+		{
+			if (aVerif.getxDep() == 1 || aVerif.getxDep() == 0)
+			{
+				if (board[0][3].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[0][4].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[0][5].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[1][4].getPawn().getType() == PawnType.MOSCOVITE)
+				{
+					return false;
+				}else 
+				{
+					return true;
+				}
+			}else if (aVerif.getxDep() == xBoard || aVerif.getxDep() == xBoard - 1)
+			{
+
+				if (board[xBoard][3].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[xBoard][4].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[xBoard][5].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[xBoard - 1][4].getPawn().getType() == PawnType.MOSCOVITE)
+				{
+					return false;
+				}else 
+				{
+					return true;
+				}
+			}
+		}else if (aVerif.getyDep() == aVerif.getyArr())
+		{
+			if (aVerif.getyDep() == 1 || aVerif.getyDep() == 0)
+			{
+				if (board[3][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[4][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[5][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[4][1].getPawn().getType() == PawnType.MOSCOVITE)
+				{
+					return false;
+				}else 
+				{
+					return true;
+				}
+			}else if (aVerif.getxDep() == xBoard || aVerif.getxDep() == xBoard - 1)
+			{
+
+				if (board[3][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[4][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[5][0].getPawn().getType() == PawnType.MOSCOVITE 
+						|| board[4][1].getPawn().getType() == PawnType.MOSCOVITE)
+				{
+					return false;
+				}else 
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	public Block[][] cpy() {
