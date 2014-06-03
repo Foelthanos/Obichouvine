@@ -646,8 +646,6 @@ public class Board {
 
 		Move[] coups= new Move[xBoard+yBoard];
 			
-	
-		
 		int l =0;
 		
 		int i = x + 1;
@@ -657,21 +655,47 @@ public class Board {
 					|| board[i][y].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (i - x < 5)
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, i, y);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (i - x < 5)
+						{
+							coups[l] = new Move(x, y, i, y);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
 				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (i - x < 5)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
+				{
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, i, y);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (i - x < 5)
+						{
+							coups[l] = new Move(x, y, i, y);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
+					
+				}else
+				{
+					coups[l] = new Move(x, y, i, y);
+					l++;
 				}
 			}
 			i++;
@@ -685,21 +709,47 @@ public class Board {
 					|| board[i][y].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (x - i < 5)
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, i, y);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (x - i < 5)
+						{
+							coups[l] = new Move(x, y, i, y);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
 				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (x - i < 5)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
+				{
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, i, y);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (x - i < 5)
+						{
+							coups[l] = new Move(x, y, i, y);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
+					
+				}else
+				{
+					coups[l] = new Move(x, y, i, y);
+					l++;
 				}
 			}
 			i--;
@@ -710,24 +760,52 @@ public class Board {
 		while (i < yBoard && board[x][i].getPawn().getType() == Pawn.PawnType.VIDE)
 		{
 			if (board[x][i].getState() == BlockState.FORTERESSE
-					|| board[x][i].getState() == BlockState.TRONE) {
+					|| board[x][i].getState() == BlockState.TRONE) 
+			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (i - y < 5)
-					{
-						coups[l] = new Move(x, y, x, i);
-						l++;
-					}
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
+				{
+						if (parameter.getKingMove() == KingMoveMethod.Unlimited)
+						{
+							coups[l] = new Move(x, y, x, i);
+							l++;
+						}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+						{
+							if (i - y < 5)
+							{
+								coups[l] = new Move(x, y, x, i);
+								l++;
+							}
+						}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+						{
+							;
+						}
 				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (i - y < 5)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
+				{
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, x, i);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (i - y< 5)
+						{
+							coups[l] = new Move(x, y, x, i);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
+					
+				}else
+				{
+					coups[l] = new Move(x, y, x, i);
+					l++;
 				}
 			}
 			i++;
@@ -741,30 +819,58 @@ public class Board {
 					|| board[x][i].getState() == BlockState.TRONE) {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (y - i < 5)
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, x, i);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (y - i < 5)
+						{
+							coups[l] = new Move(x, y, x, i);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
+
 				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) {
-					if (y - i < 5)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
+				{
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
 					{
 						coups[l] = new Move(x, y, x, i);
 						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (y - i< 5)
+						{
+							coups[l] = new Move(x, y, x, i);
+							l++;
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						;
 					}
+					
+				}else
+				{
+					coups[l] = new Move(x, y, x, i);
+					l++;
 				}
 			}
 			i--;
 		}
 		Move[] coupss = new Move[l];
-		for (int k = 0; k < l; k++) {
-				coupss[k] = new Move(coups[k].getxDep(), coups[k].getyDep(),coups[k].getxArr(), coups[k].getyArr());
+		for (int k = 0; k < l; k++) 
+		{
+			coupss[k] = new Move(coups[k].getxDep(), coups[k].getyDep(),coups[k].getxArr(), coups[k].getyArr());
 
-		 		}
+		}
 		
 		return coupss;
 	}
