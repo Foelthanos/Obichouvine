@@ -46,7 +46,7 @@ public class OptionPane extends Table{
 			}
 		firstStrike.setItems(firstStrikeArray);
 		
-		this.add("Escape  :").fillX().center().expandY();
+		this.add("Initiative :").fillX().center().expandY();
 		this.add(firstStrike).fillX().center().expandY();
 		this.row();
 		escArray = new Array<EscapeMethod>();
@@ -56,7 +56,7 @@ public class OptionPane extends Table{
 			}
 		esc.setItems(escArray);
 		
-		this.add("Escape  :").fillX().center().expandY();
+		this.add("Méthode de fuite :").fillX().center().expandY();
 		this.add(esc).fillX().center().expandY();
 		this.row();
 		
@@ -66,7 +66,7 @@ public class OptionPane extends Table{
 			kingCapArray.add(kcap);
 			}
 		kingCap.setItems(kingCapArray);
-		this.add("Capture  :").fillX().center().expand();
+		this.add("Capture par le roi:").fillX().center().expand();
 		this.add(kingCap).fillX().center().expand();
 		this.row();
 		

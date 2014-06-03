@@ -42,22 +42,7 @@ public class StartOnlineGameScreen extends AbstractScreen {
 		table.add(IpField).uniform();
 		table.row();
 		
-		validateButton = new TextButton("Valider", getSkin());
-		validateButton.addListener(new DefaultInputListener() {
-			@Override
-			public void touchUp(
-					InputEvent event,
-					float x,
-					float y,
-					int pointer,
-					int button )
-			{
-				super.touchUp(event, x, y, pointer, button);
-				game.getSoundManager().play(ObiSound.CLICK);
-				//Gdx.app.exit();
-			}
-		} );
-		table.add(validateButton).uniform().expand().spaceBottom(10);
+		
 		backButton = new TextButton("Retour", getSkin());
 		backButton.addListener(new DefaultInputListener() {
 			@Override
@@ -73,7 +58,23 @@ public class StartOnlineGameScreen extends AbstractScreen {
 				game.setScreen(game.getMenuScreen());
 			}
 		} );
+		validateButton = new TextButton("Valider", getSkin());
+		validateButton.addListener(new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp(event, x, y, pointer, button);
+				game.getSoundManager().play(ObiSound.CLICK);
+			}
+		} );
 		table.add(backButton).uniform().expand().spaceBottom(10);
+		table.add(validateButton).uniform().expand().spaceBottom(10);
+		
 		table.row();
 	}
 

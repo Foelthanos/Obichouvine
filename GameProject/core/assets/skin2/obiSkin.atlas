@@ -1,0 +1,19 @@
+
+obiSkin.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+checkBoxEmpty
+  rotate: false
+  xy: 2, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+checkBoxFilled
+  rotate: false
+  xy: 2, 2
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1

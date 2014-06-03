@@ -26,7 +26,7 @@ public class RulesScreen extends AbstractScreen {
         
         table.add( "Presentation" ).colspan( 3 );
         table.row();
-        table.add("Le Tablut est un jeu strategique qui se joue à deux sur un terrain 9*9.\nLe jeu comporte seize pions jaunes (appelés aussi moscovites),\nhuit pions verts (soldats) et un gros pion vert (le roi).\nNote le trone occupe par le roi en debut de partie est interdite à tout autres pions");
+        table.add("Le Tablut est un jeu strategique qui se joue � deux sur un terrain 9*9.\nLe jeu comporte seize pions jaunes (appel�s aussi moscovites),\nhuit pions verts (soldats) et un gros pion vert (le roi).\nNote le trone occupe par le roi en debut de partie est interdite à tout autres pions");
         table.row();
         table.add("But du jeu");
         table.row();
@@ -36,7 +36,7 @@ public class RulesScreen extends AbstractScreen {
         table.row();
         table.add("1.les pions autres que le roi n'ont pas non plus le droit de passer sur le trone.\n2. prise : le roi peut manger uniquement s'il a l'initiative\n(il ne peut pas servir de pillier)exeption si le roi est sur le trone.\n3.les moscovites commencent;\n");
         // register the back button
-        TextButton backButton = new TextButton( "Back to main menu", getSkin() );
+        TextButton backButton = new TextButton( "Retour au menu principal", getSkin() );
         backButton.addListener( new DefaultInputListener() {
             @Override
             public void touchUp(

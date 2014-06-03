@@ -1,0 +1,64 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: { default-font: { file: normalFont.fnt } },
+com.badlogic.gdx.graphics.Color: {
+green: { a: 1, b: 0, g: 1, r: 0 },
+white: { a: 1, b: 1, g: 1, r: 1 },
+red: { a: 1, b: 0, g: 0, r: 1 },
+black: { a: 1, b: 0, g: 0, r: 0 }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
+dialogDim: { name: white, color: { r: 0, g: 0, b: 0, a: 0.45 } }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+default: { down: buttonDown, up: button },
+toggle: { down: buttonDown, checked: buttonDown, up: button }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+default: { down: buttonDown, up: button, font: default-font, fontColor: black },
+toggle: { down: buttonDown, up: button, checked: buttonDown, font: default-font, fontColor: white, downFontColor: black }
+},
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+default: { vScroll: scroll, hScrollKnob: button, background: rect, hScroll: scroll, vScrollKnob: button }
+},
+com.badlogic.gdx.scenes.scene2d.ui.SelectBox$SelectBoxStyle: {
+default: {
+font: default-font, fontColor: white, background: selectBox,
+scrollStyle: default,
+listStyle: { font: default-font, selection: selectSelection }
+}
+},
+com.badlogic.gdx.scenes.scene2d.ui.SplitPane$SplitPaneStyle: {
+default-vertical: { handle: splitVertical },
+default-horizontal: { handle: splitHorizontal }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+default: { titleFont: default-font, background: window, titleFontColor: white },
+dialog: { titleFont: default-font, background: window, titleFontColor: white, stageBackground: dialogDim }
+},
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+default-horizontal: { background: slider, knob: sliderKnob },
+default-vertical: { background: slider, knob: sliderKnob }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+default-horizontal: { background: slider, knob: sliderKnob },
+default-vertical: { background: slider, knob: sliderKnob }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+default: { font: default-font, fontColor: white }
+},
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+default: { selection: selection, background: textfield, font: default-font, fontColor: white, cursor: cursor }
+},
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+default: { checkboxOn: checkBoxFilled, checkboxOff: checkBoxEmpty, font: default-font, fontColor: white }
+},
+com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle: {
+default: { fontColorUnselected: white, selection: selection, fontColorSelected: white, font: default-font }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Touchpad$TouchpadStyle: {
+default: { background: rect, knob: button }
+},
+com.badlogic.gdx.scenes.scene2d.ui.Tree$TreeStyle: {
+default: { minus: minus, plus: plus, selection: selectSelection }
+}
+}

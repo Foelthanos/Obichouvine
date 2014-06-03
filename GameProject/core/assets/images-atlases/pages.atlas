@@ -66,3 +66,15 @@ vikingBlock
   orig: 100, 100
   offset: 0, 0
   index: -1
+
+pages2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+mainTitleImage
+  rotate: false
+  xy: 2, 2
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
