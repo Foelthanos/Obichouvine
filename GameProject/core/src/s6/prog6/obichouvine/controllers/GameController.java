@@ -23,9 +23,12 @@ public class GameController {
 
 	private Block selectedPawn;
 
+	private GameRenderer gRenderer;
+
+	public boolean gameStarted = false;
 	private PawnType turn;
 	private float turnNum;
-	
+
 	private boolean isIATurn = false;
 	private Player p1, p2;
 	enum Keys {
@@ -37,11 +40,12 @@ public class GameController {
 		keys.put(Keys.CLICK, false);
 	};
 
-	public GameController(Board board, PawnType turn, Player p1, Player p2){
+	public GameController(Board board, PawnType turn, Player p1, Player p2, GameRenderer gRenderer){
 		this.board = board;
 		this.turn = turn;
 		this.p1 = p1;
 		this.p2 = p2;
+		this.gRenderer = gRenderer;
 		System.out.println(p1.getTeam());
 		System.out.println(p2.getTeam());
 		System.out.println(turn);
@@ -51,7 +55,7 @@ public class GameController {
 	}
 
 	public Move update(float delta) {
-		return processInput();
+		return (gameStarted)?processInput():null;
 	}
 
 	public void clickReleased(Vector2 cursorPos, int button) {
@@ -73,7 +77,31 @@ public class GameController {
 	private Move processInput() {
 		// TODO Auto-generated method stub
 		Move res = null;
-		if(keys.get(Keys.CLICK)){
+		if(this.isIATurn){
+
+			/*try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			if(turn.equals(p1.getTeam()) && p1 instanceof IA){
+				MiniMax ia = (MiniMax)p1;
+				res = ia.jouer(board);
+				this.turnNum += 0.5;
+			}
+			else if(turn.equals(p2.getTeam()) && p2 instanceof IA){
+				MiniMax ia = (MiniMax)p2;
+				res = ia.jouer(board); 
+				this.turnNum += 0.5;
+			}
+			this.board.deplacement(res);
+			this.board.AffichPlateau();
+			this.switchTurn();
+			this.isIATurn = this.nextTurnIa();
+
+		}
+		else if(keys.get(Keys.CLICK)){
 			if(this.selectedPawn==null){
 				System.out.println("Test");
 				if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE &&
@@ -101,29 +129,15 @@ public class GameController {
 							(int)cursorPos.y, this.turn, (int)this.turnNum);
 					this.board.highlightMoves(xStart, yStart, false);
 					this.switchTurn();
-					if(this.nextTurnIa())
-						this.isIATurn = true;
+					this.isIATurn = this.nextTurnIa();
 					this.turnNum += 0.5;
 				}
 
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-			
+
 		}
-		if(this.isIATurn){
-			while(this.nextTurnIa()){
-				if(turn.equals(p1.getTeam()) && p1 instanceof IA){
-					MiniMax ia = (MiniMax)p1;
-					ia.jouer(board);
-					this.turnNum += 0.5;
-				}
-				if(turn.equals(p2.getTeam()) && p2 instanceof IA){
-					MiniMax ia = (MiniMax)p2;
-					ia.jouer(board);
-					this.turnNum += 0.5;
-				}
-			}
-		}
+
 		return res;
 	}
 

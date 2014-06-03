@@ -30,7 +30,7 @@ public class PlayerSelection extends Table{
 		super(skin);
 		this.name = new Label(name, skin);
 		this.pseudoL = new Label("Pseudonyme", skin);
-		this.diffL = new Label("Difficulté", skin);
+		this.diffL = new Label("DifficultÃ©", skin);
 
 		this.isBot = new CheckBox("Activer IA", skin);
 		this.difficulty = new SelectBox<String>(skin);
@@ -60,7 +60,7 @@ public class PlayerSelection extends Table{
 	public Player getPlayerParameters(){
 		if(isBot.isChecked()){
 			//if(this.difficulty.getSelected().equals(""))
-			return new MiniMax(2, 5, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
+			return new MiniMax(2, 3, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
 		}
 		else
 			return new HumanPlayer(pseudo.getText(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);

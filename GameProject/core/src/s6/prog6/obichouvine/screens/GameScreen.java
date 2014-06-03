@@ -47,10 +47,11 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		super(game);
 		// TODO Auto-generated constructor stub
 		Board board = new Board(9, 9, param);
+		this.gRenderer = new GameRenderer(board);
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
-						p1, p2);
-		this.gRenderer = new GameRenderer(board);
+						p1, p2, gRenderer);
+		
 		
 		headMessage = new Label("Placeholder Placeholder", getSkin());
 		quit = new TextButton("Quitter", this.getSkin());
@@ -95,15 +96,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		table.add(gameStateButtons).right().expandX();
 		table.row();
 		Gdx.input.setInputProcessor(multiplexer);
+		gController.gameStarted = true;
 	}
 	
 	
 	public void render(float delta) {
 		super.render(delta);
+		
+		gRenderer.render();
 		Move c = gController.update(delta);
 		if(c != null)
 			history.add(c);
-		gRenderer.render();
 	}
 
 	@Override

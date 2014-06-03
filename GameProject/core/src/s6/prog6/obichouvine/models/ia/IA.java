@@ -14,6 +14,17 @@ public class IA extends Player{
 	PawnType camp;
 	PawnType adv;
 
+	public enum IaType{
+		MiniMax("Difficile"), Aggro("Facile");
+		
+		String label;
+		
+		private IaType(String label){
+			this.label = label;
+		}
+		
+	}
+	
 	public IA(int t, int p, PawnType c) {
 		super("Bender", c);
 		type = t;

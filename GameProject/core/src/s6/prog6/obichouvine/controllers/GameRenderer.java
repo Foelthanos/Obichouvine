@@ -44,7 +44,6 @@ public class GameRenderer {
 		this.board = b;
 		spriteBatch = new SpriteBatch();
 		
-
 		font = new BitmapFont();
 		loadTextures();
 		ppuX = 1;
