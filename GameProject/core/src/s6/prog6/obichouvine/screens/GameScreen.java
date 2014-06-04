@@ -3,6 +3,8 @@ package s6.prog6.obichouvine.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
@@ -31,23 +33,27 @@ import s6.prog6.obichouvine.utils.GameStatusWidget;
 import s6.prog6.obichouvine.utils.HistoryWidget;
 
 public class GameScreen extends AbstractScreen implements InputProcessor{
-	GameController gController;
-	GameRenderer gRenderer;
+	private GameController gController;
+	private GameRenderer gRenderer;
 	
-	Label headMessage;
-	TextButton quit;
+	private Label headMessage;
+	private TextButton quit;
 	
-	GameStateButtonGroup gameStateButtons;
+	private GameStateButtonGroup gameStateButtons;
 	
-	HistoryWidget history;
+	private HistoryWidget history;
 	
-	GameStatusWidget status;
+	private Board board;
+	private GameStatusWidget status;
+	
+	private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
+	private char[] number = {'1','2','3','4','5','6','7','8','9','0','1','1'};
 	
 	public GameScreen(ObichouvineGame game, Parameter param, Player p1, Player p2) {
 		super(game);
 		// TODO Auto-generated constructor stub
-		Board board = new Board(9, 9, param);
-		this.gRenderer = new GameRenderer(board);
+		this.board = new Board(9, 9, param);
+		this.gRenderer = new GameRenderer(board, this.getBatch());
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
 						p1, p2);
@@ -63,6 +69,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		status = new GameStatusWidget(this.getSkin(), p1, p2);
 	}
 
+	
 	public void show(){
 		super.show();
 		InputMultiplexer multiplexer = new InputMultiplexer();
@@ -109,6 +116,12 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			history.add(c);
 	}
 
+	public void dispose(){
+		super.dispose();
+		gRenderer.dispose();
+        Gdx.input.setInputProcessor(null);
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub

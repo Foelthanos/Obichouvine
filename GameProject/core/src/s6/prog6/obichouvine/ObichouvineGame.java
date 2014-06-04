@@ -24,7 +24,7 @@ public class ObichouvineGame extends Game {
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = true;
-	public static final String VER = "v0.2.1";
+	public static final String VER = "v0.2.2";
 
 	private PreferencesManager preferencesManager;
 	private LevelManager levelManager;
@@ -114,11 +114,7 @@ public class ObichouvineGame extends Game {
 
 	@Override
 	public void dispose() {
-		// remember dispose the current screen
-		getScreen().dispose();
-
 		super.dispose();
-
 		// You can use this function to print stuff to the console. 
 		// It's very useful to use to track what's happening in your game.
 		Gdx.app.log(ObichouvineGame.LOG, "Disposed");
@@ -156,7 +152,7 @@ public class ObichouvineGame extends Game {
 	}
 	@Override
 	public void setScreen(Screen screen ){
-		super.setScreen( screen );
+		super.setScreen(screen);
 		Gdx.app.log( ObichouvineGame.LOG, "Setting screen: " + screen.getClass().getSimpleName() );
 	}
 

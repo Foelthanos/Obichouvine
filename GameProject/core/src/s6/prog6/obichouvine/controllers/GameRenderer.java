@@ -25,6 +25,8 @@ public class GameRenderer {
 	private TextureRegion throneBlockHighlight;
 	private TextureRegion moscovitBlockHighlight;
 
+	private TextureAtlas atlas;
+	
 	private SpriteBatch spriteBatch;
 
 	private BitmapFont font;
@@ -40,9 +42,9 @@ public class GameRenderer {
 	private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
 	private char[] number = {'1','2','3','4','5','6','7','8','9','0','1','1'};
 	
-	public GameRenderer(Board b){
+	public GameRenderer(Board b, SpriteBatch batch){
 		this.board = b;
-		spriteBatch = new SpriteBatch();
+		this.spriteBatch = batch;
 		
 		font = new BitmapFont();
 		loadTextures();
@@ -51,7 +53,8 @@ public class GameRenderer {
 	}
 
 	public void loadTextures(){
-		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		
 		normalBlock = atlas.findRegion("normalBlock");
 		escapeBlock = atlas.findRegion("escapeBlock");
 		throneBlock = atlas.findRegion("vikingBlock");
@@ -118,6 +121,14 @@ public class GameRenderer {
 			//if(block.isSurbrillance());
 				//spriteBatch.
 		}
+	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		if( font != null ) font.dispose();
+        //if( spriteBatch != null ) spriteBatch.dispose();
+        if( atlas != null ) atlas.dispose();
+
 	}
 
 }

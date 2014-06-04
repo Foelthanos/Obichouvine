@@ -5,6 +5,20 @@ filter: Nearest,Nearest
 repeat: none
 Moscovit
   rotate: false
+  xy: 2, 308
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+MoscovitOldPos
+  rotate: false
+  xy: 804, 910
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+MoscovitSelect
+  rotate: false
   xy: 2, 206
   size: 100, 100
   orig: 100, 100
@@ -12,7 +26,21 @@ Moscovit
   index: -1
 Roi
   rotate: false
+  xy: 104, 308
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+RoiOldPos
+  rotate: false
   xy: 804, 808
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+RoiSelect
+  rotate: false
+  xy: 906, 910
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -24,44 +52,58 @@ Suedois
   orig: 100, 100
   offset: 0, 0
   index: -1
-escapeBlock
+SuedoisOldPos
   rotate: false
   xy: 104, 206
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-escapeRussianBlock
+SuedoisSelect
+  rotate: false
+  xy: 206, 308
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeBlock
   rotate: false
   xy: 804, 706
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-normalBlock
+escapeRussianBlock
   rotate: false
   xy: 906, 808
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-russianBlock
+normalBlock
   rotate: false
   xy: 2, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
+russianBlock
+  rotate: false
+  xy: 104, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 splash
   rotate: false
-  xy: 2, 308
+  xy: 2, 410
   size: 800, 600
   orig: 800, 600
   offset: 0, 0
   index: -1
 vikingBlock
   rotate: false
-  xy: 104, 104
+  xy: 206, 206
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
