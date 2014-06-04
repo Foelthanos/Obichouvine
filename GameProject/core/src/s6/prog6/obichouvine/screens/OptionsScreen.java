@@ -36,13 +36,12 @@ public class OptionsScreen extends AbstractScreen {
 
         // retrieve the default table actor
         Table table = super.getTable();
-        table.defaults().spaceBottom( 30 );
-        table.columnDefaults( 0 ).padRight( 20 );
-        table.add("Options").colspan(3);
+        table.defaults().spaceBottom(30);
+        table.columnDefaults(0).padRight(20);
+        table.add("Options").colspan(3).padRight(0);
 
         // create the labels widgets
         final TextField pseudoTextField = new TextField(game.getPreferencesManager().getPseudo(), getSkin());
-        //System.out.println(game.getPreferencesManager().getPseudo());
         pseudoTextField.setTextFieldListener(new TextFieldListener() {
 			
 			@Override
@@ -53,11 +52,11 @@ public class OptionsScreen extends AbstractScreen {
 			}
 		});
         table.row();
-        table.add("Pseudonyme");
-        table.add(pseudoTextField).colspan(2).left();
+        table.add("Pseudonyme : ");
+        table.add(pseudoTextField).colspan(2).left().fillX();
         
-        final CheckBox soundEffectsCheckbox = new CheckBox( "", getSkin() );
-        soundEffectsCheckbox.setChecked( game.getPreferencesManager().isSoundEnabled() );
+        final CheckBox soundEffectsCheckbox = new CheckBox("", getSkin());
+        soundEffectsCheckbox.setChecked( game.getPreferencesManager().isSoundEnabled());
         soundEffectsCheckbox.addListener( new ChangeListener() {
             @Override
             public void changed(
@@ -65,17 +64,17 @@ public class OptionsScreen extends AbstractScreen {
                 Actor actor )
             {
                 boolean enabled = soundEffectsCheckbox.isChecked();
-                game.getPreferencesManager().setSoundEnabled( enabled );
-                game.getSoundManager().setEnabled( enabled );
-                game.getSoundManager().play( ObiSound.CLICK );
+                game.getPreferencesManager().setSoundEnabled(enabled);
+                game.getSoundManager().setEnabled(enabled);
+                game.getSoundManager().play(ObiSound.CLICK);
             }
         } );
         table.row();
-        table.add("Effets sonores");
+        table.add("Effets sonores : ");
         table.add(soundEffectsCheckbox).colspan(2).left();
 
-        final CheckBox musicCheckbox = new CheckBox( "", getSkin() );
-        musicCheckbox.setChecked( game.getPreferencesManager().isMusicEnabled() );
+        final CheckBox musicCheckbox = new CheckBox("", getSkin());
+        musicCheckbox.setChecked(game.getPreferencesManager().isMusicEnabled());
         musicCheckbox.addListener( new ChangeListener() {
             @Override
             public void changed(
@@ -83,21 +82,21 @@ public class OptionsScreen extends AbstractScreen {
                 Actor actor )
             {
                 boolean enabled = musicCheckbox.isChecked();
-                game.getPreferencesManager().setMusicEnabled( enabled );
-                game.getMusicManager().setEnabled( enabled );
-                game.getSoundManager().play( ObiSound.CLICK );
+                game.getPreferencesManager().setMusicEnabled(enabled);
+                game.getMusicManager().setEnabled(enabled);
+                game.getSoundManager().play(ObiSound.CLICK);
 
                 // if the music is now enabled, start playing the menu music
-                if( enabled ) game.getMusicManager().play( ObiMusic.MENU );
+                if(enabled) game.getMusicManager().play(ObiMusic.MENU);
             }
         } );
         table.row();
-        table.add( "Musique" );
-        table.add( musicCheckbox ).colspan( 2 ).left();
+        table.add("Musique : ");
+        table.add(musicCheckbox).colspan(2).left();
 
         // range is [0.0,1.0]; step is 0.1f
-        Slider volumeSlider = new Slider( 0f, 1f, 0.1f, false, getSkin() );
-        volumeSlider.setValue( game.getPreferencesManager().getVolume() );
+        Slider volumeSlider = new Slider(0f, 1f, 0.1f, false, getSkin());
+        volumeSlider.setValue(game.getPreferencesManager().getVolume());
         volumeSlider.addListener( new ChangeListener() {
             @Override
             public void changed(
@@ -113,17 +112,17 @@ public class OptionsScreen extends AbstractScreen {
         } );
 
         // create the volume label
-        volumeValue = new Label( "", getSkin() );
+        volumeValue = new Label("", getSkin());
         updateVolumeLabel();
 
         // add the volume row
         table.row();
-        table.add( "Volume" );
-        table.add( volumeSlider );
-        table.add( volumeValue ).width( 40 );
+        table.add("Volume : ");
+        table.add(volumeSlider);
+        table.add(volumeValue).width(40);
 
         // register the back button
-        TextButton backButton = new TextButton( "Retour au menu principal", getSkin() );
+        TextButton backButton = new TextButton("Retour au menu principal", getSkin());
         backButton.addListener( new DefaultInputListener() {
             @Override
             public void touchUp(
@@ -137,10 +136,9 @@ public class OptionsScreen extends AbstractScreen {
                 game.getSoundManager().play( ObiSound.CLICK );
                 game.setScreen( new MenuScreen( game ) );
             }
-        } );
-        
+        });
         table.row();
-        table.add( backButton ).size( 250, 60 ).colspan( 3 );
+        table.add(backButton).height(60).colspan(3).padRight(0).fillX();
     }
 
     /**

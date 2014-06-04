@@ -68,7 +68,7 @@ public class StartLocalGameScreen extends AbstractScreen
 				game.setScreen(game.getMenuScreen());
 			}
 		} );
-		buttonTable.add(back).fillY().expand();
+		buttonTable.add(back).height(60).expand().width(250);
 
 		TextButton validate = new TextButton("Jouer", getSkin());
 		validate.addListener(new DefaultInputListener() {
@@ -87,7 +87,7 @@ public class StartLocalGameScreen extends AbstractScreen
 						p2.getPlayerParameters()));
 			}
 		} );
-		buttonTable.add(validate).fillY().expand().uniform();
+		buttonTable.add(validate).height(60).expand().width(250);
 		
 		paramPane = new SplitPane(mainTable, oPane, false, getSkin());
 
@@ -97,9 +97,9 @@ public class StartLocalGameScreen extends AbstractScreen
 
 		mainPane = new SplitPane(paramPane, buttonTable, true, getSkin());
 		mainPane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);
-		mainPane.setMinSplitAmount((float) 0.9);
-		mainPane.setMaxSplitAmount((float) 0.9001);
-		mainPane.setSplitAmount((float) 0.9);
+		mainPane.setMinSplitAmount((float) 0.87);
+		mainPane.setMaxSplitAmount((float) 0.8701);
+		mainPane.setSplitAmount((float) 0.87);
 		stage.addActor(mainPane);
 	}
 

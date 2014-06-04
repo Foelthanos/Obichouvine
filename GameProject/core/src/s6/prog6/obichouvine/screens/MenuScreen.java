@@ -40,8 +40,8 @@ public class MenuScreen extends AbstractScreen {
         batch = this.getBatch();
         
 		Table table = super.getTable();
-		table.right();
-		table.add("Obichouvine "+ObichouvineGame.VER).spaceBottom( 50 );
+		table.right().padRight(30);
+		table.add("Obichouvine "+ObichouvineGame.VER).spaceBottom(50);
 		table.row();
 
 		// register the button "new game"
