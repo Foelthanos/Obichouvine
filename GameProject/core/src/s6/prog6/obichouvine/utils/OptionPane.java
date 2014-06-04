@@ -7,6 +7,9 @@ import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Parameter.KingCaptureMethod;
 import s6.prog6.obichouvine.models.Parameter.KingMoveMethod;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -22,6 +25,10 @@ public class OptionPane extends Table{
 	private Array<KingCaptureMethod> kingCapArray;
 	private Array<FirstStrike> firstStrikeArray;
 
+	private Image escIcon;
+	private Image kingMoveIcon;
+	private Image kingCapIcon;
+	private Image firstStrikeIcon;
 	
 	public OptionPane(Skin skin){
 		super(skin);
@@ -30,6 +37,14 @@ public class OptionPane extends Table{
 		kingCap = new SelectBox<KingCaptureMethod>(skin);
 		kingMove = new SelectBox<KingMoveMethod>(skin);  
 		firstStrike = new SelectBox<Parameter.FirstStrike>(skin);
+		
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		
+		escIcon = new Image(atlas.findRegion("escapeBlock"));
+		kingMoveIcon = new Image(atlas.findRegion("Roi"));
+		kingCapIcon = new Image(atlas.findRegion("vikingBlock"));
+		firstStrikeIcon = new Image(atlas.findRegion("escapeBlock"));
+		
 		 if( ObichouvineGame.DEV_MODE ) {
              this.debug();
          }
@@ -37,7 +52,10 @@ public class OptionPane extends Table{
 	}
 	
 	private void printCommonContent(){
-		this.add("Paramètres de la partie").spaceBottom(50).colspan(2);
+		this.defaults().spaceBottom(15);
+		this.columnDefaults(0).padRight(5);
+		this.columnDefaults(1).padRight(20);
+		this.add("Paramètres de la partie").spaceBottom(50).colspan(3).padRight(0);
 		this.row();
 		firstStrikeArray = new Array<FirstStrike>();
 		for (FirstStrike first : FirstStrike.values()) {
@@ -46,6 +64,7 @@ public class OptionPane extends Table{
 			}
 		firstStrike.setItems(firstStrikeArray);
 		
+		this.add(firstStrikeIcon).size(40, 40);
 		this.add("Initiative :").fillX().center().expandY();
 		this.add(firstStrike).fillX().center().expandY();
 		this.row();
@@ -56,6 +75,7 @@ public class OptionPane extends Table{
 			}
 		esc.setItems(escArray);
 		
+		this.add(escIcon).size(40, 40);
 		this.add("Méthodes de fuite :").fillX().center().expandY();
 		this.add(esc).fillX().center().expandY();
 		this.row();
@@ -66,7 +86,9 @@ public class OptionPane extends Table{
 			kingCapArray.add(kcap);
 			}
 		kingCap.setItems(kingCapArray);
-		this.add("Capture par le roi:").fillX().center().expand();
+		
+		this.add(kingCapIcon).size(40, 40);
+		this.add("Capture par le roi :").fillX().center().expand();
 		this.add(kingCap).fillX().center().expand();
 		this.row();
 		
@@ -76,6 +98,8 @@ public class OptionPane extends Table{
 			kingMoveArray.add(kmove);
 			}
 		kingMove.setItems(kingMoveArray);
+		
+		this.add(kingMoveIcon).size(40, 40);
 		this.add("Mouvements du roi :").fillX().center().expand();
 		this.add(kingMove).fillX().center().expand();
 		this.row();

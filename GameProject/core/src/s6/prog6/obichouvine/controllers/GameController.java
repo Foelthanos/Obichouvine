@@ -19,13 +19,13 @@ public class GameController {
 	private Board board;
 
 	private Move moves[];
-	
+
 	private Vector2 cursorPos;
 	private int button;
+	private int resMove;
 
 	private Block selectedPawn;
 
-	private GameRenderer gRenderer;
 
 	public boolean gameStarted = false;
 	private PawnType turn;
@@ -42,12 +42,12 @@ public class GameController {
 		keys.put(Keys.CLICK, false);
 	};
 
-	public GameController(Board board, PawnType turn, Player p1, Player p2, GameRenderer gRenderer){
+	public GameController(Board board, PawnType turn, Player p1, Player p2){
 		this.board = board;
 		this.turn = turn;
 		this.p1 = p1;
 		this.p2 = p2;
-		this.gRenderer = gRenderer;
+
 		System.out.println(p1.getTeam());
 		System.out.println(p2.getTeam());
 		System.out.println(turn);
@@ -80,7 +80,6 @@ public class GameController {
 		// TODO Auto-generated method stub
 		Move res = null;
 		if(this.isIATurn){
-
 			/*try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -116,24 +115,32 @@ public class GameController {
 			else{
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
-				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y));
-				else if(board.deplacement(new Move(xStart,
-						yStart,
-						(int)cursorPos.x, 
-						(int)cursorPos.y)) == 3 ){
-					System.out.println("Ca marche !!");
-				}
-				else{
+
+				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y)){
 					this.selectedPawn = null;
-					res = new Move(xStart,
+				}
+				else {
+					this.resMove = board.deplacement(new Move(xStart,
 							yStart,
 							(int)cursorPos.x, 
-							(int)cursorPos.y, this.turn, (int)this.turnNum);
-					this.board.highlightMoves(this.moves, false);
-					this.switchTurn();
-					this.isIATurn = this.nextTurnIa();
-					this.turnNum += 0.5;
+							(int)cursorPos.y));
+					if(resMove == 3 ){
+						System.out.println("Ca marche !!");
+					}
+					else{
+						this.selectedPawn = null;
+						res = new Move(xStart,
+								yStart,
+								(int)cursorPos.x, 
+								(int)cursorPos.y, this.turn, (int)this.turnNum);
+						this.board.highlightMoves(this.moves, false);
+						this.switchTurn();
+						this.isIATurn = this.nextTurnIa();
+						this.turnNum += 0.5;
+					}
 				}
+
+
 
 			}
 			keys.get(keys.put(Keys.CLICK, false));

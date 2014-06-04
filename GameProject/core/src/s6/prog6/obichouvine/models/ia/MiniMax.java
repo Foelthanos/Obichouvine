@@ -18,6 +18,12 @@ public class MiniMax extends IA{
 		super(t, p, c);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public MiniMax(int t, int p, PawnType c, String pseudo) {
+		super(t, p, c, pseudo);
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Move jouer(Board p) {
 		int maxVal = Integer.MIN_VALUE;

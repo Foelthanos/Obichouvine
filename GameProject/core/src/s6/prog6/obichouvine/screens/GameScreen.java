@@ -50,7 +50,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		this.gRenderer = new GameRenderer(board);
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
-						p1, p2, gRenderer);
+						p1, p2);
 		
 		
 		headMessage = new Label("Placeholder Placeholder", getSkin());
@@ -102,9 +102,9 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	
 	public void render(float delta) {
 		super.render(delta);
-		
-		gRenderer.render();
+	
 		Move c = gController.update(delta);
+		gRenderer.render();
 		if(c != null)
 			history.add(c);
 	}

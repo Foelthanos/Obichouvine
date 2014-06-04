@@ -28,8 +28,8 @@ public class IA extends Player{
 		}
 	}
 	
-	public IA(int t, int p, PawnType c) {
-		super("Bender", c);
+	public IA(int t, int p, PawnType c, String pseudo) {
+		super(pseudo, c);
 		type = t;
 		profondeur = p;
 		camp = c;
@@ -38,6 +38,10 @@ public class IA extends Player{
 		} else {
 			adv = PawnType.SUEDOIS;
 		}
+	}
+	
+	public IA(int t, int p, PawnType c) {
+		this(t, p, c, "Bender");
 	}
 
 	
