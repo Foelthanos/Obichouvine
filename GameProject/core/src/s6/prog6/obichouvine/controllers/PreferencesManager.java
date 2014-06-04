@@ -9,7 +9,8 @@ import com.badlogic.gdx.Preferences;
 public class PreferencesManager
 {
 	// constants
-	private static final String PREF_PSEUDO = "pseudo";
+	private static final String PREF_PSEUDO_1 = "pseudo";
+	private static final String PREF_PSEUDO_2 = "pseudo2";
 	private static final String PREF_VOLUME = "volume";
 	private static final String PREF_MUSIC_ENABLED = "music.enabled";
 	private static final String PREF_SOUND_ENABLED = "sound.enabled";
@@ -62,13 +63,25 @@ public class PreferencesManager
 
 	public String getPseudo()
 	{
-		return getPrefs().getString(PREF_PSEUDO, "Unnamed");
+		return getPrefs().getString(PREF_PSEUDO_1, "Unnamed");
 	}
 
 	public void setPseudo(
 			String pseudo )
 	{
-		getPrefs().putString(PREF_PSEUDO, pseudo);
+		getPrefs().putString(PREF_PSEUDO_1, pseudo);
+		getPrefs().flush();
+	}
+	
+	public String getPseudoP2()
+	{
+		return getPrefs().getString(PREF_PSEUDO_2, "Unnamed2");
+	}
+
+	public void setPseudoP2(
+			String pseudo )
+	{
+		getPrefs().putString(PREF_PSEUDO_2, pseudo);
 		getPrefs().flush();
 	}
 }

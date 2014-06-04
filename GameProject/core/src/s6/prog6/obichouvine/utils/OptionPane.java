@@ -37,7 +37,7 @@ public class OptionPane extends Table{
 	}
 	
 	private void printCommonContent(){
-		this.add("Parametres de la partie").spaceBottom(50).colspan(2);
+		this.add("Paramètres de la partie").spaceBottom(50).colspan(2);
 		this.row();
 		firstStrikeArray = new Array<FirstStrike>();
 		for (FirstStrike first : FirstStrike.values()) {
@@ -56,7 +56,7 @@ public class OptionPane extends Table{
 			}
 		esc.setItems(escArray);
 		
-		this.add("Méthode de fuite :").fillX().center().expandY();
+		this.add("Méthodes de fuite :").fillX().center().expandY();
 		this.add(esc).fillX().center().expandY();
 		this.row();
 		
@@ -76,7 +76,7 @@ public class OptionPane extends Table{
 			kingMoveArray.add(kmove);
 			}
 		kingMove.setItems(kingMoveArray);
-		this.add("Mouvement du roi :").fillX().center().expand();
+		this.add("Mouvements du roi :").fillX().center().expand();
 		this.add(kingMove).fillX().center().expand();
 		this.row();
 	}

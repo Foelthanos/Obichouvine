@@ -52,8 +52,22 @@ public class OptionsScreen extends AbstractScreen {
 			}
 		});
         table.row();
-        table.add("Pseudonyme : ");
+        table.add("Pseudonyme Moscovites: ");
         table.add(pseudoTextField).colspan(2).left().fillX();
+        
+        final TextField pseudo2TextField = new TextField(game.getPreferencesManager().getPseudoP2(), getSkin());
+        pseudoTextField.setTextFieldListener(new TextFieldListener() {
+			
+			@Override
+			public void keyTyped(TextField textField, char c) {
+				// TODO Auto-generated method stub
+				String changedPseudo = pseudo2TextField.getText();
+                game.getPreferencesManager().setPseudoP2(changedPseudo);
+			}
+		});
+        table.row();
+        table.add("Pseudonyme Vikings: ");
+        table.add(pseudo2TextField).colspan(2).left().fillX();
         
         final CheckBox soundEffectsCheckbox = new CheckBox("", getSkin());
         soundEffectsCheckbox.setChecked( game.getPreferencesManager().isSoundEnabled());

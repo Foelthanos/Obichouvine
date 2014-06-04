@@ -17,6 +17,8 @@ public class StartLocalGameScreen extends AbstractScreen
 {
 	private SplitPane paramPane, mainPane;
 
+	
+	
 	private Table mainTable, buttonTable;
 	private OptionPane oPane;
 
@@ -37,15 +39,15 @@ public class StartLocalGameScreen extends AbstractScreen
 		if(ObichouvineGame.DEV_MODE)
 			mainTable.debug();
 		
-		p1 = new PlayerSelection(game.getPreferencesManager().getPseudo(), "Moscovites", this.getSkin());
-		p2 = new PlayerSelection("Hank Bot", "Suedois", this.getSkin());
+		p1 = new PlayerSelection(game.getPreferencesManager().getPseudo(), "Moscovites", this.getSkin(), false);
+		p2 = new PlayerSelection(game.getPreferencesManager().getPseudoP2(), "Vikings", this.getSkin(), true);
 		
-		mainTable.add("Partie locale");
+		mainTable.add("Paramètres des joueurs");
 		mainTable.top();
 		mainTable.row();
-		mainTable.add(p1).fillX().expandY();
+		mainTable.add(p1).fillX().expand();
 		mainTable.row();
-		mainTable.add(p2).fillX().expandY();
+		mainTable.add(p2).fillX().expand();
 		mainTable.row();
 
 

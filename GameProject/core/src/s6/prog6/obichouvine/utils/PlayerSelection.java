@@ -21,18 +21,20 @@ import com.badlogic.gdx.utils.Array;
 
 public class PlayerSelection extends Table{
 
+	private String funnyNames[] = {"TheSecond", "The Bad", "Player2", "Challenger", "Hank Bot", "Bender", "CARL 500"};
+	
 	private Label name, diffL, pseudoL;
 	private CheckBox isBot;
 	private SelectBox<IaType> difficulty;
 	private TextField pseudo;
 
 	private Array<IaType> iaType;
-
+	private String savedPseudo;
 	public String getPseudo(){
 		return this.pseudo.getText();
 	}
 
-	public PlayerSelection(String pseudo, String name, Skin skin){
+	public PlayerSelection(String pseudo, String name, Skin skin, boolean botIsChecked){
 		super(skin);
 		this.name = new Label(name, skin);
 		this.pseudoL = new Label("Pseudonyme", skin);
@@ -40,13 +42,15 @@ public class PlayerSelection extends Table{
 
 		this.isBot = new CheckBox("Activer IA", skin);
 		this.difficulty = new SelectBox<IaType>(skin);
+		
+		this.savedPseudo = pseudo;
 		iaType = new Array<IaType>();
 		for (IaType first : IaType.values()) {
 			// do what you want
 			iaType.add(first);
 		}
 		difficulty.setItems(iaType);
-
+		this.isBot.setChecked(botIsChecked);
 		if( ObichouvineGame.DEV_MODE ) {
 			this.debug();
 		}
@@ -86,14 +90,22 @@ public class PlayerSelection extends Table{
 
 	private void printWidget(){
 		this.clear();
+		this.difficulty.setDisabled(!this.isBot.isChecked());
+		if(this.isBot.isChecked()){
+			this.pseudo.setText(this.funnyNames[(int)(Math.random() * (this.funnyNames.length-1) + 1)]);
+			this.pseudo.setDisabled(true);
+		}
+		else{
+			this.pseudo.setText(this.savedPseudo);
+			this.pseudo.setDisabled(false);
+		}
 		this.add(name).expand();
+		this.row();
+		this.add(pseudo).fill().height(20);
 		this.row();
 		this.add(isBot);
 		this.row();
-		if(this.isBot.isChecked())
-			this.add(difficulty).fill().height(20);
-		else
-			this.add(pseudo).fill().height(20);
+		this.add(difficulty).fill().height(20);
 		this.row();
 	}
 }
