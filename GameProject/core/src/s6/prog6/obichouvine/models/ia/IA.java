@@ -7,15 +7,21 @@ import s6.prog6.obichouvine.models.Player;
 
 public class IA extends Player{
 	int profondeur;
-	int type;
+	IaType type;
 	// 1 - Gogol
 	// 2 - MinMax
-	// 3 - AlphaBeta
+	// 3 - MinMax aggressif
+	// 4 - MinMax défensif
+	// 5 - AlphaBeta
 	PawnType camp;
 	PawnType adv;
+	int valManger;
+	int valPerdre;
+	int valRoiEntour1;
+	boolean bougerRoi;
 
 	public enum IaType{
-		MiniMax("Difficile"), Aggro("Facile");
+		Difficile("Difficile"), Aggressive("Aggressive"), Defensive("Défensive"), Facile("Facile");
 		
 		String label;
 		
@@ -28,20 +34,44 @@ public class IA extends Player{
 		}
 	}
 	
-	public IA(int t, int p, PawnType c, String pseudo) {
+	public IA(IaType t,  PawnType c, String pseudo) {
 		super(pseudo, c);
 		type = t;
-		profondeur = p;
 		camp = c;
 		if (camp == PawnType.SUEDOIS) {
 			adv = PawnType.MOSCOVITE;
 		} else {
 			adv = PawnType.SUEDOIS;
 		}
+		if(t == IaType.Difficile) {
+			profondeur = 4;
+			valManger = 10;
+			valPerdre = 10;
+			bougerRoi = true;
+			
+		}
+		else if (t == IaType.Aggressive) {
+			profondeur = 4;
+			valManger = 100;
+			valPerdre = 5;
+			bougerRoi = false;
+		}
+		else if(t == IaType.Defensive) {
+			profondeur = 4;
+			valManger = 5;
+			valPerdre = 100;
+			bougerRoi = false;
+		}
+		else if(t == IaType.Facile) {
+			profondeur = 2;
+			valManger = 10;
+			valPerdre = 10;
+			bougerRoi = false;
+		}
 	}
 	
-	public IA(int t, int p, PawnType c) {
-		this(t, p, c, "Bender");
+	public IA(IaType t, PawnType c) {
+		this(t, c, "Bender");
 	}
 
 	

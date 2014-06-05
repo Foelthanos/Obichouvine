@@ -74,15 +74,7 @@ public class PlayerSelection extends Table{
 
 	public Player getPlayerParameters(){
 		if(isBot.isChecked()){
-			switch(difficulty.getSelected()){
-			case MiniMax:
-				return new MiniMax(2, 4, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			case Aggro:
-				return new MiniMax(2, 3, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			default: 
-				return new MiniMax(2, 3, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			}
-
+			return new MiniMax(difficulty.getSelected(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
 		}
 		else
 			return new HumanPlayer(pseudo.getText(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
