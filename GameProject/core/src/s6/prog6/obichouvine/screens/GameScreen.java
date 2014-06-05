@@ -53,7 +53,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		super(game);
 		// TODO Auto-generated constructor stub
 		this.board = new Board(9, 9, param);
-		this.gRenderer = new GameRenderer(board, this.getBatch());
+		this.gRenderer = new GameRenderer(board);
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
 						p1, p2);

@@ -1,10 +1,13 @@
 package s6.prog6.obichouvine.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
@@ -21,9 +24,13 @@ public class MenuScreen extends AbstractScreen {
 	
 	private SpriteBatch batch;
 	private TextureRegion menuImage;
+	
+	private Label title = new Label("Obichouvine "+ObichouvineGame.VER, this.getSkin());
 	public MenuScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
+		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
+		this.title.setStyle(titleStyle);
 	}
 
 	@Override
@@ -41,12 +48,12 @@ public class MenuScreen extends AbstractScreen {
         
 		Table table = super.getTable();
 		table.right().padRight(30);
-		table.add("Obichouvine "+ObichouvineGame.VER).spaceBottom(50);
+		table.add(title).spaceBottom(50);
 		table.row();
 
 		// register the button "new game"
-		TextButton startGameButton = new TextButton( "Partie locale", this.getSkin() );
-		startGameButton.addListener( new DefaultInputListener() {
+		TextButton startGameButton = new TextButton("Partie locale", this.getSkin());
+		startGameButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
 					InputEvent event,
@@ -60,7 +67,7 @@ public class MenuScreen extends AbstractScreen {
 				game.setScreen(game.getStartLocalGameScreen());
 			}
 		} );
-		table.add(startGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10);
+		table.add(startGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 		table.row();
 		// register the button "new game"
 		TextButton startOnlineGameButton = new TextButton("Partie en réseau", this.getSkin());
@@ -78,7 +85,7 @@ public class MenuScreen extends AbstractScreen {
 				game.setScreen(game.getStartOnlineGameScreen());
 			}
 		} );
-		table.add(startOnlineGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom( 10 );
+		table.add(startOnlineGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 		table.row();
 		// register the button "options"
 		TextButton optionsButton = new TextButton("Options", getSkin());
@@ -96,11 +103,11 @@ public class MenuScreen extends AbstractScreen {
 				game.setScreen(game.getOptionsScreen());
 			}
 		} );
-		table.add( optionsButton ).uniform().fill().spaceBottom( 10 );
+		table.add(optionsButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 		table.row();
 
 		// register the button "quitter"
-		TextButton highScoresButton = new TextButton( "Règles", getSkin() );
+		TextButton highScoresButton = new TextButton("Règles", getSkin() );
 		highScoresButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -114,11 +121,11 @@ public class MenuScreen extends AbstractScreen {
 				game.setScreen(game.getRulesScreen());
 			}
 		} );
-		table.add( highScoresButton ).uniform().fill().spaceBottom(10);
+		table.add(highScoresButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 		table.row();
 
 		// register the button "quitter"
-		TextButton quit = new TextButton( "Quitter", getSkin() );
+		TextButton quit = new TextButton("Quitter", getSkin());
 		quit.addListener( new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -132,7 +139,7 @@ public class MenuScreen extends AbstractScreen {
 				Gdx.app.exit();
 			}
 		} );
-		table.add(quit).uniform().fill();
+		table.add(quit).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 	}
 	
 	public void render(float delta) {

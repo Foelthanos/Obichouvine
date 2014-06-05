@@ -73,23 +73,44 @@ escapeBlock
   orig: 100, 100
   offset: 0, 0
   index: -1
-escapeRussianBlock
+escapeBlockHighlight
   rotate: false
   xy: 906, 808
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-normalBlock
+escapeRussianBlock
   rotate: false
   xy: 2, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-russianBlock
+normalBlock
   rotate: false
   xy: 104, 104
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+normalBlockHighlight
+  rotate: false
+  xy: 206, 206
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianBlock
+  rotate: false
+  xy: 308, 308
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianBlockHighlight
+  rotate: false
+  xy: 804, 604
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -103,7 +124,14 @@ splash
   index: -1
 vikingBlock
   rotate: false
-  xy: 206, 206
+  xy: 906, 706
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+vikingBlockHighlight
+  rotate: false
+  xy: 104, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0

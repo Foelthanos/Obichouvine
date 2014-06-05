@@ -125,16 +125,16 @@ public class ObichouvineGame extends Game {
 			int width,
 			int height )
 	{
-		super.resize( width, height );
-		Gdx.app.log( ObichouvineGame.LOG, "Resizing game to: " + width + " x " + height );
+		super.resize(width, height);
+		Gdx.app.log(ObichouvineGame.LOG, "Resizing game to: " + width + " x " + height);
 
 		// show the splash screen when the game is resized for the first time;
 		// this approach avoids calling the screen's resize method repeatedly
 		if( getScreen() == null ) {
 			if( DEV_MODE ) {
-				setScreen( new MenuScreen( this ) );
+				setScreen(new MenuScreen(this));
 			} else {
-				setScreen( new SplashScreen( this ) );
+				setScreen(new SplashScreen(this));
 			}
 		}
 	}
@@ -148,18 +148,18 @@ public class ObichouvineGame extends Game {
 	@Override
 	public void resume(){
 		super.resume();
-		Gdx.app.log( ObichouvineGame.LOG, "Resuming game" );
+		Gdx.app.log(ObichouvineGame.LOG, "Resuming game");
 	}
 	@Override
 	public void setScreen(Screen screen ){
 		super.setScreen(screen);
-		Gdx.app.log( ObichouvineGame.LOG, "Setting screen: " + screen.getClass().getSimpleName() );
+		Gdx.app.log(ObichouvineGame.LOG, "Setting screen: " + screen.getClass().getSimpleName());
 	}
 
 
 	public void pause(){
 		super.pause();
-		Gdx.app.log( ObichouvineGame.LOG, "Pausing game" );
+		Gdx.app.log(ObichouvineGame.LOG, "Pausing game");
 
 	}
 

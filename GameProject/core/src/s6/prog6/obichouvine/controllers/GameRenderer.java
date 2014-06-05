@@ -42,9 +42,9 @@ public class GameRenderer {
 	private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
 	private char[] number = {'1','2','3','4','5','6','7','8','9','0','1','1'};
 	
-	public GameRenderer(Board b, SpriteBatch batch){
+	public GameRenderer(Board b){
 		this.board = b;
-		this.spriteBatch = batch;
+		this.spriteBatch = new SpriteBatch();
 		
 		font = new BitmapFont();
 		loadTextures();
@@ -61,11 +61,11 @@ public class GameRenderer {
 		moscovitBlock = atlas.findRegion("russianBlock");
 		escapeRussianBlock = atlas.findRegion("escapeRussianBlock");
 		
-		normalBlockHighlight = atlas.findRegion("normalBlock");
-		escapeBlockHighlight = atlas.findRegion("escapeBlock");
-		throneBlockHighlight = atlas.findRegion("vikingBlock");
-		moscovitBlockHighlight = atlas.findRegion("russianBlock");
-		escapeRussianBlockHighlight = atlas.findRegion("escapeRussianBlock");
+		normalBlockHighlight = atlas.findRegion("normalBlockHighlight");
+		escapeBlockHighlight = atlas.findRegion("escapeBlockHighlight");
+		throneBlockHighlight = atlas.findRegion("vikingBlockHighlight");
+		moscovitBlockHighlight = atlas.findRegion("russianBlockHighlight");
+		escapeRussianBlockHighlight = atlas.findRegion("escapeBlockHighlight");
 		
 		moscoPawn = atlas.findRegion("Moscovit");
 		vikingSoldier = atlas.findRegion("Suedois");
@@ -94,20 +94,18 @@ public class GameRenderer {
 	private void drawBlocks() {
 		for (Block block : board.getBlocks()) {
 			if(block.getState()==Block.BlockState.TRONE)
-				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw((!block.isSurbrillance())?throneBlock:throneBlockHighlight, 
+						block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.FORTERESSE)
-				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw((!block.isSurbrillance())?escapeBlock:escapeBlockHighlight, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.ROUGE)
-				spriteBatch.draw(moscovitBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw((!block.isSurbrillance())?moscovitBlock:moscovitBlockHighlight, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.ROUGEEXIT)
-				spriteBatch.draw(escapeRussianBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw((!block.isSurbrillance())?escapeRussianBlock:escapeRussianBlockHighlight, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.BLANC)
-				spriteBatch.draw(normalBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				spriteBatch.draw((!block.isSurbrillance())?normalBlock:normalBlockHighlight, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			else if(block.getState()==Block.BlockState.BLANCEXIT)
-				spriteBatch.draw(escapeBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			if(block.isSurbrillance()){
-				spriteBatch.draw(throneBlock, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			}
+				spriteBatch.draw((!block.isSurbrillance())?escapeBlock:escapeBlockHighlight, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 			
 			if(block.getPawn().getType()==PawnType.MOSCOVITE)
 				spriteBatch.draw(moscoPawn, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
@@ -126,7 +124,7 @@ public class GameRenderer {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		if( font != null ) font.dispose();
-        //if( spriteBatch != null ) spriteBatch.dispose();
+        if( spriteBatch != null ) spriteBatch.dispose();
         if( atlas != null ) atlas.dispose();
 
 	}

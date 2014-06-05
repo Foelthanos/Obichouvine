@@ -18,6 +18,22 @@ public class Move {
 		yArr = y1;
 	}
 	
+	public PawnType getTurn() {
+		return turn;
+	}
+
+	public void setTurn(PawnType turn) {
+		this.turn = turn;
+	}
+
+	public int getTurnNum() {
+		return turnNum;
+	}
+
+	public void setTurnNum(int turnNum) {
+		this.turnNum = turnNum;
+	}
+
 	public Move(int x, int y, int x1, int y1, PawnType turn, int turnNum){
 		this(x,y,x1,y1);
 		this.turn = turn;
@@ -71,12 +87,12 @@ public class Move {
 		}
 		return "Error";
 	}
-	public String toString(){
-		return "("+this.refactorX(this.xDep)+","+(this.yDep+1)+") : ("+this.refactorX(this.xArr)+","+(this.yArr+1)+")";
+	public String toHistory(){
+		return this.refactorX(this.xDep)+(this.yDep+1)+"-"+this.refactorX(this.xArr)+(this.yArr+1);
 	}
-	public String toHistory() {
+	public String toString() {
 		// TODO Auto-generated method stub
-		return ""+this.turnNum+"|"+((this.turn == PawnType.MOSCOVITE)?"Moscovites":"Vikings")+"|"+this.toString();
+		return ""+this.turnNum+".    "+((this.turn == PawnType.MOSCOVITE)?"Moscovites ":"Vikings        ")+" : "+this.toHistory();
 	}
 	
 }

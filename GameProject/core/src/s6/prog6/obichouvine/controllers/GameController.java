@@ -89,15 +89,16 @@ public class GameController {
 			if(turn.equals(p1.getTeam()) && p1 instanceof IA){
 				MiniMax ia = (MiniMax)p1;
 				res = ia.jouer(board);
-				this.turnNum += 0.5;
 			}
 			else if(turn.equals(p2.getTeam()) && p2 instanceof IA){
 				MiniMax ia = (MiniMax)p2;
 				res = ia.jouer(board); 
-				this.turnNum += 0.5;
 			}
+			res.setTurn(this.turn);
+			res.setTurnNum((int)this.turnNum);
 			this.board.deplacement(res);
 			this.board.AffichPlateau();
+			this.turnNum += 0.5;
 			this.switchTurn();
 			this.isIATurn = this.nextTurnIa();
 
@@ -118,6 +119,7 @@ public class GameController {
 
 				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y)){
 					this.selectedPawn = null;
+					this.board.highlightMoves(this.moves, false);
 				}
 				else {
 					this.resMove = board.deplacement(new Move(xStart,
@@ -176,7 +178,7 @@ public class GameController {
 		if(cursorPos.y < board.offsetY)
 			cursorPos.y = board.yBoard-1;//board.offsetY;
 		else if(cursorPos.y > board.offsetY + (board.yBoard)*Block.SIZE)
-			cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
+		cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
 		else
 			cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 
