@@ -12,8 +12,8 @@ import s6.prog6.obichouvine.models.Pawn;
 import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA;
-import s6.prog6.obichouvine.models.ia.MiniMax;
 
 public class GameController {
 	private Board board;
@@ -87,11 +87,11 @@ public class GameController {
 				e.printStackTrace();
 			}*/
 			if(turn.equals(p1.getTeam()) && p1 instanceof IA){
-				MiniMax ia = (MiniMax)p1;
+				AlphaBeta ia = (AlphaBeta)p1;
 				res = ia.jouer(board);
 			}
 			else if(turn.equals(p2.getTeam()) && p2 instanceof IA){
-				MiniMax ia = (MiniMax)p2;
+				AlphaBeta ia = (AlphaBeta)p2;
 				res = ia.jouer(board); 
 			}
 			res.setTurn(this.turn);

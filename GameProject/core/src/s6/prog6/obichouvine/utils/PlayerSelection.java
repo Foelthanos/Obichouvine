@@ -6,7 +6,7 @@ import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.HumanPlayer;
 import s6.prog6.obichouvine.models.Player;
-import s6.prog6.obichouvine.models.ia.MiniMax;
+import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA.IaType;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -74,7 +74,7 @@ public class PlayerSelection extends Table{
 
 	public Player getPlayerParameters(){
 		if(isBot.isChecked()){
-			return new MiniMax(difficulty.getSelected(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
+			return new AlphaBeta(difficulty.getSelected(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
 		}
 		else
 			return new HumanPlayer(pseudo.getText(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);

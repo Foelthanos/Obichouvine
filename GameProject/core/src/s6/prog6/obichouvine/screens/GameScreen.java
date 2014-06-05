@@ -25,7 +25,6 @@ import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.IA;
-import s6.prog6.obichouvine.models.ia.MiniMax;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.GameStateButtonGroup;

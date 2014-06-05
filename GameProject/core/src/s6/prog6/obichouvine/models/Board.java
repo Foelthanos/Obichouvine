@@ -470,11 +470,11 @@ public class Board {
 									.getType() == PawnType.MOSCOVITE || board[roiX][roiY - 1]
 									.getState() == BlockState.FORTERESSE))) {
 						if (roiX == xBoard
-								|| (roiX < xBoard && (board[roiX + 1][roiY]
+								|| (roiX < xBoard - 1 && (board[roiX + 1][roiY]
 										.getPawn().getType() == PawnType.MOSCOVITE || board[roiX + 1][roiY]
 										.getState() == BlockState.FORTERESSE))) {
 							if (roiX == yBoard
-									|| (roiY < yBoard && (board[roiX][roiY + 1]
+									|| (roiY < yBoard - 1 && (board[roiX][roiY + 1]
 											.getPawn().getType() == PawnType.MOSCOVITE || board[roiX][roiY + 1]
 											.getState() == BlockState.FORTERESSE))) {
 								return true;
