@@ -19,3 +19,7 @@ une autre méthode personnalisé) -> Maxime
 
 Corrections :
 -Symbole listes select sur la droite : seulement une flèche vers le bas.
+
+
+Corrections importantes :
+-Overlay de déplacement non cohérent avec le déplacement possible vis à vis de la traversée du trône.
