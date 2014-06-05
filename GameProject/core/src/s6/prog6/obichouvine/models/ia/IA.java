@@ -7,7 +7,7 @@ import s6.prog6.obichouvine.models.Player;
 
 public class IA extends Player{
 	int profondeur;
-	IaType type;
+	public IaType type;
 	// 1 - Gogol
 	// 2 - MinMax
 	// 3 - MinMax aggressif

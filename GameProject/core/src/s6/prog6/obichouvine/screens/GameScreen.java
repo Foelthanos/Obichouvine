@@ -111,6 +111,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		super.render(delta);
 	
 		Move c = gController.update(delta);
+		status.updateWidget(gController.mosc, gController.vik);
 		gRenderer.render();
 		if(c != null)
 			history.add(c);
