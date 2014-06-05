@@ -13,3 +13,9 @@ une autre méthode personnalisé) -> Maxime
 - Recherche des bugs/Correction des bugs -> Eymeric/Mika
 - Ajout de la transparence ( conception seulement) -> Maxime
 - Preparation du plan de la future presentation -> Eymeric/Mika
+
+
+
+
+Corrections :
+-Symbole listes select sur la droite : seulement une flèche vers le bas.
