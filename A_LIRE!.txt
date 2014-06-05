@@ -19,6 +19,7 @@ une autre méthode personnalisé) -> Maxime
 
 Corrections :
 -Symbole listes select sur la droite : seulement une flèche vers le bas.
+-Pour la musique : elle coupe quand l'IA joue.
 
 
 Corrections importantes :
