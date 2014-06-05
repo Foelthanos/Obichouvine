@@ -425,55 +425,58 @@ public class Board {
 	}
 
 	public boolean verifCoupGagnant(Move c) {
-		if(board[c.getxDep()][c.getyDep()].getPawn().getType() == PawnType.SUEDOIS && board[c.getxDep()][c.getyDep()].getPawn().getTypesuede() == TypeSuedois.KING) {
-			if(parameter.getEsc() == EscapeMethod.Corner)
-			{
+		if (board[c.getxDep()][c.getyDep()].getPawn().getType() == PawnType.SUEDOIS
+				&& board[c.getxDep()][c.getyDep()].getPawn().getTypesuede() == TypeSuedois.KING) {
+			if (parameter.getEsc() == EscapeMethod.Corner) {
 				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.FORTERESSE)
 					return true;
-			}else if (parameter.getEsc() == EscapeMethod.Edge)
-			{
-				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.BLANCEXIT 
+			} else if (parameter.getEsc() == EscapeMethod.Edge) {
+				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.BLANCEXIT
 						|| board[c.getxArr()][c.getyArr()].getState() == BlockState.ROUGEEXIT)
 					return true;
-			}else if (parameter.getEsc() == EscapeMethod.EdgeWithoutMosco)
-			{
+			} else if (parameter.getEsc() == EscapeMethod.EdgeWithoutMosco) {
 				if (board[c.getxArr()][c.getyArr()].getState() == BlockState.BLANCEXIT)
 					return true;
 			}
-		}
-		else {
+		} else {
 			int tmpX = c.getxArr();
 			int tmpY = c.getyArr();
 			int roiX = 0;
-			int roiY = 0; 
-			if(tmpX !=0 && board[tmpX-1][tmpY].getPawn().getTypesuede() == TypeSuedois.KING) {
-				roiX = tmpX-1;
+			int roiY = 0;
+			if (tmpX != 0
+					&& board[tmpX - 1][tmpY].getPawn().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX - 1;
 				roiY = tmpY;
-			}
-			else if(tmpY !=0 && board[tmpX][tmpY-1].getPawn().getTypesuede() == TypeSuedois.KING) {
+			} else if (tmpY != 0
+					&& board[tmpX][tmpY - 1].getPawn().getTypesuede() == TypeSuedois.KING) {
 				roiX = tmpX;
-				roiY = tmpY-1;
-			}
-			else if(tmpX !=xBoard -1 && board[tmpX+1][tmpY].getPawn().getTypesuede() == TypeSuedois.KING) {
-				roiX = tmpX+1;
+				roiY = tmpY - 1;
+			} else if (tmpX != xBoard - 1
+					&& board[tmpX + 1][tmpY].getPawn().getTypesuede() == TypeSuedois.KING) {
+				roiX = tmpX + 1;
 				roiY = tmpY;
-			}
-			else if(tmpY != yBoard - 1 && board[tmpX][tmpY+1].getPawn().getTypesuede() == TypeSuedois.KING) {
+			} else if (tmpY != yBoard - 1
+					&& board[tmpX][tmpY + 1].getPawn().getTypesuede() == TypeSuedois.KING) {
 				roiX = tmpX;
-				roiY = tmpY+1;
+				roiY = tmpY + 1;
 			}
-			if(roiX != 0 && roiY != 0){
-				if(roiX ==0 ||board[roiX-1][roiY].getPawn().getType() == PawnType.MOSCOVITE 
-						|| board[roiX-1][roiY].getState() == BlockState.FORTERESSE){
-					if(roiY ==0 
-							||board[roiX][roiY-1].getPawn().getType() == PawnType.MOSCOVITE 
-							|| board[roiX][roiY-1].getState() == BlockState.FORTERESSE){
-						if(roiX ==xBoard 
-								||board[roiX+1][roiY].getPawn().getType() == PawnType.MOSCOVITE 
-								|| board[roiX+1][roiY].getState() == BlockState.FORTERESSE){
-							if(roiX ==yBoard 
-									||board[roiX][roiY+1].getPawn().getType() == PawnType.MOSCOVITE 
-									|| board[roiX][roiY+1].getState() == BlockState.FORTERESSE){
+			if (roiX != 0 && roiY != 0) {
+				if (roiX == 0
+						|| (roiX > 0 && (board[roiX - 1][roiY].getPawn()
+								.getType() == PawnType.MOSCOVITE || board[roiX - 1][roiY]
+								.getState() == BlockState.FORTERESSE))) {
+					if (roiY == 0
+							|| (roiY > 0 && (board[roiX][roiY - 1].getPawn()
+									.getType() == PawnType.MOSCOVITE || board[roiX][roiY - 1]
+									.getState() == BlockState.FORTERESSE))) {
+						if (roiX == xBoard
+								|| (roiX < xBoard && (board[roiX + 1][roiY]
+										.getPawn().getType() == PawnType.MOSCOVITE || board[roiX + 1][roiY]
+										.getState() == BlockState.FORTERESSE))) {
+							if (roiX == yBoard
+									|| (roiY < yBoard && (board[roiX][roiY + 1]
+											.getPawn().getType() == PawnType.MOSCOVITE || board[roiX][roiY + 1]
+											.getState() == BlockState.FORTERESSE))) {
 								return true;
 							}
 						}
