@@ -24,3 +24,4 @@ Corrections :
 Corrections importantes :
 -Overlay de déplacement non cohérent avec le déplacement possible vis à vis de la traversée du trône.
 -Mise à jour de l'historique qui se fais un tour en retard quand l'IA joue.
+-Mise à jour du nombre des pions de chaque équipe.
