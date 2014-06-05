@@ -7,13 +7,15 @@ import s6.prog6.obichouvine.models.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 public class GameStatusWidget extends Table{
 
-	private Label p1Pseudo, p1Status, p2Pseudo, p2Status;
+	private Label p1Pseudo, p1Status, p2Pseudo, p2Status, p1Type, p2Type;
+	private Image p1Icon, p2Icon;
 	
 	private int nbMosc, nbVik;
 
@@ -35,6 +37,13 @@ public class GameStatusWidget extends Table{
 		
 		p1Status = new Label(""+nbMosc, skin);
 		p2Status = new Label(""+nbVik, skin);
+		
+		p1Type = new Label("Homo Erectus", skin);
+		p2Type = new Label("Homo Erectus", skin);
+		
+		/*if(p1 instanceof IA){
+			if(p1 instanceof )
+		}*/
 		
 		this.p1Pseudo.setStyle(titleStyle);
 		this.p2Pseudo.setStyle(titleStyle);
