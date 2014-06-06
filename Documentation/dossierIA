@@ -1,0 +1,76 @@
+-Algorithme en pseudo-code et justification (inutile pour les algorithmes connus : min-max/alpha-bêta) 
+-Présenter : 
+ Les fonctions d’évaluation 
+ Les variantes d’algorithmes connus 
+ Les algorithmes spécifiques 
+1- Résultats expérimentaux (dossier de validation) 
+a) Cohérence entre les niveaux de difficulté 
+Faire jouer tous les niveaux de difficultés les uns contre les autres dans tous les ordres possibles 
+
+Pour chaque configuration, effectuer plusieurs mesures (environ 30) 
+Penser aux conditions expérimentales : 
+-Version du jeu 
+-Générateur aléatoire 
+
+La classe IA : 
+
+la classe IA hérite de la classe Player. Elle possede quatre attributs : 
+un entier repésentant la profondeur à verifier apres la premeire couche. Ainsi , si une profondeur de 4 est donnée, l'IA calcul sur 5 coups.
+Un type enuméré IaType représentant quelle inteligence est séléctionnée.
+			Les types implémentés sont facile, agressif, defencif, equilibré. Un type difficile est prévu.
+Deux PawnType, camp et adversaire, permettant de savoir quel camp et l'ia (pour le premier) et d'en déduire l'adversaire (pour le deuxième).
+Deux entiers, valgagner et valperdre, servant a moduler le nombre le poids de la pirse/la perte d'un pion.
+Un boolean, bougerRoi, sert a favoriser les movement incluant le roi en cas d'égalité.
+
+algoritmhe utilisé pour  les IA : Alphabeta
+
+
+les diferentes difficultes : 
+
+il y a 4 niveaux de difficulté, comme précisé précédemment :
+-Difficile : un alpha-bêta de profondeur 5 qui favorise les déplacements du roi et un jeu équilibré, le temps de jeu est un peu long, plusieurs secondes, voir dizaines de secondes.
+-Agressive : un alpha-bêta de profondeur 4 qui favorise les déplacements du roi pour un jeu agressif, elle sacrifiera un pion si ça lui sert à en prendre un autre. Cette IA de par sa profondeur inférieure jouera bien plus rapidement.
+-Défensive : un alpha-bêta de profondeur 4 qui ne sacrifiera pas de pions pour en manger d'autres.
+-Facile : un alpha-bêta de profondeur 3 au jeu équilibré.
+
+les fonction evals : evalcoup et evalplateau
+
+evalcoup : 
+
+le but et de calculer tres rapidement sur chaque nœuds de l'arbre le nombre de pion mangé en cours de route. Cela n'est pas fait sur les feuilles car un pion peut avoir bougé deux fois entre le debut et la fin.
+private int evalCoup(int mange) ;
+La fonction prend un paramètre, un entier, basé sur un systeme de masque.
+De plus, si bougerroi est a true, elle ajoute 1 au resultat pour devenir prioritaire.
+Evalplateau : 
+
+private int evalFinal(Board p) ;
+
+La fonction prend en parametre l'etat final du plateau, et renvois un int, correspondant a un calcul sur le nombre de pion moscovite entourant le roi.
+Un algorithme de type disktra a été envisagé, mais le grand nombre de feuille (22 000 au premier tour par exemple )  fait que rajouter une complexité ralenti très fortement l'IA.
+
+Les autres fonction essentielles
+
+deplacement sans verif : 
+
+
+Public void deplacementsansverif(Move c) ;
+
+Cette fonction prend en parametre un coup et effectue le deplacement dans le plateau de jeu.
+Comparé a la fonction normale, celle ci n'effectue aucune vérification sur la validitée du coup. En effet, tout les coups testé sont généré a partir d'une autre fonction (getdeplacement possibles) et sont donc valide. Cependant, cela permet de gagner fortement en vitesse de calcul pour l'IA.
+
+GetDeplacementsPossible : 
+
+cette fonction permet de récupérer a partir d'une position (x,y) tout les coups possible pour le pion présent dans la case. Tout les coups généré respectent les règles de déplacement (collision, variante de déplacement limité pour le roi, variante des forteresses).
+public Coup[] getDeplacementsPossibles(int x, int y) ;
+
+Elle prend en entrée deux entier,x et y, qui correspondent aux coordonées du pion a déplacer, et renvois un tableau de coup, comprenant tout les coups possible pour ce pion.
+
+
+Demanger : 
+
+cette fonction permet de remettre les pions qui ont été mangé lors du calcul du meilleur coup pour l'IA.
+
+private void demanger(Block[][] plateau, PawnType dernier, int mange, Move c)
+
+Elle prend en paramètre un tableau a deux entrées de cases, qui permet d'acceder a ce qu'elles contienent. Un PawnType pour savoir le joueur ayant mangé les pions a remettre, un entier représentant un masque sur les pions mangé a remettre, et le coup ayant permit de les manger.
+
