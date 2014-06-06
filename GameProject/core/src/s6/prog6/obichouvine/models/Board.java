@@ -1,5 +1,7 @@
 package s6.prog6.obichouvine.models;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -1291,6 +1293,14 @@ public class Board {
 		return yBoard;	
 	}
 	
+	public void setXBoard(int x) {
+		this.xBoard = x;
+	}
+	
+	public void setYBoard(int y) {
+		this.yBoard = y;
+	}
+	
 	public Parameter GetParameter()
 	{
 		return parameter;	
@@ -1341,7 +1351,7 @@ public class Board {
 		
 	}
 	
-	public static void main (String args[])
+	public static void main (String args[]) throws IOException
 	{
 		GameState gs = new GameState();
 		

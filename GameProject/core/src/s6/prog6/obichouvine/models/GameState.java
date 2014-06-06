@@ -63,7 +63,7 @@ public class GameState {
         	FileWriter writer = new FileWriter(file, true); 
             PrintWriter fo = new PrintWriter(writer);
             
-            System.out.println(b.getxBoard());
+            System.out.println(b.GetxBoard());
             
             fo.println(b.GetxBoard() + " " + b.GetyBoard());
             fo.println(b.GetParameter().getEsc().toString());
@@ -275,8 +275,8 @@ public class GameState {
                         }
                         board = new Board (9,9,parameter);
 
-                        board.setxBoard(longueur);
-                        board.setyBoard(largeur);
+                        board.setXBoard(longueur);
+                        board.setYBoard(largeur);
                         board.SetBlocks(b);
                         
 
