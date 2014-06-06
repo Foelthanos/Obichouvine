@@ -1351,20 +1351,4 @@ public class Board {
 		
 	}
 	
-	public static void main (String args[]) throws IOException
-	{
-		GameState gs = new GameState();
-		
-		parameter = new Parameter(EscapeMethod.Edge,KingCaptureMethod.Can,KingMoveMethod.FourBlock, FirstStrike.Moscovite);
-		
-		
-		Board plat = new Board(9,9,parameter);
-		Board plat2 =gs.Sauver(plat);
-		
-		plat2.AffichPlateau();
-		System.out.println("\n\n\n");
-		int test = plat.deplacement(new Move(0,2,0,1));
-		System.out.println("test : " + test +"\n\n\n");
-		plat2.AffichPlateau();
-	}
 }
