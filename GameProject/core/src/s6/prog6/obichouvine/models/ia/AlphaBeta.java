@@ -49,16 +49,7 @@ public class AlphaBeta extends IA {
 							itCoup = lCoup.listIterator();
 							itCoup.add(c[k]);
 						} else if (val == maxVal) {
-							if(this.bougerRoi 
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
-								maxVal = val+1;
-								lCoup.clear();
-								itCoup = lCoup.listIterator();
-								itCoup.add(c[k]);
-							} else {
-								itCoup.add(c[k]);
-							}
+							itCoup.add(c[k]);
 						}
 						// Suppression de la simulation
 						demanger(plateau, camp, mange, c[k]);
@@ -92,12 +83,6 @@ public class AlphaBeta extends IA {
 							int mange = p.manger(c[k]);
 							int val = alphaBeta(p, prof-1, alpha, beta, false)+evalCoup(p, c[k], mange, prof);
 							alpha = Math.max(alpha, val);
-							if(val == alpha
-									&& this.bougerRoi
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
-								alpha = val+1;
-							}
 							 // Suppression de la simulation
 							demanger(plateau, camp, mange, c[k]);
 							p.deplacementsansverif(new Move(c[k].getxArr(),c[k].getyArr(), c[k].getxDep(), c[k].getyDep()));
@@ -124,12 +109,6 @@ public class AlphaBeta extends IA {
 							int mange = p.manger(c[k]);
 							int val = alphaBeta(p, prof-1, alpha, beta, true)-evalCoup(p, c[k], mange, prof);
 							beta = Math.min(beta, val);
-							if(val == beta
-									&& this.bougerRoi
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
-									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
-								beta = beta-1;
-							}
 							// Suppression de la simulation
 							demanger(plateau, adv, mange, c[k]);
 							p.deplacementsansverif(new Move(c[k].getxArr(),c[k].getyArr(), c[k].getxDep(), c[k].getyDep()));
@@ -143,12 +122,11 @@ public class AlphaBeta extends IA {
 		}
 	}
 	
-	/*
-	 * gagner/perdre : 10000 manger un pion/perdre un pion : 10 distance
-	 * roi/coin (combien de deplacement pour atteindre)(40-7/coup) le roi est
-	 * entourré de 1/2/3 (2/5/25) nombre de pion allié autour du roi nombre de
-	 * pion alliée autour du pion
-	 */
+	//gagner/perdre : 10000
+	//manger un pion/perdre un pion : 10
+	//distance roi/coin (combien de deplacement pour atteindre)(40-7/coup)
+	//le roi est entourré de 1/2/3 (2/5/25)
+	//nombre de pion allié autour du roi nombre de pion alliée autour du pion
 	private void demanger(Block[][] plateau, PawnType dernier, int mange, Move c) {
 		if (dernier == PawnType.SUEDOIS) {
 			if ((mange & 1) == 1) 
@@ -215,6 +193,34 @@ public class AlphaBeta extends IA {
 			if ((mange & 8) == 8) {
 				ret += valPerdre + prof;
 			}
+		}
+		if(this.bougerRoi
+				&& p.getBlock()[c.getxArr()][c.getyArr()].getPawn().getType() == PawnType.SUEDOIS
+				&& p.getBlock()[c.getxArr()][c.getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
+			/*int xProxDep;
+			int yProxDep;
+			if(c.getxDep() < 5)
+				xProxDep = 0;
+			else
+				xProxDep = 8;
+			if(c.getyDep() < 5)
+				yProxDep = 0;
+			else
+				yProxDep = 8;
+			int xProxArr;
+			int yProxArr;
+			if(c.getxArr() < 5)
+				xProxArr = 0;
+			else
+				xProxArr = 8;
+			if(c.getyArr() < 5)
+				yProxArr = 0;
+			else
+				yProxArr = 8;
+			double distDep = Math.sqrt(Math.pow((c.getxDep() - xProxDep), 2)+Math.pow((c.getyDep() - yProxDep), 2));
+			double distArr = Math.sqrt(Math.pow((c.getxArr() - xProxArr), 2)+Math.pow((c.getyArr() - yProxArr), 2));
+			ret += (int)((distArr-distDep)/2);*/
+			ret+=1;
 		}
 		return ret;
 	}
