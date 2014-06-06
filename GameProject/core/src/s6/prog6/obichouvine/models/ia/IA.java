@@ -8,9 +8,6 @@ import s6.prog6.obichouvine.models.Player;
 public class IA extends Player{
 	int profondeur;
 	int type;
-	// 1 - Gogol
-	// 2 - MinMax
-	// 3 - AlphaBeta
 	PawnType camp;
 	PawnType adv;
 

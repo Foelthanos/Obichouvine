@@ -178,7 +178,7 @@ public class MiniMax extends IA{
 			}
 		}
 	}
-	private int evalCoup(Board p, Move c, int mange) {
+	private int evalCoup(int mange) {
 		int ret = 0;
 		if ((mange & 1) == 1) {
 			ret += 10;
