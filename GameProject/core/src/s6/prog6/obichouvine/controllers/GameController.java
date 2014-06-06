@@ -31,7 +31,7 @@ public class GameController {
 
 	public boolean gameStarted = false;
 	private PawnType turn;
-	private float turnNum;
+	public float turnNum;
 
 	private boolean isIATurn = false;
 	private Player p1, p2;

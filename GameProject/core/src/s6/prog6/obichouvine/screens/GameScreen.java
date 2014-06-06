@@ -3,6 +3,7 @@ package s6.prog6.obichouvine.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -56,9 +57,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
 						p1, p2);
+		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
 		
-		
-		headMessage = new Label("Placeholder Placeholder", getSkin());
+		headMessage = new Label("Tour 1", getSkin());
+		headMessage.setStyle(titleStyle);
 		quit = new TextButton("Quitter", this.getSkin());
 		
 		gameStateButtons = new GameStateButtonGroup(getSkin());
@@ -110,6 +112,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		
 	
 		Move c = gController.update(delta);
+		this.headMessage.setText("Tour : "+(int)this.gController.turnNum);
 		status.updateWidget(gController.mosc, gController.vik);
 
 		if(c != null)

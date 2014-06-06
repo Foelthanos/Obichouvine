@@ -10,6 +10,8 @@ import s6.prog6.obichouvine.models.ia.MiniMax;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -18,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 public class GameStatusWidget extends Table{
 
 	private Label p1Pseudo, p1Status, p2Pseudo, p2Status, p1Type, p2Type;
-	private Image p1Icon, p2Icon;
+	private TextureRegion p1Icon, p2Icon, p1IconHighlight, p2IconHighlight, p1Current, p2Current;
 
 	private int nbMosc, nbVik;
 
@@ -29,7 +31,15 @@ public class GameStatusWidget extends Table{
 		if( ObichouvineGame.DEV_MODE ) {
 			this.debug();
 		}
-
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		
+		p1Icon = atlas.findRegion("Moscovit");
+		p2Icon = atlas.findRegion("Suedois");
+		p1IconHighlight = atlas.findRegion("MoscovitSelect");
+		p2IconHighlight = atlas.findRegion("SuedoisSelect");
+		
+		
+		
 		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
 
 		nbMosc = 16;
@@ -90,6 +100,7 @@ public class GameStatusWidget extends Table{
 		this.add(p1Type).left().expandX().fill();
 		this.row();
 		this.add(p1Pseudo).left().expandX().fill();
+		//this.add(p1Icon).
 		this.row();
 		this.add(p2Pseudo).left().expandX().fill();
 		this.row();

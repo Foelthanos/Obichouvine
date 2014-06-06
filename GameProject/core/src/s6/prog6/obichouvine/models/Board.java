@@ -409,7 +409,7 @@ public class Board {
 		
 		Pawn pionActuel =  board[c.getxArr()][c.getyArr()].getPawn();
 		Pawn pionAdverse = null;
-		if (pionActuel.getType() == PawnType.SUEDOIS )
+		if (pionActuel.getType() == PawnType.SUEDOIS)
 		{
 			pionAdverse = new Pawn(PawnType.MOSCOVITE);
 		}
