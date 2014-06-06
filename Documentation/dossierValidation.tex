@@ -1,0 +1,216 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Dossier de validation - Tablut}
+\author{Groupe 3 - B. Berkati, E. Berthier, A. Cannone, M. Dufrenoy, M. Duplan, L. Postic}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Préambule}
+\paragraph{}
+Ce dossier est réalisé dans le cadre du projet de fin de troisième année de licence informatique au sein de l'Université Joseph Fourier basée à Grenoble. Il permet notamment de monter et justifier les choix qui ont été fait pour ce qui concerne l'IHM et l'IA, mais aussi de mettre en lumière les résultats obtenus et l'efficacité du travail réalisé.
+
+\section{IHM}
+
+\subsection{Introduction}
+\paragraph{}
+Cette section contient l'ensemble des informations concernant l'interface et la validation de cette dernière. La section est divisée en 4 parties.
+\paragraph{}
+Dans un premier temps, nous explicitons certains concepts requis pour comprendre le fonctionnement technique de la libgdx. Ensuite, nous justifierons les choix effectués pour améliorer l'ergonomie de l'application. La troisième partie couvre les procédures de validation utilisées en interne pour garantir la stabilité de l'interface. Enfin, nous terminons par décrire les méthodes de validations par des utilisateurs externes au projet.
+
+
+\subsection{Structure de l'interface}
+\paragraph{}
+L'interface graphique est completement géré par une librairie externe appelé LibGDX. Cette libraire affiche ce qu'on appelle un Screen qui contient toutes les informations de la scène. Un seul Screen est actif simultanement. C'est à travers l'utilisation de la méthode setScreen(Screen screen); que les changement sont effectués.
+\paragraph{}
+Sur une scène, il est possible d'afficher des sprites ainsi que divers Widget. Tout les Widgets chargent une apparence en fonction de ce qu'on appelle un Skin. Le Skin contient toutes les informations en ce qui concerne l'ensemble des Widgets. Cela permet d'uniformiser l'apparence de ces derniers.
+\paragraph{}
+L'ensemble des scènes comprennent donc un ensemble de Widget. Ces informations sont donc redondantes. Nous avons donc décidé de créer une abstraction d'une scène contenant toutes ces informations redondantes.
+
+\subsection{Prototypage}
+\paragraph{}
+L'interface du jeu doit allié ergonomie et attractivité visuelle. Le meilleur moyen d'obtenir une ergonomie suffisante est de s'inspirer d'autres interfaces de jeux de plateau déjà existant. Ainsi, nous avons testé plusieurs jeux de Tablut en ligne mais nous avons également recherché l'inspiration du coté des jeux d'echecs ainsi que du jeu "42 jeux indémodables" sur Nintendo DS.
+
+--- image
+
+\paragraph{}
+Voici une comparaison entre la première et la dernière version du menu principal. Les améliorations ne sont que visuelle. De manière analogue, le menu "Options" a subi les mêmes mutations. 
+
+\paragraph{}
+
+
+\subsection{Validation interne}
+
+La validation interne a pour objectif de vérifier le bon fonctionnement technique de l'interface.
+
+\subsubsection{Procédure}
+\paragraph{}
+La procédure est très simple pour les widget au comportement simple (boutons, label, ...). Une fois le widget integré, on lance l'application et on teste le widget. Si le comportement effectué par le widget est celui attendu, c'est validé.
+\paragraph{}
+Par contre, pour les widgets complexes, il peut y avoir plusieurs paramètres differents possbiles pour une plage de résultat très varié. La procédure est donc plus strict dans ces cas. Voici la liste des Widgets complexe utilisé pour ce programme :
+\begin{itemize}
+\item OptionPane
+\item PlayerSelection
+\item GameStatusWidget
+\item HistoryWidget
+\end{itemize}
+\paragraph{}
+Pour les valider, des jeux de tests sont mis en place. Toutes les possibilités doivent être couverte.
+
+
+\subsubsection{Bilan}
+-- Tableau a venir
+
+\subsection{Validation externe}
+\paragraph{}
+La validation externe a pour objectif d'améliorer l'experience de l'utilisateur en receuillant les idées et critiques de personnes externes au projet.
+
+\subsubsection{Panel d'utilisateurs}
+\paragraph{}
+La validation dite "externe" est divisé en 2 catégories : la validation durant le developpement et la vaidation en bêta-test. 
+\paragraph{}
+Durant le développement, 4 personnes ont permis les améliorations successives de l'ergonomie de l'interface : le responsable de l'audit IHM, notre tuteur ainsi que 2 personnes exterieur au projet. Cette validation est necessaire pour corriger rapidement les erreurs de conception trop graves très vite durant le développement.
+\paragraph{}
+La beta-test est prévu pour le week-end du samedi 7 juin à 10h au dimanche 8 juin à 18h. Actuellement, 12 personnes sont prévues mais le chiffre augmente encore.
+58% des personnes sont des hommes. 1/3 de l'echantillon actuelle à moins de 20 ans, 1/3 a entre 21 et 30 et 1/3 ont 31 ans on plus.
+L'echantillon comporte 50% de "gamers". Parmi ces 50%, 75% sont des informtaticiens. Parmi ces informaticiens, il y a un développeur de jeu vidéo professionnel ainsi qu'un étudiant en programmation pour le jeu vidéo. L'echantillon dit "non-gamer" comporte 50% de joueurs occasionnels et 50% de personnes ne jouant absolument pas au jeux vidéo.
+
+---Cela sera remplacé partiellement par des images
+
+\paragraph{}
+Ce panel varié nous permettra de recueillir des informations variés. Nous pourrons ainsi utiliser ces informations afin d'optimiser l'ergonomie du jeu pour le public le plus large possible.
+
+\subsubsection{Déroulement de l'évaluation}
+\paragraph{}
+Durant le développement, l'evaluation est surtout faite via des retours directs. Lors de discussions sur Skype ou via des audits/rencontres avec le tuteurs. Lors des audits, nous faisons tourner le jeu et le professeur emet ses interrogations et avis durant la présentation. 
+\paragraph{}
+En ce qui concerne la bêta-test, nous envoyons la première version bêta par mail avec des directives et plusieurs documents. Les documents en question sont un sondage sur l'ergonomie du jeu et un tableau de rapport de bug. Nous demandons à tous les participants d'être le plus honnêtes possibles lors du remplissage de ces documents.
+
+\subsubsection{Bilan}
+
+
+Beta test non terminé ...
+
+\section{Intelligence Artificielle}
+
+\subsection{La classe IA}
+\paragraph{}
+La classe IA hérite de la classe Player. Elle possède sept attributs :
+\begin{itemize}
+\item Un entier représentant la profondeur à vérifier après la première couche. Ainsi, si une profondeur de quatre est donnée, l'IA calucle sur cinq coups.
+\item Un type enuméré IaType représentant quelle intelligence est sélectionnée. Les types implémentés sont facile, agressif, défensif et difficile.
+\item Deux PawnType, camp et adversaire, permettant de savoir quel est le camp de l'IA (pour le premier) et de déduire celui de l'adversaire (le deuxième).
+\item Deux entiers, \textit{vlagagner} et \textit{valperdre}, servant à moduler le nombre et le poids d'une prise/perte de pion.
+\item Un booléen, \textit{bougerRoi}, sert à favoriser les mouvements incluant le roi en cas d'égalité.
+\end{itemize}
+\paragraph{}
+Un algorithme Min/Max avec élaguage Alpha/Bêta est utilisé pour les IA.
+
+\subsection{Les différentes difficultés}
+\paragraph{}
+Comme précisé précédemment, il y a quatre niveaux de difficulté :
+\begin{itemize}
+\item Difficile : un algorithme de profondeur cinq est utilisé. Il favorise les déplacements du roi et un jeu équilibré. Le temps de jeu est un peu long, de quelques secondes à une vingtaine de secondes.
+\item Agressif : l'algorithme utilisé est de profondeur quatre. Il privilégie les déplacements du roi pour un jeu agressif. Si le sacrifice d'un pion permet d'en prendre un autre, il optera pour cette solution. Cette IA jouera plus rapidement du fait d'une profondeur inférieure.
+\item Défensif : de profondeur quatre, cet algorithme ne sacrifiera pas de pions pour en manger un.
+\item Facile : correspond à un jeu équilibré de profondeur trois.
+\end{itemize}
+
+\subsection{Les fonctions d'évaluation}
+
+\subsubsection{Evaluation des coups}
+\paragraph{}
+Le but est de calculer très rapidement, sur chque noeud de l'arbre, le nombre de pions mangés en cours de route. Ce traitement n'est pas fait sur les feuilles car un pion peut avoir bougé deux fois entre le début et la fin.
+\paragraph{}
+\textit{\textbf{private int evalCoup(int mange);}}
+\paragraph{}
+La fonction prend un paramètre, un entier, basé sur un système de masque. De plus, si \textit{bougerRoi} est à \textit{true}, elle ajoute 1 au résultat pour devenir prioritaire.
+
+\subsubsection{Evaluation du plateau}
+\paragraph{}
+\textit{\textbf{private int evalFinal(Board p);}}
+\paragraph{}
+La fonction prend en paramètre l'état final du plateau, et renvois un int qui correspond à un calcul sur le nombre de pions moscovites entourant le roi.
+\paragraph{}
+Un algorithme de type Disktra a été envisagé, mais le nombre trop important de feuilles (22 000 au premier tour) ne fait que rajouter une compléxité qui ralentie énormément l'IA.
+
+\subsection{Les autres fonctions essentielles}
+
+\subsubsection{Déplacement sans vérification}
+\paragraph{}
+\textit{\textbf{public void deplacementsansverif(Move c);}}
+\paragraph{}
+Cette fonction prend en paramètre un coup et effectue le déplacement dans le plateau de jeu. Comparée à la fonction standard, celle-ci n'effectue aucune vérification sur la validité du coup. En effet, tous les coups testés sont générés à partir d'une autre fonction (\textit{getDeplacementPossibles}) et sont donc valides. Cependant, cela permet un gain de temps considérable sur la vitesse de calcul de l'IA.
+
+\subsubsection{Vérification des déplacements}
+\paragraph{}
+Cette fonction permet de récupérer à partir d'une position (x, y) tout les coups possibles pour le pion présent dans la case. Tout les coups générés respectent les règles de déplacement (collision, variantes de déplacement limité pour le roi, variante des forteresses).
+\paragraph{}
+\textit{\textbf{public Coup[] getDeplacementPossible(int x, int y);}}
+\paragraph{}
+Elle prend en entrée deux entiers qui correspondent  aux coordonnées du pion à déplace, et renvois un tableau de coup qui contient tous les coups jouables par ce pion.
+
+\subsubsection{Annuler une prise de pion}
+\paragraph{}
+Cette fonction permet de remettre les pions qui ont été mangés lors du calcul du meilleur coup pour l'IA.
+\paragraph{}
+\textit{\textbf{private void demanger(Block[][] plateau, PawnType dernier, int mange, Move c);}}
+\paragraph{}
+Elle prend en paramètre un tableau à deux dimensions qui permet d'accéder à l'état du plateau. Le PawnType permet de savoir quel joueur a mangé un pion, tandis que l'entier correspond à un masque sur les pions mangés à remettre, ainsi que le coup ayant permis de les manger.
+
+\end{document}

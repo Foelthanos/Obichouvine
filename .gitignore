@@ -1,1 +1,4 @@
 *.db
+Documentation/dossierValidation.aux
+Documentation/dossierValidation.log
+Documentation/dossierValidation.synctex.gz
