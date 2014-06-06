@@ -1,6 +1,7 @@
 package s6.prog6.obichouvine.utils;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
 import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
@@ -20,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 
 
 public class PlayerSelection extends Table{
-
+	
 	private String funnyNames[] = {"TheSecond", "The Bad", "Player2", "Challenger", "Hank Bot", "Bender", "CARL 500"};
 	
 	private Label name, diffL, pseudoL;

@@ -158,14 +158,9 @@ public class GameController {
 						this.turnNum += 0.5;
 					}
 				}
-
-
-
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-
 		}
-
 		return res;
 	}
 

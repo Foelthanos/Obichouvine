@@ -228,7 +228,7 @@ public class Board {
 		int y = c.getyDep();
 		int x1 = c.getxArr();
 		int y1 = c.getyArr();
-		System.out.println("\n\n" + x1 + y1 + "\n\n" + x + y);
+		//System.out.println("\n\n" + x1 + y1 + "\n\n" + x + y);
 		if (board[x][y].getPawn().getType() != PawnType.VIDE) {
 			if (x == x1) {
 				if (y < y1) {
@@ -653,8 +653,6 @@ public class Board {
 			}
 				
 		}
-		 
-		 System.out.println("manger ? "+total);
 		
 		return total;
 		
