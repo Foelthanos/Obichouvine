@@ -20,6 +20,8 @@ public class Board {
 	public Block[][] board;
 	public int offsetX, offsetY, xBoard, yBoard;
 	
+	public boolean eaten = false;
+	
 	public Board(int x ,int y, Parameter p)
 	{
 		Board.parameter =p;
@@ -200,7 +202,8 @@ public class Board {
 		{
 			board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 				
 			board[c.getxDep()][c.getyDep()].setPawn(new Pawn(PawnType.VIDE));
-			manger(c);
+			if(manger(c)!=0)
+				this.eaten = true;
 			if (verifGagne(c))
 			{
 				return 4;
@@ -225,7 +228,7 @@ public class Board {
 		int y = c.getyDep();
 		int x1 = c.getxArr();
 		int y1 = c.getyArr();
-		System.out.println("\n\n" + x1 + y1 + "\n\n" + x + y);
+		//System.out.println("\n\n" + x1 + y1 + "\n\n" + x + y);
 		if (board[x][y].getPawn().getType() != PawnType.VIDE) {
 			if (x == x1) {
 				if (y < y1) {
@@ -345,7 +348,7 @@ public class Board {
 		int posKing = GetPosKing();
 		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
 		int j = 0;
-		System.out.println("Possibilit� : "+p);
+		System.out.println("Possibilité : "+p);
 		for(int i = 0; i <  p.length; i++)
 		{
 			System.out.println(p[i]);
@@ -650,8 +653,6 @@ public class Board {
 			}
 				
 		}
-		 
-		 
 		
 		return total;
 		

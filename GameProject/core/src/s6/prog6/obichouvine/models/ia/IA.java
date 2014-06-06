@@ -29,6 +29,10 @@ public class IA extends Player{
 		}
 	}
 	
+	public IaType getType() {
+		return this.type;
+	}
+	
 	public IA(IaType t,  PawnType c, String pseudo) {
 		super(pseudo, c);
 		type = t;

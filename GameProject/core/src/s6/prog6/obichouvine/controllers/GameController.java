@@ -24,6 +24,8 @@ public class GameController {
 	private int button;
 	private int resMove;
 
+	public int mosc,vik;
+
 	private Block selectedPawn;
 
 
@@ -41,13 +43,15 @@ public class GameController {
 	static {
 		keys.put(Keys.CLICK, false);
 	};
-
+	
 	public GameController(Board board, PawnType turn, Player p1, Player p2){
 		this.board = board;
 		this.turn = turn;
 		this.p1 = p1;
 		this.p2 = p2;
 
+		this.mosc = 16;
+		this.vik = 9;
 		System.out.println(p1.getTeam());
 		System.out.println(p2.getTeam());
 		System.out.println(turn);
@@ -76,6 +80,15 @@ public class GameController {
 		keys.get(keys.put(Keys.CLICK, false));
 	}
 
+	private void processStatus(){
+		if(this.board.eaten)
+			if(this.turn == PawnType.SUEDOIS)
+				mosc = mosc -1;
+			else
+				vik = vik -1;
+		this.board.eaten = false;
+	}
+
 	private Move processInput() {
 		// TODO Auto-generated method stub
 		Move res = null;
@@ -97,6 +110,7 @@ public class GameController {
 			res.setTurn(this.turn);
 			res.setTurnNum((int)this.turnNum);
 			this.board.deplacement(res);
+			this.processStatus();
 			this.board.AffichPlateau();
 			this.turnNum += 0.5;
 			this.switchTurn();
@@ -126,8 +140,12 @@ public class GameController {
 							yStart,
 							(int)cursorPos.x, 
 							(int)cursorPos.y));
+					this.processStatus();
 					if(resMove == 3 ){
 						System.out.println("Ca marche !!");
+					}
+					else if(resMove == 4){
+						System.out.println("Victoire");
 					}
 					else{
 						this.selectedPawn = null;
@@ -141,14 +159,9 @@ public class GameController {
 						this.turnNum += 0.5;
 					}
 				}
-
-
-
 			}
 			keys.get(keys.put(Keys.CLICK, false));
-
 		}
-
 		return res;
 	}
 
@@ -178,7 +191,7 @@ public class GameController {
 		if(cursorPos.y < board.offsetY)
 			cursorPos.y = board.yBoard-1;//board.offsetY;
 		else if(cursorPos.y > board.offsetY + (board.yBoard)*Block.SIZE)
-		cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
+			cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
 		else
 			cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
 

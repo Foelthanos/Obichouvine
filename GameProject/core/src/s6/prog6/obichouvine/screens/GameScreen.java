@@ -107,17 +107,21 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	
 	
 	public void render(float delta) {
-		super.render(delta);
+		
 	
 		Move c = gController.update(delta);
-		gRenderer.render();
+		status.updateWidget(gController.mosc, gController.vik);
+
 		if(c != null)
 			history.add(c);
+		super.render(delta);
+		gRenderer.render();
 	}
 
 	public void dispose(){
 		super.dispose();
 		gRenderer.dispose();
+		
         Gdx.input.setInputProcessor(null);
 	}
 	
