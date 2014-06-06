@@ -110,6 +110,7 @@ public class GameController {
 			res.setTurn(this.turn);
 			res.setTurnNum((int)this.turnNum);
 			this.board.deplacement(res);
+			this.processStatus();
 			this.board.AffichPlateau();
 			this.turnNum += 0.5;
 			this.switchTurn();
