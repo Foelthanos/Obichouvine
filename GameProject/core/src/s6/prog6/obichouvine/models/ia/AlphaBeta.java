@@ -26,7 +26,7 @@ public class AlphaBeta extends IA {
 	public Move jouer(Board p) {
 
 		int maxVal = Integer.MIN_VALUE;
-		int val = 0;
+		int val = 0;                                             
 		LinkedList<Move> lCoup = new LinkedList<Move>();
 		ListIterator<Move> itCoup = lCoup.listIterator();
 		Block[][] plateau = p.getBlock();
@@ -208,11 +208,11 @@ public class AlphaBeta extends IA {
 			int disyArr = c.getyArr();
 			if(disyArr > 4)
 				disyArr = -(disyArr-8);
-			if(disxArr > disxDep)
+			if(disxArr < disxDep)
 				ret+=1;
 			else
 				ret+=-1;
-			if(disyArr > disyDep)
+			if(disyArr < disyDep)
 				ret+=1;
 			else
 				ret+=-1;
