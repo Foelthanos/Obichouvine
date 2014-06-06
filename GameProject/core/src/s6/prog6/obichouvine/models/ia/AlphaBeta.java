@@ -122,10 +122,7 @@ public class AlphaBeta extends IA {
 		}
 	}
 	
-	//gagner/perdre : 10000
-	//manger un pion/perdre un pion : 10
 	//distance roi/coin (combien de deplacement pour atteindre)(40-7/coup)
-	//le roi est entourré de 1/2/3 (2/5/25)
 	//nombre de pion allié autour du roi nombre de pion alliée autour du pion
 	private void demanger(Block[][] plateau, PawnType dernier, int mange, Move c) {
 		if (dernier == PawnType.SUEDOIS) {
@@ -197,29 +194,29 @@ public class AlphaBeta extends IA {
 		if(this.bougerRoi
 				&& p.getBlock()[c.getxArr()][c.getyArr()].getPawn().getType() == PawnType.SUEDOIS
 				&& p.getBlock()[c.getxArr()][c.getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
-			/*int xProxDep;
-			int yProxDep;
-			if(c.getxDep() < 5)
-				xProxDep = 0;
+			int disxDep = c.getxDep();
+			if(disxDep > 4)
+				disxDep = -(disxDep-8);
+			int disyDep = c.getyDep();
+			if(disyDep > 4)
+				disyDep = -(disyDep-8);
+
+			int disxArr = c.getxArr();
+			if(disxArr > 4)
+				disxArr = -(disxArr-8);
+
+			int disyArr = c.getyArr();
+			if(disyArr > 4)
+				disyArr = -(disyArr-8);
+			if(disxArr > disxDep)
+				ret+=1;
 			else
-				xProxDep = 8;
-			if(c.getyDep() < 5)
-				yProxDep = 0;
+				ret+=-1;
+			if(disyArr > disyDep)
+				ret+=1;
 			else
-				yProxDep = 8;
-			int xProxArr;
-			int yProxArr;
-			if(c.getxArr() < 5)
-				xProxArr = 0;
-			else
-				xProxArr = 8;
-			if(c.getyArr() < 5)
-				yProxArr = 0;
-			else
-				yProxArr = 8;
-			double distDep = Math.sqrt(Math.pow((c.getxDep() - xProxDep), 2)+Math.pow((c.getyDep() - yProxDep), 2));
-			double distArr = Math.sqrt(Math.pow((c.getxArr() - xProxArr), 2)+Math.pow((c.getyArr() - yProxArr), 2));
-			ret += (int)((distArr-distDep)/2);*/
+				ret+=-1;
+			
 			ret+=1;
 		}
 		return ret;

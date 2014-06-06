@@ -50,13 +50,13 @@ public class IA extends Player{
 			
 		}
 		else if (t == IaType.Aggressive) {
-			profondeur = 5;
+			profondeur = 4;
 			valManger = 100;
 			valPerdre = 5;
-			bougerRoi = false;
+			bougerRoi = true;
 		}
 		else if(t == IaType.Defensive) {
-			profondeur = 5;
+			profondeur = 4;
 			valManger = 5;
 			valPerdre = 100;
 			bougerRoi = false;
