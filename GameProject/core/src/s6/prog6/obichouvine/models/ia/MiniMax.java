@@ -14,13 +14,13 @@ import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 
 public class MiniMax extends IA{
 
-	public MiniMax(int t, int p, PawnType c) {
-		super(t, p, c);
+	public MiniMax(IaType t, PawnType c) {
+		super(t, c);
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MiniMax(int t, int p, PawnType c, String pseudo) {
-		super(t, p, c, pseudo);
+	public MiniMax(IaType t, PawnType c, String pseudo) {
+		super(t, c, pseudo);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -49,7 +49,16 @@ public class MiniMax extends IA{
 							itCoup = lCoup.listIterator();
 							itCoup.add(c[k]);
 						} else if (val == maxVal) {
-							itCoup.add(c[k]);
+							if(this.bougerRoi 
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
+								maxVal = val+1;
+								lCoup.clear();
+								itCoup = lCoup.listIterator();
+								itCoup.add(c[k]);
+							} else {
+								itCoup.add(c[k]);
+							}
 						}
 						// Suppression de la simulation
 						demanger(plateau, camp, mange, c[k]);
@@ -90,6 +99,12 @@ public class MiniMax extends IA{
 												// -10000 +pions manger*10
 												// -pipons mangés +10
 							}
+							else if(val == minVal
+									&& this.bougerRoi
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
+								minVal = val-1;
+							}
 							// Suppression de la simulation
 							demanger(plateau, adv, mange, c[k]);
 							p.deplacementsansverif(new Move(c[k].getxArr(),c[k].getyArr(), c[k].getxDep(), c[k].getyDep()));
@@ -124,6 +139,12 @@ public class MiniMax extends IA{
 									+ evalCoup(p, c[k], mange);
 							if (val > maxVal) {
 								maxVal = val;
+							}
+							else if(val == maxVal
+									&& this.bougerRoi
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getType() == PawnType.SUEDOIS
+									&& p.getBlock()[c[k].getxArr()][c[k].getyArr()].getPawn().getTypesuede() == TypeSuedois.KING) {
+								maxVal = val+1;
 							}
 							// Suppression de la simulation
 							demanger(plateau, camp, mange, c[k]);
@@ -180,17 +201,33 @@ public class MiniMax extends IA{
 	}
 	private int evalCoup(int mange) {
 		int ret = 0;
-		if ((mange & 1) == 1) {
-			ret += 10;
+		if(p.getBlock()[c.getxArr()][c.getyArr()].getPawn().getType() == this.camp) {
+			if ((mange & 1) == 1) {
+				ret += valManger;
+			}
+			if ((mange & 2) == 2) {
+				ret += valManger;
+			}
+			if ((mange & 4) == 4) {
+				ret += valManger;
+			}
+			if ((mange & 8) == 8) {
+				ret += valManger;
+			}
 		}
-		if ((mange & 2) == 2) {
-			ret += 10;
-		}
-		if ((mange & 4) == 4) {
-			ret += 10;
-		}
-		if ((mange & 8) == 8) {
-			ret += 10;
+		else {
+			if ((mange & 1) == 1) {
+				ret += valPerdre;
+			}
+			if ((mange & 2) == 2) {
+				ret += valPerdre;
+			}
+			if ((mange & 4) == 4) {
+				ret += valPerdre;
+			}
+			if ((mange & 8) == 8) {
+				ret += valPerdre;
+			}
 		}
 		return ret;
 	}

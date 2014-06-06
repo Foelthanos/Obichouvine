@@ -1,6 +1,7 @@
 package s6.prog6.obichouvine.utils;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.models.Board;
 import s6.prog6.obichouvine.models.Parameter.EscapeMethod;
 import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
@@ -20,7 +21,7 @@ import com.badlogic.gdx.utils.Array;
 
 
 public class PlayerSelection extends Table{
-
+	
 	private String funnyNames[] = {"TheSecond", "The Bad", "Player2", "Challenger", "Hank Bot", "Bender", "CARL 500"};
 	
 	private Label name, diffL, pseudoL;
@@ -74,15 +75,7 @@ public class PlayerSelection extends Table{
 
 	public Player getPlayerParameters(){
 		if(isBot.isChecked()){
-			switch(difficulty.getSelected()){
-			case MiniMax:
-				return new MiniMax(2, 4, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			case Aggro:
-				return new MiniMax(2, 3, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			default: 
-				return new MiniMax(2, 3, (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
-			}
-
+			return new MiniMax(difficulty.getSelected(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS, pseudo.getText());
 		}
 		else
 			return new HumanPlayer(pseudo.getText(), (this.name.textEquals("Moscovites"))?PawnType.MOSCOVITE:PawnType.SUEDOIS);
