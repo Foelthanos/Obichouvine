@@ -54,7 +54,7 @@
 %%% The "real" document content comes below...
 
 \title{Dossier de validation - Tablut}
-\author{Groupe 3 - Brahim Berkati, Eymeric Berthier, Arthur Cannone, Mickael Dufrenoy, Maxime Duplan, Laurent Postic}
+\author{Groupe 3 - B. Berkati, E. Berthier, A. Cannone, M. Dufrenoy, M. Duplan, L. Postic}
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
 
@@ -63,7 +63,7 @@
 
 \section{Préambule}
 \paragraph{}
-Ce dossier est réalisé dans le cadre du projet de fin de troisième année de licence informatique au sein de l'Université Joseph Fourier basée à Grenoble. Il permet notamment de monter et justifier les choix qui ont été fait pour ce qui concerne l'IHM et l'IA.
+Ce dossier est réalisé dans le cadre du projet de fin de troisième année de licence informatique au sein de l'Université Joseph Fourier basée à Grenoble. Il permet notamment de monter et justifier les choix qui ont été fait pour ce qui concerne l'IHM et l'IA, mais aussi de mettre en lumière les résultats obtenus et l'efficacité du travail réalisé.
 
 \section{IHM}
 
@@ -148,5 +148,69 @@ Beta test non terminé ...
 
 \section{Intelligence Artificielle}
 
+\subsection{La classe IA}
+\paragraph{}
+La classe IA hérite de la classe Player. Elle possède sept attributs :
+\begin{itemize}
+\item Un entier représentant la profondeur à vérifier après la première couche. Ainsi, si une profondeur de quatre est donnée, l'IA calucle sur cinq coups.
+\item Un type enuméré IaType représentant quelle intelligence est sélectionnée. Les types implémentés sont facile, agressif, défensif et difficile.
+\item Deux PawnType, camp et adversaire, permettant de savoir quel est le camp de l'IA (pour le premier) et de déduire celui de l'adversaire (le deuxième).
+\item Deux entiers, \textit{vlagagner} et \textit{valperdre}, servant à moduler le nombre et le poids d'une prise/perte de pion.
+\item Un booléen, \textit{bougerRoi}, sert à favoriser les mouvements incluant le roi en cas d'égalité.
+\end{itemize}
+\paragraph{}
+Un algorithme Min/Max avec élaguage Alpha/Bêta est utilisé pour les IA.
+
+\subsection{Les différentes difficultés}
+\paragraph{}
+Comme précisé précédemment, il y a quatre niveaux de difficulté :
+\begin{itemize}
+\item Difficile : un algorithme de profondeur cinq est utilisé. Il favorise les déplacements du roi et un jeu équilibré. Le temps de jeu est un peu long, de quelques secondes à une vingtaine de secondes.
+\item Agressif : l'algorithme utilisé est de profondeur quatre. Il privilégie les déplacements du roi pour un jeu agressif. Si le sacrifice d'un pion permet d'en prendre un autre, il optera pour cette solution. Cette IA jouera plus rapidement du fait d'une profondeur inférieure.
+\item Défensif : de profondeur quatre, cet algorithme ne sacrifiera pas de pions pour en manger un.
+\item Facile : correspond à un jeu équilibré de profondeur trois.
+\end{itemize}
+
+\subsection{Les fonctions d'évaluation}
+
+\subsubsection{Evaluation des coups}
+\paragraph{}
+Le but est de calculer très rapidement, sur chque noeud de l'arbre, le nombre de pions mangés en cours de route. Ce traitement n'est pas fait sur les feuilles car un pion peut avoir bougé deux fois entre le début et la fin.
+\paragraph{}
+\textit{\textbf{private int evalCoup(int mange);}}
+\paragraph{}
+La fonction prend un paramètre, un entier, basé sur un système de masque. De plus, si \textit{bougerRoi} est à \textit{true}, elle ajoute 1 au résultat pour devenir prioritaire.
+
+\subsubsection{Evaluation du plateau}
+\paragraph{}
+\textit{\textbf{private int evalFinal(Board p);}}
+\paragraph{}
+La fonction prend en paramètre l'état final du plateau, et renvois un int qui correspond à un calcul sur le nombre de pions moscovites entourant le roi.
+\paragraph{}
+Un algorithme de type Disktra a été envisagé, mais le nombre trop important de feuilles (22 000 au premier tour) ne fait que rajouter une compléxité qui ralentie énormément l'IA.
+
+\subsection{Les autres fonctions essentielles}
+
+\subsubsection{Déplacement sans vérification}
+\paragraph{}
+\textit{\textbf{public void deplacementsansverif(Move c);}}
+\paragraph{}
+Cette fonction prend en paramètre un coup et effectue le déplacement dans le plateau de jeu. Comparée à la fonction standard, celle-ci n'effectue aucune vérification sur la validité du coup. En effet, tous les coups testés sont générés à partir d'une autre fonction (\textit{getDeplacementPossibles}) et sont donc valides. Cependant, cela permet un gain de temps considérable sur la vitesse de calcul de l'IA.
+
+\subsubsection{Vérification des déplacements}
+\paragraph{}
+Cette fonction permet de récupérer à partir d'une position (x, y) tout les coups possibles pour le pion présent dans la case. Tout les coups générés respectent les règles de déplacement (collision, variantes de déplacement limité pour le roi, variante des forteresses).
+\paragraph{}
+\textit{\textbf{public Coup[] getDeplacementPossible(int x, int y);}}
+\paragraph{}
+Elle prend en entrée deux entiers qui correspondent  aux coordonnées du pion à déplace, et renvois un tableau de coup qui contient tous les coups jouables par ce pion.
+
+\subsubsection{Annuler une prise de pion}
+\paragraph{}
+Cette fonction permet de remettre les pions qui ont été mangés lors du calcul du meilleur coup pour l'IA.
+\paragraph{}
+\textit{\textbf{private void demanger(Block[][] plateau, PawnType dernier, int mange, Move c);}}
+\paragraph{}
+Elle prend en paramètre un tableau à deux dimensions qui permet d'accéder à l'état du plateau. Le PawnType permet de savoir quel joueur a mangé un pion, tandis que l'entier correspond à un masque sur les pions mangés à remettre, ainsi que le coup ayant permis de les manger.
 
 \end{document}
