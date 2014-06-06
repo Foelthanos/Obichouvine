@@ -57,7 +57,7 @@ public class Pawn {
 	}
 	
 	public String toString(){
-		return " Type : "+this.type;
+		return ""+this.type;
 	}
 
 }
