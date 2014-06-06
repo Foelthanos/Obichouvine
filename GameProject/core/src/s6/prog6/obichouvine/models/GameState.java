@@ -275,8 +275,8 @@ public class GameState {
                         }
                         board = new Board (9,9,parameter);
 
-                        board.setxBoard(longueur);
-                        board.setyBoard(largeur);
+                        board.setXBoard(longueur);
+                        board.setYBoard(largeur);
                         board.SetBlocks(b);
                         
 

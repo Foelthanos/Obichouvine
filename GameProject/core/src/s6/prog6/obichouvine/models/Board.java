@@ -1293,6 +1293,14 @@ public class Board {
 		return yBoard;	
 	}
 	
+	public void setXBoard(int x) {
+		this.xBoard = x;
+	}
+	
+	public void setYBoard(int y) {
+		this.yBoard = y;
+	}
+	
 	public Parameter GetParameter()
 	{
 		return parameter;	
