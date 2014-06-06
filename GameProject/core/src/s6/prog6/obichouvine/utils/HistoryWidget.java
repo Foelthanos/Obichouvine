@@ -57,6 +57,7 @@ public class HistoryWidget extends Table{
 	}
 	
 	public void add(Move c){
+		System.out.println("Ajout historique");
 		this.history.l.add(c);
 		this.refreshWidget();
 	}
