@@ -28,9 +28,10 @@ public class GameController {
 
 	private Block selectedPawn;
 
+	public boolean gameEnded;
 
 	public boolean gameStarted = false;
-	private PawnType turn;
+	public PawnType turn;
 	public float turnNum;
 
 	private boolean isIATurn = false;
@@ -50,6 +51,8 @@ public class GameController {
 		this.p1 = p1;
 		this.p2 = p2;
 
+		this.gameEnded = false;
+		
 		this.mosc = 16;
 		this.vik = 9;
 		System.out.println(p1.getTeam());
@@ -92,6 +95,9 @@ public class GameController {
 	private Move processInput() {
 		// TODO Auto-generated method stub
 		Move res = null;
+		if(this.gameEnded){
+			return null;
+		}
 		if(this.isIATurn){
 			/*try {
 				Thread.sleep(1000);
@@ -109,7 +115,14 @@ public class GameController {
 			}
 			res.setTurn(this.turn);
 			res.setTurnNum((int)this.turnNum);
-			this.board.deplacement(res);
+			resMove = this.board.deplacement(res);
+			if(resMove == 3 ){
+				System.out.println("Ca marche !!");
+			}
+			else if(resMove == 4){
+				System.out.println("Victoire");
+				this.gameEnded = true;
+			}
 			this.processStatus();
 			this.board.AffichPlateau();
 			this.turnNum += 0.5;
@@ -144,10 +157,11 @@ public class GameController {
 					if(resMove == 3 ){
 						System.out.println("Ca marche !!");
 					}
-					else if(resMove == 4){
-						System.out.println("Victoire");
-					}
 					else{
+						if(resMove == 4){
+							System.out.println("Victoire");
+							this.gameEnded = true;
+						}
 						this.selectedPawn = null;
 						res = new Move(xStart,
 								yStart,

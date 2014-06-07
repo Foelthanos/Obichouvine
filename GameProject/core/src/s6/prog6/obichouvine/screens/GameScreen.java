@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -19,6 +21,7 @@ import s6.prog6.obichouvine.controllers.GameRenderer;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
+import s6.prog6.obichouvine.models.GameState;
 import s6.prog6.obichouvine.models.HumanPlayer;
 import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Parameter;
@@ -35,20 +38,21 @@ import s6.prog6.obichouvine.utils.HistoryWidget;
 public class GameScreen extends AbstractScreen implements InputProcessor{
 	private GameController gController;
 	private GameRenderer gRenderer;
-	
+
 	private Label headMessage;
 	private TextButton quit;
-	
+
+	public GameState saveAndLoad;
 	private GameStateButtonGroup gameStateButtons;
-	
+
 	private HistoryWidget history;
-	
+
 	private Board board;
 	private GameStatusWidget status;
-	
+
 	private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
 	private char[] number = {'1','2','3','4','5','6','7','8','9','0','1','1'};
-	
+
 	public GameScreen(ObichouvineGame game, Parameter param, Player p1, Player p2) {
 		super(game);
 		// TODO Auto-generated constructor stub
@@ -57,26 +61,31 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
 						p1, p2);
-		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
 		
+		
+		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
+
 		headMessage = new Label("Tour 1", getSkin());
 		headMessage.setStyle(titleStyle);
 		quit = new TextButton("Quitter", this.getSkin());
-		
+
 		gameStateButtons = new GameStateButtonGroup(getSkin());
-		
+
 		history = new HistoryWidget(this.getSkin());
-		
+		history.board = this.board;
 		status = new GameStatusWidget(this.getSkin(), p1, p2);
+		this.status.turn = gController.turn;
+		
+		//this.saveAndLoad = 
 	}
 
-	
+
 	public void show(){
 		super.show();
 		InputMultiplexer multiplexer = new InputMultiplexer();
 		multiplexer.addProcessor(stage);
 		multiplexer.addProcessor(this);
-		
+
 		quit.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -91,10 +100,10 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 				game.setScreen(game.getMenuScreen());
 			}
 		} );
-		
+
 		Table table = super.getTable();
 		table.top();
-		
+
 		table.add(headMessage).expandX().colspan(4).spaceTop(20);
 		table.row();
 		table.add(status).expand().fill().left().width(Block.SIZE*5).height(Block.SIZE*9);
@@ -106,28 +115,47 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		Gdx.input.setInputProcessor(multiplexer);
 		gController.gameStarted = true;
 	}
-	
-	
-	public void render(float delta) {
-		
-	
-		Move c = gController.update(delta);
-		this.headMessage.setText("Tour : "+(int)this.gController.turnNum);
-		status.updateWidget(gController.mosc, gController.vik);
 
-		if(c != null)
+
+	public void render(float delta) {
+
+
+		Move c = gController.update(delta);
+		
+		this.headMessage.setText("Tour : "+(int)this.gController.turnNum);
+		
+
+
+		if(c != null){
+			this.status.switchTurn();
 			history.add(c);
+		}
+		status.updateWidget(gController.mosc, gController.vik);
 		super.render(delta);
 		gRenderer.render();
+
+		if(this.gController.gameEnded){
+			/*ObiDialog dialog = new ObiDialog("Test", this.getSkin())
+			.text("Leave the game?") // text appearing in the dialog  
+			.button("EXIT", new InputListener() { // button to exit app  
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+					Gdx.app.exit();  
+					return false;  
+				}  
+			}) 
+			.button("Keep playing") // button that simply closes the dialog  
+			.show(stage); // actually show the dialog  ;*/
+			game.setScreen(game.getStartLocalGameScreen());
+			}
 	}
 
 	public void dispose(){
 		super.dispose();
 		gRenderer.dispose();
-		
-        Gdx.input.setInputProcessor(null);
+
+		Gdx.input.setInputProcessor(null);
 	}
-	
+
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
@@ -177,5 +205,5 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }

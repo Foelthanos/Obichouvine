@@ -16,15 +16,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class GameStatusWidget extends Table{
 
 	private Label p1Pseudo, p1Status, p2Pseudo, p2Status, p1Type, p2Type;
-	private TextureRegion p1Icon, p2Icon, p1IconHighlight, p2IconHighlight, p1Current, p2Current;
-
+	private TextureRegion p1Icon, p2Icon, p1IconHighlight, p2IconHighlight;
+	private Image p1Current, p2Current;
 	private int nbMosc, nbVik;
 
 
+	public PawnType turn;
+	
 	public GameStatusWidget(Skin skin, Player p1, Player p2){
 		super(skin);
 
@@ -39,6 +42,8 @@ public class GameStatusWidget extends Table{
 		p2IconHighlight = atlas.findRegion("SuedoisSelect");
 		
 		
+		p1Current = new Image((turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon);
+		p2Current = new Image((turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon);
 		
 		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
 
@@ -100,9 +105,10 @@ public class GameStatusWidget extends Table{
 		this.add(p1Type).left().expandX().fill();
 		this.row();
 		this.add(p1Pseudo).left().expandX().fill();
-		//this.add(p1Icon).
+		this.add(p1Current).expandX().fill().size(40, 40);
 		this.row();
 		this.add(p2Pseudo).left().expandX().fill();
+		this.add(p2Current).expandX().fill().size(40, 40);
 		this.row();
 		this.add(p2Type).left().expandX().fill();
 		this.row();
@@ -117,6 +123,13 @@ public class GameStatusWidget extends Table{
 	public void updateWidget(int mosc, int vik){
 		this.p1Status.setText("Pions restants : "+mosc);
 		this.p2Status.setText("Pions restants : "+vik);
+		p1Current.setDrawable(new TextureRegionDrawable((turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon));
+		p2Current.setDrawable(new TextureRegionDrawable((turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon));
+	}
+
+	public void switchTurn() {
+		// TODO Auto-generated method stub
+		this.turn = (this.turn==PawnType.SUEDOIS)?PawnType.MOSCOVITE:PawnType.SUEDOIS;
 	}
 
 }

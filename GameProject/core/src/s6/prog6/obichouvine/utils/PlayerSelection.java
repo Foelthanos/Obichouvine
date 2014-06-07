@@ -10,8 +10,12 @@ import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA.IaType;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -27,16 +31,26 @@ public class PlayerSelection extends Table{
 	private Label name, diffL, pseudoL;
 	private CheckBox isBot;
 	private SelectBox<IaType> difficulty;
+	private Image logo;
 	private TextField pseudo;
 
 	private Array<IaType> iaType;
 	private String savedPseudo;
+	
+
+	
 	public String getPseudo(){
 		return this.pseudo.getText();
 	}
 
 	public PlayerSelection(String pseudo, String name, Skin skin, boolean botIsChecked){
 		super(skin);
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		
+	
+		this.logo = new Image(new TextureRegion(
+				(name.equals("Moscovites"))?atlas.findRegion("russianBlock"):atlas.findRegion("vikingBlock")));
+		
 		this.name = new Label(name, skin);
 		this.pseudoL = new Label("Pseudonyme", skin);
 		this.diffL = new Label("Difficulté", skin);
@@ -92,6 +106,9 @@ public class PlayerSelection extends Table{
 			this.pseudo.setText(this.savedPseudo);
 			this.pseudo.setDisabled(false);
 		}
+		
+		this.add(logo).size(50, 50);
+		this.row();
 		this.add(name).expand();
 		this.row();
 		this.add(pseudo).fill().height(20);
