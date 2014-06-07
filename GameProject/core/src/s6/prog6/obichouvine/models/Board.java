@@ -20,8 +20,9 @@ public class Board {
 	static Parameter parameter;
 	Pawn p = null;
 	public Block[][] board;
-	public int offsetX, offsetY, xBoard, yBoard;
-	
+	private int offsetX, offsetY, xBoard, yBoard;
+	private Historique histo;
+	private boolean spiritPawn, surbriPawn;
 	public boolean eaten = false;
 	
 	public Board(int x ,int y, Parameter p)
@@ -30,10 +31,11 @@ public class Board {
 		xBoard = x;
 		yBoard = y;
 		board = new Block[x][y];
-				
+		this.histo = new Historique("sauvegardeCoup.save");		
 		offsetX = (int) (Gdx.graphics.getWidth()/2 - (x*Block.SIZE)/2);
 		offsetY = (int) (Gdx.graphics.getHeight()/2 - (y*Block.SIZE)/2);
-		
+		spiritPawn =  false;
+		surbriPawn = false;
 		
 		for(int i =0; i < x; i++)
 		{
@@ -154,6 +156,47 @@ public class Board {
 		return moves;
 	}
 	
+	public void lightPawn (int x, int y) 
+	{
+		Pawn p = board[x][y].getPawn();
+		if (p.getType() != PawnType.VIDE)
+		{
+			if (surbriPawn)
+			{
+				if (p.getSurbri())
+				{
+					p.setSurbri(false);	
+					surbriPawn = false;
+				}				
+			}
+			else
+			{
+				p.setSurbri(true);
+				surbriPawn =  true;
+			}
+		}
+	}
+	
+	public void ghostPawn (int x, int y) 
+	{
+		Pawn p = board[x][y].getPawn();
+		if (p.getType() != PawnType.VIDE)
+		{
+			if (spiritPawn)
+			{
+				if (p.getSpirit())
+				{
+					board[x][y].setPawn(new Pawn(PawnType.VIDE));
+					spiritPawn = false;
+				}				
+			}
+			else
+			{
+				p.setSpirit(true);
+				spiritPawn =  true;
+			}
+		}
+	}
 	public void AffichPlateau()
 	{
 		for (int i = 0; i < xBoard; i++)
@@ -729,6 +772,10 @@ public class Board {
 						}
 					}
 				}
+				else
+				{
+					break;
+				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
@@ -862,6 +909,10 @@ public class Board {
 							}
 						}
 					}
+				}
+				else
+				{
+					break;
 				}
 			}else
 			{
@@ -999,6 +1050,10 @@ public class Board {
 						}
 					}
 				}
+				else
+				{
+					break;
+				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
@@ -1133,6 +1188,10 @@ public class Board {
 						}
 					}
 
+				}
+				else
+				{
+					break;
 				}
 			}else
 			{
@@ -1283,12 +1342,12 @@ public class Board {
  		return plat;
 	}
 	
-	public int GetxBoard()
+	public int getxBoard()
 	{
 		return xBoard;	
 	}
 	
-	public int GetyBoard()
+	public int getyBoard()
 	{
 		return yBoard;	
 	}
@@ -1350,5 +1409,26 @@ public class Board {
 		return 0;
 		
 	}
+
+	public static Parameter getParameter() {
+		return parameter;
+	}
+
+	public static void setParameter(Parameter parameter) {
+		Board.parameter = parameter;
+	}
+
+	public int getOffsetX() {
+		return offsetX;
+	}
+
+	public int getOffsetY() {
+		return offsetY;
+	}
+
+	public Historique getHisto() {
+		return histo;
+	}
+	
 	
 }

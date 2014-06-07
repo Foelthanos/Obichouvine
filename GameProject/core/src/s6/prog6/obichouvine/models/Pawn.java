@@ -29,6 +29,8 @@ public class Pawn {
 	}
 	TypeSuedois typesuede;
 	PawnType type;
+	boolean surbri;
+	boolean spirit;
 
 	public Pawn(PawnType type, TypeSuedois k){
 		typesuede = k;
@@ -60,4 +62,19 @@ public class Pawn {
 		return ""+this.type;
 	}
 
+	public boolean getSurbri() {
+		return surbri;
+	}
+	
+	public void setSurbri(boolean subri) {
+		this.surbri = subri;
+	}
+	
+	public boolean getSpirit() {
+		return spirit;
+	}
+	
+	public void setSpirit(boolean spirit) {
+		this.spirit = spirit;
+	}
 }
