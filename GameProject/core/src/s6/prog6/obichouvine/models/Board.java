@@ -772,6 +772,10 @@ public class Board {
 						}
 					}
 				}
+				else
+				{
+					break;
+				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
@@ -905,6 +909,10 @@ public class Board {
 							}
 						}
 					}
+				}
+				else
+				{
+					break;
 				}
 			}else
 			{
@@ -1042,6 +1050,10 @@ public class Board {
 						}
 					}
 				}
+				else
+				{
+					break;
+				}
 			}else
 			{
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
@@ -1176,6 +1188,10 @@ public class Board {
 						}
 					}
 
+				}
+				else
+				{
+					break;
 				}
 			}else
 			{
