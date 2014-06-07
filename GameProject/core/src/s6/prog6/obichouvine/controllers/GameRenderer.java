@@ -65,7 +65,7 @@ public class GameRenderer {
 		escapeBlockHighlight = atlas.findRegion("escapeBlockHighlight");
 		throneBlockHighlight = atlas.findRegion("vikingBlockHighlight");
 		moscovitBlockHighlight = atlas.findRegion("russianBlockHighlight");
-		escapeRussianBlockHighlight = atlas.findRegion("escapeBlockHighlight");
+		escapeRussianBlockHighlight = atlas.findRegion("escapeRussianBlockHightlight");
 		
 		moscoPawn = atlas.findRegion("Moscovit");
 		vikingSoldier = atlas.findRegion("Suedois");

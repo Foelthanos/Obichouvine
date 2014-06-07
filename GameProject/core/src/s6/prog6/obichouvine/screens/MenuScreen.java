@@ -42,8 +42,7 @@ public class MenuScreen extends AbstractScreen {
 			game.getMusicManager().play( ObiMusic.MENU );
 		// retrieve the default table actor
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
-        menuImage = atlas.findRegion("mainTitleImage");
-        
+        menuImage = atlas.findRegion("titleScreenImage");
         batch = this.getBatch();
         
 		Table table = super.getTable();
@@ -147,6 +146,7 @@ public class MenuScreen extends AbstractScreen {
 		batch.begin();
 		batch.draw(menuImage, 0, 0);
 		batch.end();
+		this.stage.draw();
 	}
 
 }

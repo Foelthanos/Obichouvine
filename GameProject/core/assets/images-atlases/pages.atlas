@@ -87,30 +87,37 @@ escapeRussianBlock
   orig: 100, 100
   offset: 0, 0
   index: -1
-normalBlock
+escapeRussianBlockHightlight
   rotate: false
   xy: 104, 104
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-normalBlockHighlight
+normalBlock
   rotate: false
   xy: 206, 206
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-russianBlock
+normalBlockHighlight
   rotate: false
   xy: 308, 308
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-russianBlockHighlight
+russianBlock
   rotate: false
   xy: 804, 604
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianBlockHighlight
+  rotate: false
+  xy: 906, 706
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -124,14 +131,14 @@ splash
   index: -1
 vikingBlock
   rotate: false
-  xy: 906, 706
+  xy: 104, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 vikingBlockHighlight
   rotate: false
-  xy: 104, 2
+  xy: 206, 104
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -141,10 +148,10 @@ pages2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-mainTitleImage
+titleScreenImage
   rotate: false
   xy: 2, 2
-  size: 500, 500
-  orig: 500, 500
+  size: 845, 480
+  orig: 845, 480
   offset: 0, 0
   index: -1
