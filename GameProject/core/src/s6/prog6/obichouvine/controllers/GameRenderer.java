@@ -80,14 +80,14 @@ public class GameRenderer {
 	}
 
 	private void drawGrid(){
-		for(int i = 0; i<board.xBoard;i++){
-			font.draw(spriteBatch, alphabet[i]+"", board.offsetX+(Block.SIZE*i)+(Block.SIZE/2)-5, 
-					board.offsetY+(board.yBoard*Block.SIZE)+(Block.SIZE/2));
+		for(int i = 0; i<board.getxBoard();i++){
+			font.draw(spriteBatch, alphabet[i]+"", board.getOffsetX()+(Block.SIZE*i)+(Block.SIZE/2)-5, 
+					board.getOffsetY()+(board.getyBoard()*Block.SIZE)+(Block.SIZE/2));
 		}
 		
-		for(int i = 0; i<board.yBoard;i++){
-			font.draw(spriteBatch, number[i]+"", board.offsetX-board.xBoard, 
-					board.offsetY+(Block.SIZE*i)+(Block.SIZE/2)+10);
+		for(int i = 0; i<board.getyBoard();i++){
+			font.draw(spriteBatch, number[i]+"", board.getOffsetX()-board.getxBoard(), 
+					board.getOffsetY()+(Block.SIZE*i)+(Block.SIZE/2)+10);
 		}
 	}
 	

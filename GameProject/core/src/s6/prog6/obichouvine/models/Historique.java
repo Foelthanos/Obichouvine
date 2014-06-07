@@ -28,7 +28,7 @@ public class Historique {
 	
 	public void ajouter(Move m)
 	{
-		li.add(m)
+		li.add(m);
 	}
 	
 	public void annuler()

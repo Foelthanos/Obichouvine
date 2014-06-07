@@ -31,7 +31,7 @@ public class Board {
 		xBoard = x;
 		yBoard = y;
 		board = new Block[x][y];
-		this.histo = new Historique();		
+		this.histo = new Historique("sauvegardeCoup.save");		
 		offsetX = (int) (Gdx.graphics.getWidth()/2 - (x*Block.SIZE)/2);
 		offsetY = (int) (Gdx.graphics.getHeight()/2 - (y*Block.SIZE)/2);
 		spiritPawn =  false;
@@ -1326,12 +1326,12 @@ public class Board {
  		return plat;
 	}
 	
-	public int GetxBoard()
+	public int getxBoard()
 	{
 		return xBoard;	
 	}
 	
-	public int GetyBoard()
+	public int getyBoard()
 	{
 		return yBoard;	
 	}
@@ -1393,5 +1393,26 @@ public class Board {
 		return 0;
 		
 	}
+
+	public static Parameter getParameter() {
+		return parameter;
+	}
+
+	public static void setParameter(Parameter parameter) {
+		Board.parameter = parameter;
+	}
+
+	public int getOffsetX() {
+		return offsetX;
+	}
+
+	public int getOffsetY() {
+		return offsetY;
+	}
+
+	public Historique getHisto() {
+		return histo;
+	}
+	
 	
 }

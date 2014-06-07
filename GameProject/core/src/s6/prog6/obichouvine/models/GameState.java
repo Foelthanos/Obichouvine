@@ -34,8 +34,8 @@ public class GameState {
     {
     	String sauv = null;
    
-        Block[][] blocks = new Block[b.GetxBoard()][b.GetyBoard()];
-        Board board = new Board(b.GetxBoard(),b.GetyBoard(),b.GetParameter());
+        Block[][] blocks = new Block[b.getxBoard()][b.getyBoard()];
+        Board board = new Board(b.getxBoard(),b.getyBoard(),b.GetParameter());
        
         board.SetBlocks(b.getBlock());
        
@@ -65,16 +65,16 @@ public class GameState {
             
             System.out.println(b.getxBoard());
             
-            fo.println(b.GetxBoard() + " " + b.GetyBoard());
+            fo.println(b.getxBoard() + " " + b.getyBoard());
             fo.println(b.GetParameter().getEsc().toString());
             fo.println(b.GetParameter().getKingCap().toString());
             fo.println(b.GetParameter().getKingMove().toString());
 
            
            
-            for (int i = 0; i < b.GetxBoard(); i++)
+            for (int i = 0; i < b.getxBoard(); i++)
             {
-                for (int j = 0; j < b.GetyBoard(); j++)
+                for (int j = 0; j < b.getyBoard(); j++)
                 {       
                     if (b.getBlock()[i][j].getPawn().getType() == Pawn.PawnType.SUEDOIS)
                     	fo.print(b.getBlock()[i][j].getPawn().getTypesuede());
@@ -275,8 +275,8 @@ public class GameState {
                         }
                         board = new Board (9,9,parameter);
 
-                        board.setxBoard(longueur);
-                        board.setyBoard(largeur);
+                        board.setXBoard(longueur);
+                        board.setYBoard(largeur);
                         board.SetBlocks(b);
                         
 

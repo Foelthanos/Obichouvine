@@ -147,8 +147,8 @@ public class GameController {
 				}
 			}
 			else{
-				int xStart = (int) ((this.selectedPawn.getPosition().x- board.offsetX)/Block.SIZE);
-				int yStart = (int) ((this.selectedPawn.getPosition().y- board.offsetY)/Block.SIZE);
+				int xStart = (int) ((this.selectedPawn.getPosition().x- board.getOffsetX())/Block.SIZE);
+				int yStart = (int) ((this.selectedPawn.getPosition().y- board.getOffsetY())/Block.SIZE);
 
 				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y)){
 					this.selectedPawn = null;
@@ -201,19 +201,19 @@ public class GameController {
 	}
 
 	private void refactorCursorPos(){
-		if(cursorPos.x < board.offsetX)
+		if(cursorPos.x < board.getOffsetX())
 			cursorPos.x = 0;
-		else if(cursorPos.x > board.offsetX + (board.xBoard)*Block.SIZE)
-			cursorPos.x = board.xBoard-1;//(board.offsetX + (board.xBoard - 1)*Block.SIZE);
+		else if(cursorPos.x > board.getOffsetX() + (board.getxBoard())*Block.SIZE)
+			cursorPos.x = board.getxBoard() - 1;//(board.offsetX + (board.xBoard - 1)*Block.SIZE);
 		else
-			cursorPos.x = (int)((cursorPos.x - board.offsetX)/Block.SIZE);
+			cursorPos.x = (int)((cursorPos.x - board.getOffsetX())/Block.SIZE);
 
-		if(cursorPos.y < board.offsetY)
-			cursorPos.y = board.yBoard-1;//board.offsetY;
-		else if(cursorPos.y > board.offsetY + (board.yBoard)*Block.SIZE)
+		if(cursorPos.y < board.getOffsetY())
+			cursorPos.y = board.getyBoard() - 1;//board.offsetY;
+		else if(cursorPos.y > board.getOffsetY() + (board.getyBoard())*Block.SIZE)
 			cursorPos.y = 0;//board.offsetY + (board.yBoard)*Block.SIZE;
 		else
-			cursorPos.y = (int)(-((cursorPos.y - board.offsetY)/Block.SIZE)+(board.yBoard));
+			cursorPos.y = (int)(-((cursorPos.y - board.getOffsetY())/Block.SIZE)+(board.getyBoard()));
 
 	}	
 }

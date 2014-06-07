@@ -31,8 +31,8 @@ public class MiniMax extends IA{
 		LinkedList<Move> lCoup = new LinkedList<Move>();
 		ListIterator<Move> itCoup = lCoup.listIterator();
 		Block[][] plateau = p.getBlock();
-		for (int i = 0; i < p.GetxBoard(); i++) {
-			for (int j = 0; j < p.GetyBoard(); j++) {
+		for (int i = 0; i < p.getxBoard(); i++) {
+			for (int j = 0; j < p.getyBoard(); j++) {
 				if (plateau[i][j].getPawn().getType() == camp) {
 					Move[] c = p.deplacementsPossibles(i, j);
 					for (int k = 0; k < c.length; k++) {
@@ -81,8 +81,8 @@ public class MiniMax extends IA{
 			int minVal = Integer.MAX_VALUE;
 			int val = 0;
 			Block[][] plateau = p.getBlock();
-			for (int i = 0; i < p.GetxBoard(); i++) {
-				for (int j = 0; j < p.GetyBoard(); j++) {
+			for (int i = 0; i < p.getxBoard(); i++) {
+				for (int j = 0; j < p.getyBoard(); j++) {
 					if (plateau[i][j].getPawn().getType() == adv) {
 						Move[] c = p.deplacementsPossibles(i, j);
 						for (int k = 0; k < c.length; k++) {
@@ -124,8 +124,8 @@ public class MiniMax extends IA{
 			int maxVal = Integer.MIN_VALUE;
 			int val = 0;
 			Block[][] plateau = p.getBlock();
-			for (int i = 0; i < p.GetxBoard(); i++) {
-				for (int j = 0; j < p.GetyBoard(); j++) {
+			for (int i = 0; i < p.getxBoard(); i++) {
+				for (int j = 0; j < p.getyBoard(); j++) {
 					if (plateau[i][j].getPawn().getType() == camp) {
 						Move[] c = p.deplacementsPossibles(i, j);
 						for (int k = 0; k < c.length; k++) {
@@ -251,12 +251,12 @@ public class MiniMax extends IA{
 					|| board[roiX][roiY - 1].getState() == BlockState.FORTERESSE) {
 				tmp++;
 			}
-			if (roiX == p.GetxBoard() - 1
+			if (roiX == p.getxBoard() - 1
 					|| board[roiX + 1][roiY].getPawn().getType() == PawnType.MOSCOVITE
 					|| board[roiX + 1][roiY].getState() == BlockState.FORTERESSE) {
 				tmp++;
 			}
-			if (roiY == p.GetyBoard() - 1
+			if (roiY == p.getyBoard() - 1
 					|| board[roiX][roiY + 1].getPawn().getType() == PawnType.MOSCOVITE
 					|| board[roiX][roiY + 1].getState() == BlockState.FORTERESSE) {
 				tmp++;
