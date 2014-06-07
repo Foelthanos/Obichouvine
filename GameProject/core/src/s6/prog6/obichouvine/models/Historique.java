@@ -26,6 +26,11 @@ public class Historique {
 		liRefaire =  lRefaire.listIterator();
 	}
 	
+	public void ajouter(Move m)
+	{
+		li.add(m)
+	}
+	
 	public void annuler()
 	{
 		if (li.hasPrevious())
