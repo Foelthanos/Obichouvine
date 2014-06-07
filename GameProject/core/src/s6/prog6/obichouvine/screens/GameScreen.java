@@ -28,6 +28,7 @@ import s6.prog6.obichouvine.models.Parameter;
 import s6.prog6.obichouvine.models.Parameter.FirstStrike;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
+import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA;
 import s6.prog6.obichouvine.screens.AbstractScreen;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
@@ -61,8 +62,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		this.gController = new GameController(board, 
 				(param.getfStrike()==FirstStrike.Moscovite)?PawnType.MOSCOVITE:PawnType.SUEDOIS,
 						p1, p2);
-		
-		
+
+
 		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
 
 		headMessage = new Label("Tour 1", getSkin());
@@ -75,7 +76,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		history.board = this.board;
 		status = new GameStatusWidget(this.getSkin(), p1, p2);
 		this.status.turn = gController.turn;
-		
+
 		//this.saveAndLoad = 
 	}
 
@@ -121,10 +122,26 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 
 
 		Move c = gController.update(delta);
+
+		if(gController.turn.equals(gController.p1.getTeam()) && gController.p1 instanceof IA){
+			gController.p1Computing =true;
+		}
+		else if(gController.turn.equals(gController.p2.getTeam()) && gController.p2 instanceof IA){
+			gController.p2Computing =true;
+		}
 		
 		this.headMessage.setText("Tour : "+(int)this.gController.turnNum);
-		
 
+
+		if(gController.p1Computing == true)
+			status.p1Computing= true;
+		else
+			status.p1Computing= false;
+
+		if(gController.p2Computing == true)
+			status.p2Computing= true;
+		else
+			status.p2Computing= false;
 
 		if(c != null){
 			this.status.switchTurn();
@@ -146,7 +163,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			.button("Keep playing") // button that simply closes the dialog  
 			.show(stage); // actually show the dialog  ;*/
 			game.setScreen(game.getStartLocalGameScreen());
-			}
+		}
 	}
 
 	public void dispose(){

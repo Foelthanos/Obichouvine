@@ -20,6 +20,8 @@ public class GameController {
 
 	private Move moves[];
 
+	public boolean p1Computing = false, p2Computing = false;
+	
 	private Vector2 cursorPos;
 	private int button;
 	private int resMove;
@@ -35,7 +37,7 @@ public class GameController {
 	public float turnNum;
 
 	private boolean isIATurn = false;
-	private Player p1, p2;
+	public Player p1, p2;
 	enum Keys {
 		CLICK
 	}
@@ -106,10 +108,12 @@ public class GameController {
 				e.printStackTrace();
 			}*/
 			if(turn.equals(p1.getTeam()) && p1 instanceof IA){
+				p1Computing =true;
 				AlphaBeta ia = (AlphaBeta)p1;
 				res = ia.jouer(board);
 			}
 			else if(turn.equals(p2.getTeam()) && p2 instanceof IA){
+				p2Computing =true;
 				AlphaBeta ia = (AlphaBeta)p2;
 				res = ia.jouer(board); 
 			}
@@ -128,6 +132,8 @@ public class GameController {
 			this.turnNum += 0.5;
 			this.switchTurn();
 			this.isIATurn = this.nextTurnIa();
+			p1Computing = false;
+			p2Computing = false;
 
 		}
 		else if(keys.get(Keys.CLICK)){

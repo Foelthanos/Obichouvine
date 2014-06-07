@@ -9,6 +9,7 @@ import s6.prog6.obichouvine.models.ia.MiniMax;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -22,11 +23,15 @@ public class GameStatusWidget extends Table{
 
 	private Label p1Pseudo, p1Status, p2Pseudo, p2Status, p1Type, p2Type;
 	private TextureRegion p1Icon, p2Icon, p1IconHighlight, p2IconHighlight;
-	private Image p1Current, p2Current;
+	private Image p1Current, p2Current, p1Load, p2Load;
 	private int nbMosc, nbVik;
 
+	public Animation anim;
 
+	public float stateTime;
 	public PawnType turn;
+	
+	public boolean p1Computing, p2Computing;
 	
 	public GameStatusWidget(Skin skin, Player p1, Player p2){
 		super(skin);
@@ -36,17 +41,26 @@ public class GameStatusWidget extends Table{
 		}
 		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
 		
+		this.anim = com.holidaystudios.tools.GifDecoder.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("images-atlases/loading.gif").read());
+		stateTime = 0f;
+		//Image load = new 
+		
 		p1Icon = atlas.findRegion("Moscovit");
 		p2Icon = atlas.findRegion("Suedois");
 		p1IconHighlight = atlas.findRegion("MoscovitSelect");
 		p2IconHighlight = atlas.findRegion("SuedoisSelect");
 		
+		p1Load = new Image(anim.getKeyFrame(stateTime));
+		p2Load = new Image(anim.getKeyFrame(stateTime));
+		
+		p1Load.setVisible(false);
+		p2Load.setVisible(false);
 		
 		p1Current = new Image((turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon);
 		p2Current = new Image((turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon);
 		
 		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
-
+		
 		nbMosc = 16;
 		nbVik = 9;
 
@@ -100,7 +114,9 @@ public class GameStatusWidget extends Table{
 		this.p1Pseudo.setStyle(titleStyle);
 		this.p2Pseudo.setStyle(titleStyle);
 
+		
 		this.add(p1Status).left().expandX().fill();
+		this.add(p1Load).size(40, 40);
 		this.row();
 		this.add(p1Type).left().expandX().fill();
 		this.row();
@@ -113,18 +129,31 @@ public class GameStatusWidget extends Table{
 		this.add(p2Type).left().expandX().fill();
 		this.row();
 		this.add(p2Status).left().expandX().fill();
+		this.add(p2Load).size(40, 40);;
 		this.row();
 	}
 
-	public void killPawn(PawnType type){
-
-	}
-
 	public void updateWidget(int mosc, int vik){
+		stateTime += Gdx.graphics.getDeltaTime();
 		this.p1Status.setText("Pions restants : "+mosc);
 		this.p2Status.setText("Pions restants : "+vik);
+		
+		if(p1Computing == true)
+			p1Load.setVisible(true);
+		else
+			p1Load.setVisible(false);
+		
+		if(p2Computing == true)
+			p2Load.setVisible(true);
+		else
+			p2Load.setVisible(false);
+		
 		p1Current.setDrawable(new TextureRegionDrawable((turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon));
+		p1Load.setDrawable(new TextureRegionDrawable(anim.getKeyFrame(stateTime)));
 		p2Current.setDrawable(new TextureRegionDrawable((turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon));
+		p2Load.setDrawable(new TextureRegionDrawable(anim.getKeyFrame(stateTime)));
+		
+		
 	}
 
 	public void switchTurn() {
