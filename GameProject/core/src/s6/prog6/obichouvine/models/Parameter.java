@@ -1,5 +1,7 @@
 package s6.prog6.obichouvine.models;
 
+
+
 public class Parameter {
 
 	public enum FirstStrike {
