@@ -26,11 +26,14 @@ public class MenuScreen extends AbstractScreen {
 	private TextureRegion menuImage;
 	
 	private Label title = new Label("Obichouvine "+ObichouvineGame.VER, this.getSkin());
+	private Label subtitle = new Label("VIKING NIGHT UPDATE", this.getSkin());
 	public MenuScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
+		Label.LabelStyle realtitleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/vikingFont.fnt")), Color.WHITE);
 		Label.LabelStyle titleStyle = new Label.LabelStyle(new BitmapFont(Gdx.files.internal("skin2/titleFont.fnt")), Color.WHITE);
-		this.title.setStyle(titleStyle);
+		this.title.setStyle(realtitleStyle);
+		this.subtitle.setStyle(titleStyle);
 	}
 
 	@Override
@@ -46,10 +49,11 @@ public class MenuScreen extends AbstractScreen {
         batch = this.getBatch();
         
 		Table table = super.getTable();
-		table.right().padRight(30);
-		table.add(title).spaceBottom(50);
+		table.right().padRight(30).top().padTop(50);
+		table.add(title).spaceBottom(0);
 		table.row();
-
+		table.add(subtitle).spaceBottom(50).right();
+		table.row();
 		// register the button "new game"
 		TextButton startGameButton = new TextButton("Partie locale", this.getSkin());
 		startGameButton.addListener(new DefaultInputListener() {

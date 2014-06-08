@@ -35,7 +35,7 @@ public class SplashScreen extends AbstractScreen {
 
 		// here we create the splash image actor; its size is set when the
 		// resize() method gets called
-		splashImage = new Image( splashDrawable, Scaling.stretch );
+		splashImage = new Image( splashDrawable, Scaling.none );
 		splashImage.setFillParent( true );
 
 		// this is needed for the fade-in effect to work correctly; we're just
@@ -56,7 +56,7 @@ public class SplashScreen extends AbstractScreen {
 		} ) );
 
 		// and finally we add the actor to the stage
-		stage.addActor( splashImage );
+		stage.addActor(splashImage);
 	}
 
 

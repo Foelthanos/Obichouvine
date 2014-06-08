@@ -144,6 +144,7 @@ public class GameController {
 					System.out.println("Selected ["+cursorPos.x+","+cursorPos.y+"]");
 					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
 					this.moves = this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
+					this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
 				}
 			}
 			else{
@@ -153,8 +154,10 @@ public class GameController {
 				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y)){
 					this.selectedPawn = null;
 					this.board.highlightMoves(this.moves, false);
+					this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
 				}
 				else {
+					this.board.ghostPawn(xStart, yStart);
 					this.resMove = board.deplacement(new Move(xStart,
 							yStart,
 							(int)cursorPos.x, 
@@ -169,11 +172,15 @@ public class GameController {
 							this.gameEnded = true;
 						}
 						this.selectedPawn = null;
+						
 						res = new Move(xStart,
 								yStart,
 								(int)cursorPos.x, 
 								(int)cursorPos.y, this.turn, (int)this.turnNum);
+						
 						this.board.highlightMoves(this.moves, false);
+						this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
+						
 						this.switchTurn();
 						this.isIATurn = this.nextTurnIa();
 						this.turnNum += 0.5;

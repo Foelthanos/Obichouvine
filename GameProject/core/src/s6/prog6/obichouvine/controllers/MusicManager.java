@@ -21,9 +21,9 @@ public class MusicManager
      */
     public enum ObiMusic
     {
-        MENU( "music/menu.ogg" ),
+        MENU( "music/music.ogg" ),
         LEVEL( "music/level.ogg" );
-
+        
         private String fileName;
         private Music musicResource;
 

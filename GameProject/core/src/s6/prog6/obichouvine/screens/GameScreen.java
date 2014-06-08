@@ -31,6 +31,7 @@ import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA;
 import s6.prog6.obichouvine.screens.AbstractScreen;
+import s6.prog6.obichouvine.screens.ObiDialog;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.GameStateButtonGroup;
 import s6.prog6.obichouvine.utils.GameStatusWidget;
@@ -98,7 +99,23 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play( ObiSound.CLICK );
-				game.setScreen(game.getMenuScreen());
+				new ObiDialog("Pause", getSkin())
+				.button("Abandonner", new DefaultInputListener() { // button to exit app  
+					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+						game.setScreen(game.getMenuScreen());
+						System.out.println("ALLLLLLEZZ !!!!!!!!");
+						return true;
+					}  
+				}, true) 
+				.rowT()
+				.button("Recommencer", new DefaultInputListener() { // button to exit app  
+					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+						
+						return true;
+					}  
+				}, true) 
+				.button("Continuer") // button that simply closes the dialog  
+				.show(stage); // actually show the dialog  ;
 			}
 		} );
 
@@ -150,7 +167,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		status.updateWidget(gController.mosc, gController.vik);
 		super.render(delta);
 		gRenderer.render();
-
+		this.stage.draw();
 		if(this.gController.gameEnded){
 			/*ObiDialog dialog = new ObiDialog("Test", this.getSkin())
 			.text("Leave the game?") // text appearing in the dialog  

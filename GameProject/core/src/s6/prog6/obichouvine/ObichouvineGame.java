@@ -24,7 +24,7 @@ public class ObichouvineGame extends Game {
 
 	public static final String LOG = ObichouvineGame.class.getSimpleName();
 	public static final boolean DEV_MODE = false;
-	public static final String VER = "v0.4.1b";
+	public static final String VER = "v0.5.0b";
 
 	private PreferencesManager preferencesManager;
 	private LevelManager levelManager;

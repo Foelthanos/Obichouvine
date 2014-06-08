@@ -5,153 +5,148 @@ filter: Nearest,Nearest
 repeat: none
 Moscovit
   rotate: false
-  xy: 2, 308
+  xy: 849, 886
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 MoscovitOldPos
   rotate: false
-  xy: 804, 910
+  xy: 2, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 MoscovitSelect
   rotate: false
-  xy: 2, 206
+  xy: 364, 404
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Roi
   rotate: false
-  xy: 104, 308
+  xy: 849, 784
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 RoiOldPos
   rotate: false
-  xy: 804, 808
+  xy: 104, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 RoiSelect
   rotate: false
-  xy: 906, 910
+  xy: 364, 302
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Suedois
   rotate: false
-  xy: 2, 104
+  xy: 466, 404
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 SuedoisOldPos
   rotate: false
-  xy: 104, 206
+  xy: 849, 682
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 SuedoisSelect
   rotate: false
-  xy: 206, 308
+  xy: 206, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 escapeBlock
   rotate: false
-  xy: 804, 706
+  xy: 364, 200
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 escapeBlockHighlight
   rotate: false
-  xy: 906, 808
+  xy: 466, 302
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 escapeRussianBlock
   rotate: false
-  xy: 2, 2
+  xy: 568, 404
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 escapeRussianBlockHightlight
   rotate: false
-  xy: 104, 104
+  xy: 849, 580
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 normalBlock
   rotate: false
-  xy: 206, 206
+  xy: 466, 200
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 normalBlockHighlight
   rotate: false
-  xy: 308, 308
+  xy: 568, 302
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 russianBlock
   rotate: false
-  xy: 804, 604
+  xy: 670, 404
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 russianBlockHighlight
   rotate: false
-  xy: 906, 706
+  xy: 568, 200
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 splash
   rotate: false
-  xy: 2, 410
-  size: 800, 600
-  orig: 800, 600
+  xy: 2, 104
+  size: 360, 400
+  orig: 360, 400
+  offset: 0, 0
+  index: -1
+titleScreenImage
+  rotate: false
+  xy: 2, 506
+  size: 845, 480
+  orig: 845, 480
   offset: 0, 0
   index: -1
 vikingBlock
   rotate: false
-  xy: 104, 2
+  xy: 670, 302
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 vikingBlockHighlight
   rotate: false
-  xy: 206, 104
+  xy: 670, 200
   size: 100, 100
   orig: 100, 100
-  offset: 0, 0
-  index: -1
-
-pages2.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-titleScreenImage
-  rotate: false
-  xy: 2, 2
-  size: 845, 480
-  orig: 845, 480
   offset: 0, 0
   index: -1
