@@ -560,28 +560,16 @@ public class Board {
 		{
 			pionAdverse = new Pawn(PawnType.SUEDOIS, TypeSuedois.PION);
 		}
-<<<<<<< HEAD
-
-		if (parameter.getKingCap() == KingCaptureMethod.Cannot && isKing)
-=======
 		
 		if (parameter.getKingCap() == KingCaptureMethod.Cannot && pionActuel.getType() == PawnType.SUEDOIS)
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
+
 		{
 			Pawn oppositePawn = null;
 			if (isKing)
 				return 0;
 			else
 			{
-<<<<<<< HEAD
-
-				pionAdverse = board[x1+1][y1].getPawn();
-				if (x1 + 2 < xBoard 
-						&& ((board[x1+2][y1].getPawn().getType() == pionActuel.getType()) 
-								|| (board[x1+2][y1].getState() == BlockState.FORTERESSE)))
-=======
 				if (x1 + 1 < xBoard && (board[x1+1][y1].getPawn().getType() == PawnType.MOSCOVITE))
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
 				{
 					if(x1 + 2 < xBoard)
 					{
@@ -595,19 +583,10 @@ public class Board {
 						}
 					}
 				}
-<<<<<<< HEAD
-			}
 
-			if (y1 + 1 < yBoard && board[x1][y1 + 1].getPawn().getType() == pionAdverse.getType())
-			{
-
-				pionAdverse = board[x1][y1 + 1].getPawn();
-				if (y1 + 2 < yBoard && ((board[x1][y1 + 2].getPawn().getType() == pionActuel.getType()) 
-						|| (board[x1][y1 + 2].getState() == BlockState.FORTERESSE)))
-=======
 		
 				if (y1 + 1 < yBoard && board[x1][y1 + 1].getPawn().getType() == PawnType.MOSCOVITE)
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
+
 				{
 					if (y1 + 2 < yBoard)
 					{
@@ -621,20 +600,8 @@ public class Board {
 						}
 					}
 				}
-<<<<<<< HEAD
-			}
-
-			if (x1 - 1 > - 1 && board[x1 - 1][y1].getPawn().getType() == pionAdverse.getType())
-			{
-
-				pionAdverse = board[x1 - 1][y1].getPawn();
-				if (x1 - 2 > - 1 
-						&& ((board[x1 - 2][y1].getPawn().getType() == pionActuel.getType()) 
-								|| (board[x1 - 2][y1].getState() == BlockState.FORTERESSE)))
-=======
 	 
 				if (x1 - 1 > - 1 && board[x1 - 1][y1].getPawn().getType() == PawnType.MOSCOVITE)
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
 				{
 					if(x1 - 2 > -1)
 					{
@@ -648,18 +615,7 @@ public class Board {
 						}
 					}
 				}
-<<<<<<< HEAD
-			}
-			if (y1 - 1 > - 1 && board[x1][y1 - 1].getPawn().getType() == pionAdverse.getType())
-			{
-
-				pionAdverse = board[x1][y1 - 1].getPawn();
-				if (y1 - 2 > - 1 
-						&& ((board[x1][y1 - 2].getPawn().getType() == pionActuel.getType()) 
-								|| (board[x1][y1 - 2].getState() == BlockState.FORTERESSE)))
-=======
 				if (y1 - 1 > - 1 && board[x1][y1 - 1].getPawn().getType() == PawnType.MOSCOVITE)
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
 				{
 					if (y1 - 2 > -1)
 					{
@@ -801,9 +757,7 @@ public class Board {
 			}
 
 		}
-<<<<<<< HEAD
 
-=======
 		if (parameter.getKingCap() == KingCaptureMethod.Can || pionActuel.getType() == PawnType.MOSCOVITE)
 		{
 			if (x1 + 1 < xBoard && (board[x1+1][y1].getPawn().getType() == pionAdverse.getType()))
@@ -877,7 +831,6 @@ public class Board {
 			}
 		}
 		
->>>>>>> 1998fca86a5b61747e1b5907a73d29f429efebbe
 		return total;
 
 	}
