@@ -26,7 +26,7 @@ public class MenuScreen extends AbstractScreen {
 	private TextureRegion menuImage;
 	
 	private Label title = new Label("Obichouvine "+ObichouvineGame.VER, this.getSkin());
-	private Label subtitle = new Label("VIKING NIGHT UPDATE", this.getSkin());
+	private Label subtitle = new Label("THE END RULES UPDATE", this.getSkin());
 	public MenuScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub

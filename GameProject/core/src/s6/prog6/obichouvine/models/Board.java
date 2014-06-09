@@ -24,7 +24,7 @@ public class Board {
 	private Historique histo;
 	private boolean spiritPawn, surbriPawn;
 	public boolean eaten = false;
-	
+
 	public Board(int x ,int y, Parameter p)
 	{
 		Board.parameter =p;
@@ -36,7 +36,7 @@ public class Board {
 		offsetY = (int) (Gdx.graphics.getHeight()/2 - (y*Block.SIZE)/2);
 		spiritPawn =  false;
 		surbriPawn = false;
-		
+
 		for(int i =0; i < x; i++)
 		{
 			for(int j = 0; j < y; j++)
@@ -137,25 +137,25 @@ public class Board {
 			}
 		}	
 	}
-	
+
 	private void surbrillance (Move[] moveArray, boolean b) {
 		int i;
 		for(i = 0; i < moveArray.length; i++) {
 			board[moveArray[i].getxArr()][moveArray[i].getyArr()].setSurbrillance(b);
 		}
 	}
-	
+
 	public Move[] highlightMoves(int x, int y, boolean b){
 		Move[] moves = deplacementsPossibles(x, y);
 		surbrillance(moves, b);
 		return moves;
 	}
-	
+
 	public Move[] highlightMoves(Move[] moves,  boolean b){
 		surbrillance(moves, b);
 		return moves;
 	}
-	
+
 	public void lightPawn (int x, int y) 
 	{
 		Pawn p = board[x][y].getPawn();
@@ -176,7 +176,7 @@ public class Board {
 			}
 		}
 	}
-	
+
 	public void ghostPawn (int x, int y) 
 	{
 		Pawn p = board[x][y].getPawn();
@@ -206,7 +206,7 @@ public class Board {
 				BlockState state = board[i][j].getState();
 				PawnType typepion = board[i][j].getPawn().getType();
 				TypeSuedois typesuede = board[i][j].getPawn().getTypesuede();
-				
+
 				if (state == BlockState.BLANC)
 				{
 					System.out.print("B");
@@ -238,14 +238,15 @@ public class Board {
 			System.out.println("");
 		}
 	}
-	
-	
+
+
 	public int deplacement(Move c)
 	{
 		System.out.println("Verif : "+verifDeplacment(c));
 		if (verifDeplacment(c))
 		{
-			board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 				
+			
+			board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 
 			board[c.getxDep()][c.getyDep()].setPawn(new Pawn(PawnType.VIDE));
 			if(manger(c)!=0)
 				this.eaten = true;
@@ -256,18 +257,18 @@ public class Board {
 			return verifRaishiTuishi (c);
 		}
 		return 3;
-		
+
 	}
-	
+
 	public void deplacementsansverif(Move c) //optimiser pour IA
 
- 	{	
+	{	
 
- 			board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 				
- 			board[c.getxDep()][c.getyDep()].setPawn(new Pawn(PawnType.VIDE));
+		board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 
+		board[c.getxDep()][c.getyDep()].setPawn(new Pawn(PawnType.VIDE));
 
- 	}
-	
+	}
+
 	private boolean verifDeplacment(Move c) {
 		int x = c.getxDep();
 		int y = c.getyDep();
@@ -280,14 +281,14 @@ public class Board {
 					for (int i = y + 1; i < y1 + 1; i++) {
 						if (board[x][i].getPawn().getType() != PawnType.VIDE 
 								|| (board[x][i].getState() == BlockState.TRONE
-									&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
-										&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
-										|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
+								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
+								|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
 							return false;
 					}
 					if(board[x1][y1].getState() == BlockState.FORTERESSE)
 						if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
 							if (parameter.getKingMove() == KingMoveMethod.FourBlock)	
 								return y1 - y < 5;
 							else 
@@ -298,23 +299,23 @@ public class Board {
 					{
 						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
-								return y1 - y < 5;
-							else 
-								return true;
+							return y1 - y < 5;
+						else 
+							return true;
 					}
-					
+
 				} else {
 					for (int i = y1; i < y; i++) {
 						if (board[x][i].getPawn().getType() != PawnType.VIDE
 								|| (board[x][i].getState() == BlockState.TRONE
-									&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
-									&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
-									|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
+								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
+								|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
 							return false;
 					}
 					if(board[x1][y1].getState() == BlockState.FORTERESSE)
 						if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
 							if (parameter.getKingMove() == KingMoveMethod.FourBlock)	
 								return y - y1 < 5;
 							else 
@@ -325,9 +326,9 @@ public class Board {
 					{
 						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
-								return y - y1 < 5;
-							else 
-								return true;
+							return y - y1 < 5;
+						else 
+							return true;
 					}
 				}
 			} else if (y == y1) {
@@ -335,14 +336,14 @@ public class Board {
 					for (int i = x + 1; i < x1 + 1; i++) {
 						if (board[i][y].getPawn().getType() != PawnType.VIDE
 								|| (board[i][y].getState() == BlockState.TRONE
-									&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
-									&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
-									|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
+								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
+								|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
 							return false;
 					}
 					if(board[x1][y1].getState() == BlockState.FORTERESSE)
 						if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
 							if (parameter.getKingMove() == KingMoveMethod.FourBlock)	
 								return x1 - x < 5;
 							else 
@@ -353,22 +354,22 @@ public class Board {
 					{
 						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
-								return x1 - x < 5;
-							else 
-								return true;
+							return x1 - x < 5;
+						else 
+							return true;
 					}
 				} else {
 					for (int i = x1; i < x; i++) {
 						if (board[i][y].getPawn().getType() != PawnType.VIDE
 								|| (board[i][y].getState() == BlockState.TRONE
-									&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
-										&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
-										|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
+								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
+								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
+								|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
 							return false;
 					}
 					if(board[x1][y1].getState() == BlockState.FORTERESSE)
 						if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
-								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
+						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING)
 							if (parameter.getKingMove() == KingMoveMethod.FourBlock)	
 								return x - x1 < 5;
 							else 
@@ -379,16 +380,16 @@ public class Board {
 					{
 						if (parameter.getKingMove() == KingMoveMethod.FourBlock && (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING))	
-								return x - x1 < 5;
-							else 
-								return true;
+							return x - x1 < 5;
+						else 
+							return true;
 					}
 				}
 			}
 		}
 		return false;
 	}
-	
+
 	public int verifRaishiTuishi (Move c){
 		int posKing = GetPosKing();
 		Move[] p  = deplacementsPossibles((posKing-posKing%10)/10, posKing%10);
@@ -402,9 +403,9 @@ public class Board {
 		}
 		return j;
 	}
-	
+
 	private Boolean verifGagne(Move c) {
-		
+
 		int posY = this.GetPosKing()%10;
 		int posX = (this.GetPosKing() - posY)/10;
 		if (posX == 0 
@@ -414,9 +415,9 @@ public class Board {
 		{	
 			if (posX == xBoard - 1 
 					||((posX <  xBoard - 1 ) 
-					&& (board[posX+1][posY].getPawn().getType() == PawnType.MOSCOVITE
-					|| board[posX+1][posY].getState() == BlockState.FORTERESSE 
-					|| board[posX+1][posY].getState() == BlockState.TRONE )))
+							&& (board[posX+1][posY].getPawn().getType() == PawnType.MOSCOVITE
+							|| board[posX+1][posY].getState() == BlockState.FORTERESSE 
+							|| board[posX+1][posY].getState() == BlockState.TRONE )))
 			{
 				if(posY == 0 
 						||((posY > 0) &&(board[posX][posY-1].getPawn().getType() == PawnType.MOSCOVITE 
@@ -430,9 +431,9 @@ public class Board {
 					{
 						return true;
 					}
-	
+
 				}
-	
+
 			}
 		}
 		if(parameter.getEsc() == EscapeMethod.Corner)
@@ -449,7 +450,7 @@ public class Board {
 			if (board[posX][posY].getState() == BlockState.BLANCEXIT)
 				return true;
 		}
-		
+
 		Pawn pionActuel =  board[c.getxArr()][c.getyArr()].getPawn();
 		Pawn pionAdverse = null;
 		if (pionActuel.getType() == PawnType.SUEDOIS)
@@ -467,7 +468,7 @@ public class Board {
 				if (board[i][j].getPawn().getType() == pionAdverse.getType() )
 					return false;
 			}
-			
+
 		}
 		return false;
 	}
@@ -512,19 +513,19 @@ public class Board {
 				if (roiX == 0
 						|| (roiX > 0 && (board[roiX - 1][roiY].getPawn()
 								.getType() == PawnType.MOSCOVITE || board[roiX - 1][roiY]
-								.getState() == BlockState.FORTERESSE))) {
+										.getState() == BlockState.FORTERESSE))) {
 					if (roiY == 0
 							|| (roiY > 0 && (board[roiX][roiY - 1].getPawn()
 									.getType() == PawnType.MOSCOVITE || board[roiX][roiY - 1]
-									.getState() == BlockState.FORTERESSE))) {
+											.getState() == BlockState.FORTERESSE))) {
 						if (roiX == xBoard
 								|| (roiX < xBoard - 1 && (board[roiX + 1][roiY]
 										.getPawn().getType() == PawnType.MOSCOVITE || board[roiX + 1][roiY]
-										.getState() == BlockState.FORTERESSE))) {
+												.getState() == BlockState.FORTERESSE))) {
 							if (roiX == yBoard
 									|| (roiY < yBoard - 1 && (board[roiX][roiY + 1]
 											.getPawn().getType() == PawnType.MOSCOVITE || board[roiX][roiY + 1]
-											.getState() == BlockState.FORTERESSE))) {
+													.getState() == BlockState.FORTERESSE))) {
 								return true;
 							}
 						}
@@ -536,7 +537,7 @@ public class Board {
 	}
 
 	public int manger(Move c) {
-		
+
 		boolean isKing = false;
 		int total = 0;
 		int x1 = c.getxArr();
@@ -548,7 +549,7 @@ public class Board {
 		{
 			isKing = true;
 		}
-		
+
 		if (pionActuel.getType() == PawnType.SUEDOIS )
 		{
 			pionAdverse = new Pawn(PawnType.MOSCOVITE);
@@ -559,7 +560,7 @@ public class Board {
 		{
 			pionAdverse = new Pawn(PawnType.SUEDOIS, TypeSuedois.PION);
 		}
-		
+
 		if (parameter.getKingCap() == KingCaptureMethod.Cannot && isKing)
 		{
 			return 0;
@@ -568,11 +569,11 @@ public class Board {
 		{
 			if (x1 + 1 < xBoard && (board[x1+1][y1].getPawn().getType() == pionAdverse.getType()))
 			{
-				
+
 				pionAdverse = board[x1+1][y1].getPawn();
 				if (x1 + 2 < xBoard 
 						&& ((board[x1+2][y1].getPawn().getType() == pionActuel.getType()) 
-						|| (board[x1+2][y1].getState() == BlockState.FORTERESSE)))
+								|| (board[x1+2][y1].getState() == BlockState.FORTERESSE)))
 				{
 					if ((pionAdverse.getType() == PawnType.SUEDOIS 
 							&& pionAdverse.getTypesuede() != TypeSuedois.KING) 
@@ -583,11 +584,11 @@ public class Board {
 					}
 				}
 			}
-	
+
 			if (y1 + 1 < yBoard && board[x1][y1 + 1].getPawn().getType() == pionAdverse.getType())
 			{
-				 
-				 pionAdverse = board[x1][y1 + 1].getPawn();
+
+				pionAdverse = board[x1][y1 + 1].getPawn();
 				if (y1 + 2 < yBoard && ((board[x1][y1 + 2].getPawn().getType() == pionActuel.getType()) 
 						|| (board[x1][y1 + 2].getState() == BlockState.FORTERESSE)))
 				{
@@ -600,14 +601,14 @@ public class Board {
 					}
 				}
 			}
- 
+
 			if (x1 - 1 > - 1 && board[x1 - 1][y1].getPawn().getType() == pionAdverse.getType())
 			{
-				 
-				 pionAdverse = board[x1 - 1][y1].getPawn();
+
+				pionAdverse = board[x1 - 1][y1].getPawn();
 				if (x1 - 2 > - 1 
 						&& ((board[x1 - 2][y1].getPawn().getType() == pionActuel.getType()) 
-						|| (board[x1 - 2][y1].getState() == BlockState.FORTERESSE)))
+								|| (board[x1 - 2][y1].getState() == BlockState.FORTERESSE)))
 				{
 					if ((pionAdverse.getType() == PawnType.SUEDOIS 
 							&& pionAdverse.getTypesuede() != TypeSuedois.KING) 
@@ -620,11 +621,11 @@ public class Board {
 			}
 			if (y1 - 1 > - 1 && board[x1][y1 - 1].getPawn().getType() == pionAdverse.getType())
 			{
-				 
-				 pionAdverse = board[x1][y1 - 1].getPawn();
+
+				pionAdverse = board[x1][y1 - 1].getPawn();
 				if (y1 - 2 > - 1 
 						&& ((board[x1][y1 - 2].getPawn().getType() == pionActuel.getType()) 
-						|| (board[x1][y1 - 2].getState() == BlockState.FORTERESSE)))
+								|| (board[x1][y1 - 2].getState() == BlockState.FORTERESSE)))
 				{
 					if ((pionAdverse.getType() == PawnType.SUEDOIS 
 							&& pionAdverse.getTypesuede() != TypeSuedois.KING) 
@@ -654,7 +655,7 @@ public class Board {
 						}
 					}
 				}
-		
+
 				if (y1 + 1 < yBoard && board[x1][y1 + 1].getPawn().getType() == PawnType.MOSCOVITE)
 				{
 					if (y1 + 2 < yBoard)
@@ -668,7 +669,7 @@ public class Board {
 						}
 					}
 				}
-	 
+
 				if (x1 - 1 > - 1 && board[x1 - 1][y1].getPawn().getType() == PawnType.MOSCOVITE)
 				{
 					if(x1 - 2 > -1)
@@ -696,19 +697,19 @@ public class Board {
 					}
 				}
 			}
-				
+
 		}
-		
+
 		return total;
-		
+
 	}
-	
+
 	public Move[] deplacementsPossibles(int x,int y) {
 
 		Move[] coups= new Move[xBoard+yBoard];
-			
+
 		int l =0;
-		
+
 		int i = x + 1;
 		while (i < xBoard && board[i][y].getPawn().getType() == Pawn.PawnType.VIDE)
 		{
@@ -836,7 +837,7 @@ public class Board {
 							}
 						}
 					}
-					
+
 				}else
 				{
 					coups[l] = new Move(x, y, i, y);
@@ -845,9 +846,9 @@ public class Board {
 			}
 			i++;
 		}
-		
+
 		i = x - 1;
-		
+
 		while (i > -1 && board[i][y].getPawn().getType() == Pawn.PawnType.VIDE)
 		{
 			if (board[i][y].getState() == BlockState.FORTERESSE
@@ -974,7 +975,7 @@ public class Board {
 							}
 						}
 					}
-					
+
 				}else
 				{
 					coups[l] = new Move(x, y, i, y);
@@ -983,7 +984,7 @@ public class Board {
 			}
 			i--;
 		}
-		
+
 		i = y + 1;
 
 		while (i < yBoard && board[x][i].getPawn().getType() == Pawn.PawnType.VIDE)
@@ -994,57 +995,57 @@ public class Board {
 				if (board[x][y].getPawn().getType() == PawnType.SUEDOIS
 						&& board[x][y].getPawn().getTypesuede() == TypeSuedois.KING) 
 				{
-						if (parameter.getKingMove() == KingMoveMethod.Unlimited)
+					if (parameter.getKingMove() == KingMoveMethod.Unlimited)
+					{
+						coups[l] = new Move(x, y, x, i);
+						l++;
+					}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+					{
+						if (i - y < 5)
 						{
 							coups[l] = new Move(x, y, x, i);
 							l++;
-						}else if (parameter.getKingMove() == KingMoveMethod.FourBlock)
+						}
+					}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+					{
+						if(x == 1)
 						{
-							if (i - y < 5)
+							if (y < 4 && i > 4 || y > 4 && i < 4)
 							{
-								coups[l] = new Move(x, y, x, i);
-								l++;
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
+								}
 							}
-						}else if (parameter.getKingMove() == KingMoveMethod.WithoutMosco)
+						}else if(x == 0)
 						{
-							if(x == 1)
+							if (y < 3 && i > 3 || y > 5 && i < 5)
 							{
-								if (y < 4 && i > 4 || y > 4 && i < 4)
-								{
-									Move aVerif = new Move(x, y, x, i);
-									if (verifRouge(aVerif)){
-										coups[l] = aVerif;
-										l++;
-									}
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
 								}
-							}else if(x == 0)
+							}
+						}else if(x == xBoard - 1)
+						{
+							if (y < 4 && i > 4 || y > 4 && i < 4)
 							{
-								if (y < 3 && i > 3 || y > 5 && i < 5)
-								{
-									Move aVerif = new Move(x, y, x, i);
-									if (verifRouge(aVerif)){
-										coups[l] = aVerif;
-										l++;
-									}
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
 								}
-							}else if(x == xBoard - 1)
+							}
+						}else if(x == xBoard)
+						{
+							if (y < 3 && i > 3 || y > 5 && i < 5)
 							{
-								if (y < 4 && i > 4 || y > 4 && i < 4)
-								{
-									Move aVerif = new Move(x, y, x, i);
-									if (verifRouge(aVerif)){
-										coups[l] = aVerif;
-										l++;
-									}
-								}
-							}else if(x == xBoard)
-							{
-								if (y < 3 && i > 3 || y > 5 && i < 5)
-								{
-									Move aVerif = new Move(x, y, x, i);
-									if (verifRouge(aVerif)){
-										coups[l] = aVerif;
-										l++;
+								Move aVerif = new Move(x, y, x, i);
+								if (verifRouge(aVerif)){
+									coups[l] = aVerif;
+									l++;
 								}
 							}
 						}
@@ -1114,7 +1115,7 @@ public class Board {
 							}
 						}
 					}
-					
+
 				}else
 				{
 					coups[l] = new Move(x, y, x, i);
@@ -1123,7 +1124,7 @@ public class Board {
 			}
 			i++;
 		}
-		
+
 		i = y - 1;
 
 		while (i > - 1 && board[x][i].getPawn().getType() == Pawn.PawnType.VIDE)
@@ -1253,7 +1254,7 @@ public class Board {
 							}
 						}
 					}
-					
+
 				}else
 				{
 					coups[l] = new Move(x, y, x, i);
@@ -1268,10 +1269,10 @@ public class Board {
 			coupss[k] = new Move(coups[k].getxDep(), coups[k].getyDep(),coups[k].getxArr(), coups[k].getyArr());
 
 		}
-		
+
 		return coupss;
 	}
-	
+
 	public boolean verifRouge(Move aVerif) 
 	{
 		if (aVerif.getxDep() == aVerif.getxArr())
@@ -1333,48 +1334,48 @@ public class Board {
 		}
 		return false;
 	}
-	
+
 	public Block[][] cpy() {
 		Block[][] plat = board.clone();
 		for (int i = 0; i < xBoard; i++) {
 			plat[i] = board[i].clone();
- 		}
- 		return plat;
+		}
+		return plat;
 	}
-	
+
 	public int getxBoard()
 	{
 		return xBoard;	
 	}
-	
+
 	public int getyBoard()
 	{
 		return yBoard;	
 	}
-	
+
 	public void setXBoard(int x) {
 		this.xBoard = x;
 	}
-	
+
 	public void setYBoard(int y) {
 		this.yBoard = y;
 	}
-	
+
 	public Parameter GetParameter()
 	{
 		return parameter;	
 	}
-	
+
 	public void SetParameter(Parameter p)
 	{
 		Board.parameter=p;	
 	}
-	
+
 	public void SetBlocks(Block[][] b)
 	{
 		this.board = b;
 	}
-	
+
 	public Array<Block> getBlocks() {
 		Array<Block> res = new Array<Block>();
 		for(int i =0; i < xBoard; i++)
@@ -1386,15 +1387,15 @@ public class Board {
 		}
 		return res;
 	}
-	
+
 	public Block[][] getBlock() {
 		return board;
-		
+
 	}
-	
+
 	public int GetPosKing()
 	{
-		
+
 
 		for(int i =0; i < xBoard; i++)
 		{
@@ -1404,10 +1405,10 @@ public class Board {
 						&& board[i][j].getPawn().getTypesuede() == TypeSuedois.KING)
 					return (i*10+j);
 			}
-			
+
 		}
 		return 0;
-		
+
 	}
 
 	public static Parameter getParameter() {
@@ -1429,6 +1430,6 @@ public class Board {
 	public Historique getHisto() {
 		return histo;
 	}
-	
-	
+
+
 }

@@ -7,6 +7,7 @@ import s6.prog6.obichouvine.ObichouvineGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		//System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
 		config.title = "Obichouvine";
 		config.fullscreen = false;
 		config.resizable = false;

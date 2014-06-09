@@ -3,7 +3,7 @@ package s6.prog6.obichouvine.models;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Block {
+public class Block implements Cloneable{
 	
 	public enum BlockState 
 	{
@@ -24,6 +24,8 @@ public class Block {
 	
 	Vector2 position = new Vector2();
 	Rectangle bounds = new Rectangle();
+	
+	
 	
 	public Block(Vector2 pos, BlockState e, Pawn p) 
 	{
@@ -60,7 +62,5 @@ public class Block {
 	public void setSurbrillance(boolean surbrillance) {
 		this.surbrillance = surbrillance;
 	}
-	
-
 
 }

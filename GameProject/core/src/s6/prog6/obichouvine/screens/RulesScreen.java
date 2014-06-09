@@ -1,8 +1,15 @@
 package s6.prog6.obichouvine.screens;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
@@ -10,50 +17,117 @@ import s6.prog6.obichouvine.utils.DefaultInputListener;
 
 public class RulesScreen extends AbstractScreen {
 
+	private int index = 0;
+	
+	private ArrayList<TextureRegion> rules = new ArrayList<TextureRegion>();
+	
+	private Image rule;
+
+	private TextButton backButton, rightB, leftB;
+
+	private Table table;
 	public RulesScreen(ObichouvineGame game) {
 		super(game);
+		TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("images-atlases/pages.atlas"));
+		rules.add(new TextureRegion(atlas.findRegion("rules1")));
+		rules.add(new TextureRegion(atlas.findRegion("rules2")));
+		rules.add(new TextureRegion(atlas.findRegion("rules3")));
+		rules.add(new TextureRegion(atlas.findRegion("rules4")));
+		rules.add(new TextureRegion(atlas.findRegion("rules5")));
+		
+		rule = new Image(rules.get(index));
+		
+		backButton = new TextButton( "Retour au menu principal", getSkin() );
+		rightB = new TextButton( "Droite", getSkin() );
+		leftB = new TextButton( "Gauche", getSkin() );
 	}
 	
-    @Override
-    public void show()
-    {
-        super.show();
-
-        // retrieve the default table actor
-        Table table = super.getTable();
-        table.defaults().spaceBottom( 10 );
-        table.columnDefaults( 0 ).padRight( 20 );
-        
-        table.add( "Presentation" ).colspan( 3 );
-        table.row();
-        table.add("Le Tablut est un jeu strategique qui se joue à deux sur un terrain 9*9.\nLe jeu comporte seize pions jaunes (appelés aussi moscovites),\nhuit pions verts (soldats) et un gros pion vert (le roi).\nNote le trone occupe par le roi en debut de partie est interdite Ã  tout autres pions");
-        table.row();
-        table.add("But du jeu");
-        table.row();
-        table.add("le roi doit parvenir a une des cases forteresse.\nS'il s'echappe, il a gagne. \nLes moscovites doivent eux capturer le roi. S'ils le font prisonnier ils ont gagne.");
-        table.row();
-        table.add("Regle");
-        table.row();
-        table.add("1.les pions autres que le roi n'ont pas non plus le droit de passer sur le trone.\n2. prise : le roi peut manger uniquement s'il a l'initiative\n(il ne peut pas servir de pillier)exeption si le roi est sur le trone.\n3.les moscovites commencent;\n");
-        // register the back button
-        TextButton backButton = new TextButton( "Retour au menu principal", getSkin() );
-        backButton.addListener( new DefaultInputListener() {
-            @Override
-            public void touchUp(
-                InputEvent event,
-                float x,
-                float y,
-                int pointer,
-                int button )
-            {
-                super.touchUp( event, x, y, pointer, button );
-                game.getSoundManager().play( ObiSound.CLICK );
-                game.setScreen( new MenuScreen( game ) );
-            }
-        } );
-        table.row();
-        table.add( backButton ).size( 250, 60 ).colspan( 3 );
-    }
+	public void loadWidget(){
+		leftB.addListener( new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp( event, x, y, pointer, button );
+				index --;
+				if(index<0)
+					index = 0;
+				rule.setDrawable(new TextureRegionDrawable(rules.get(index)));
+			}
+		} );
+		rightB.addListener( new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp( event, x, y, pointer, button );
+				index ++;
+				if(index>4)
+					index = 4;
+				rule.setDrawable(new TextureRegionDrawable(rules.get(index)));
+			}
+		} );
+		backButton.addListener( new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp( event, x, y, pointer, button );
+				game.getSoundManager().play( ObiSound.CLICK );
+				game.setScreen( new MenuScreen( game ) );
+			}
+		} );
+	}
 	
+	public void printRule(){
+		table.clear();
+		
+
+		table.add(leftB).size(60,60);
+
+		if(index==0)
+			leftB.setDisabled(true);
+		else
+			leftB.setDisabled(false);
+		
+		table.add(rule);
+		
+
+		table.add(rightB).size(60,60);
+		
+		if(index==4)
+			rightB.setDisabled(true);
+		else
+			rightB.setDisabled(false);
+		table.row();
+
+		
+		table.add(backButton).size(250,60).colspan(3).padTop(-50);
+	}
+
+	@Override
+	public void show()
+	{
+		super.show();
+
+		// retrieve the default table actor
+		this.table = super.getTable();
+		
+		this.loadWidget();
+		this.printRule();
+	}
+
 
 }

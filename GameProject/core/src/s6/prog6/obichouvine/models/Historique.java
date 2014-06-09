@@ -13,8 +13,8 @@ public class Historique {
 
 	public LinkedList<Move> l ;
 	public ListIterator<Move> li;
-	LinkedList<Move> lRefaire ;
-	ListIterator<Move> liRefaire;
+	public LinkedList<Move> lRefaire ;
+	public ListIterator<Move> liRefaire;
 	String historiqueName;
 	
 	public Historique(String n)

@@ -156,8 +156,17 @@ public class GameController {
 					this.board.highlightMoves(this.moves, false);
 					this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
 				}
+				else if(this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() != PawnType.VIDE &&
+						this.board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType() == turn){
+					this.board.highlightMoves(this.moves, false);
+					this.board.lightPawn(xStart, yStart);
+					
+					this.selectedPawn = this.board.board[(int)cursorPos.x][(int)cursorPos.y];
+					this.moves = this.board.highlightMoves((int)cursorPos.x, (int)cursorPos.y, true);
+					this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
+				}
 				else {
-					this.board.ghostPawn(xStart, yStart);
+					
 					this.resMove = board.deplacement(new Move(xStart,
 							yStart,
 							(int)cursorPos.x, 

@@ -40,6 +40,8 @@ public class HistoryWidget extends Table{
 		this.history = new Historique("Historiques");
 		this.cancel = new TextButton("Annuler", skin);
 		this.redo = new TextButton("Refaire", skin);
+		this.redo.setDisabled(this.history.lRefaire.isEmpty());
+		
 		
 		this.cancel.addListener(new DefaultInputListener() {
 			@Override
@@ -64,6 +66,12 @@ public class HistoryWidget extends Table{
 		
 	}
 	
+	public Move cancel(){
+		history.annuler();
+		
+		return null;
+	}
+	
 	public void refreshWidget(){
 		String res = "";
 		Move c;
@@ -81,7 +89,9 @@ public class HistoryWidget extends Table{
 		this.history.l.add(c);
 		this.refreshWidget();
 	}
+	
 	public void show(){
 		
 	}
+	
 }

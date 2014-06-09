@@ -5,148 +5,193 @@ filter: Nearest,Nearest
 repeat: none
 Moscovit
   rotate: false
-  xy: 849, 886
+  xy: 849, 914
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 MoscovitOldPos
   rotate: false
-  xy: 2, 2
+  xy: 849, 812
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 MoscovitSelect
   rotate: false
-  xy: 364, 404
+  xy: 849, 710
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Roi
   rotate: false
-  xy: 849, 784
+  xy: 849, 608
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 RoiOldPos
   rotate: false
-  xy: 104, 2
+  xy: 849, 506
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 RoiSelect
   rotate: false
-  xy: 364, 302
+  xy: 644, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 Suedois
   rotate: false
-  xy: 466, 404
+  xy: 746, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 SuedoisOldPos
   rotate: false
-  xy: 849, 682
+  xy: 848, 2
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-SuedoisSelect
+rules1
   rotate: false
-  xy: 206, 2
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-escapeBlock
-  rotate: false
-  xy: 364, 200
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-escapeBlockHighlight
-  rotate: false
-  xy: 466, 302
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-escapeRussianBlock
-  rotate: false
-  xy: 568, 404
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-escapeRussianBlockHightlight
-  rotate: false
-  xy: 849, 580
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-normalBlock
-  rotate: false
-  xy: 466, 200
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-normalBlockHighlight
-  rotate: false
-  xy: 568, 302
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-russianBlock
-  rotate: false
-  xy: 670, 404
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-russianBlockHighlight
-  rotate: false
-  xy: 568, 200
-  size: 100, 100
-  orig: 100, 100
+  xy: 2, 52
+  size: 640, 480
+  orig: 640, 480
   offset: 0, 0
   index: -1
 splash
   rotate: false
-  xy: 2, 104
+  xy: 644, 104
   size: 360, 400
   orig: 360, 400
   offset: 0, 0
   index: -1
 titleScreenImage
   rotate: false
-  xy: 2, 506
+  xy: 2, 534
   size: 845, 480
   orig: 845, 480
   offset: 0, 0
   index: -1
+
+pages2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+SuedoisSelect
+  rotate: false
+  xy: 644, 864
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeBlock
+  rotate: false
+  xy: 644, 762
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeBlockHighlight
+  rotate: false
+  xy: 746, 864
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeRussianBlock
+  rotate: false
+  xy: 644, 660
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+escapeRussianBlockHightlight
+  rotate: false
+  xy: 746, 762
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+normalBlock
+  rotate: false
+  xy: 848, 864
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+normalBlockHighlight
+  rotate: false
+  xy: 644, 558
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rules2
+  rotate: false
+  xy: 2, 484
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1
+rules3
+  rotate: false
+  xy: 2, 2
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1
+russianBlock
+  rotate: false
+  xy: 746, 660
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianBlockHighlight
+  rotate: false
+  xy: 848, 762
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 vikingBlock
   rotate: false
-  xy: 670, 302
+  xy: 644, 456
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 vikingBlockHighlight
   rotate: false
-  xy: 670, 200
+  xy: 746, 558
   size: 100, 100
   orig: 100, 100
+  offset: 0, 0
+  index: -1
+
+pages3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rules4
+  rotate: false
+  xy: 2, 484
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1
+rules5
+  rotate: false
+  xy: 2, 2
+  size: 640, 480
+  orig: 640, 480
   offset: 0, 0
   index: -1

@@ -32,14 +32,14 @@ public class StartOnlineGameScreen extends AbstractScreen {
 		this.table.add("Partie en reseau").spaceBottom(50).spaceLeft(30).colspan(2);
 		this.table.row();
 		
-		this.table.add("Pseudonyme :").spaceBottom(30).fill();
+		this.table.add("Pseudonyme :").spaceBottom(30).expand();
 		pseudoField = new TextField("", getSkin());
-		table.add(pseudoField).uniform().spaceBottom(30).fill();
+		table.add(pseudoField).uniform().spaceBottom(30).expand();
 		table.row();
 		
 		this.table.add("Adresse IP du serveur :");
 		IpField = new TextField("", getSkin());
-		table.add(IpField).uniform();
+		table.add(IpField).uniform().expand();
 		table.row();
 		
 		
@@ -72,8 +72,8 @@ public class StartOnlineGameScreen extends AbstractScreen {
 				game.getSoundManager().play(ObiSound.CLICK);
 			}
 		} );
-		table.add(backButton).uniform().expand().spaceBottom(10);
-		table.add(validateButton).uniform().expand().spaceBottom(10);
+		table.add(backButton).uniform().expand().spaceBottom(10).size(250, 60);
+		table.add(validateButton).uniform().expand().spaceBottom(10).size(250, 60);
 		
 		table.row();
 	}
