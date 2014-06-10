@@ -177,22 +177,26 @@ public class Board {
 		}
 	}
 
-	public void ghostPawn (int x, int y) 
+	public void ghostPawn (int x, int y,boolean b) 
 	{
 		Pawn p = board[x][y].getPawn();
 		if (p.getType() != PawnType.VIDE)
 		{
 			if (spiritPawn)
 			{
-				if (p.getSpirit())
-				{
+				if (board[x][y].getPawn().getType() == PawnType.MOSCGHOST
+					|| board[x][y].getPawn().getType() == PawnType.VIKGHOST)
 					board[x][y].setPawn(new Pawn(PawnType.VIDE));
-					spiritPawn = false;
-				}				
+				spiritPawn = false;	
+				board[25][18].getPawn();
+				
 			}
 			else
 			{
-				p.setSpirit(true);
+				if (b)
+					board[x][y].setPawn(new Pawn(PawnType.VIKGHOST));
+				else
+					board[x][y].setPawn(new Pawn(PawnType.MOSCGHOST));
 				spiritPawn =  true;
 			}
 		}
@@ -277,15 +281,19 @@ public class Board {
 		int x1 = c.getxArr();
 		int y1 = c.getyArr();
 		//System.out.println("\n\n" + x1 + y1 + "\n\n" + x + y);
-		if (board[x][y].getPawn().getType() != PawnType.VIDE) {
+		if (board[x][y].getPawn().getType() != PawnType.VIDE
+			&& board[x][y].getPawn().getType() != PawnType.VIKGHOST
+			&& board[x][y].getPawn().getType() != PawnType.MOSCGHOST) {
 			if (x == x1) {
 				if (y < y1) {
 					for (int i = y + 1; i < y1 + 1; i++) {
 						if (board[x][i].getPawn().getType() != PawnType.VIDE 
+								&& board[x][i].getPawn().getType() != PawnType.VIKGHOST
+								&& board[x][i].getPawn().getType() != PawnType.MOSCGHOST
 								|| (board[x][i].getState() == BlockState.TRONE
-								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
-								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
-								|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
+									&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
+											&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
+										|| board[x][y].getPawn().getType() == PawnType.MOSCOVITE)))
 							return false;
 					}
 					if(board[x1][y1].getState() == BlockState.FORTERESSE)
@@ -309,6 +317,8 @@ public class Board {
 				} else {
 					for (int i = y1; i < y; i++) {
 						if (board[x][i].getPawn().getType() != PawnType.VIDE
+								&& board[x][i].getPawn().getType() != PawnType.VIKGHOST
+								&& board[x][i].getPawn().getType() != PawnType.MOSCGHOST
 								|| (board[x][i].getState() == BlockState.TRONE
 								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
@@ -337,6 +347,8 @@ public class Board {
 				if (x < x1) {
 					for (int i = x + 1; i < x1 + 1; i++) {
 						if (board[i][y].getPawn().getType() != PawnType.VIDE
+								&& board[i][y].getPawn().getType() != PawnType.VIKGHOST
+								&& board[i][y].getPawn().getType() != PawnType.MOSCGHOST
 								|| (board[i][y].getState() == BlockState.TRONE
 								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
@@ -363,6 +375,8 @@ public class Board {
 				} else {
 					for (int i = x1; i < x; i++) {
 						if (board[i][y].getPawn().getType() != PawnType.VIDE
+								&& board[i][y].getPawn().getType() != PawnType.VIKGHOST
+								&& board[i][y].getPawn().getType() != PawnType.MOSCGHOST
 								|| (board[i][y].getState() == BlockState.TRONE
 								&& ((board[x][y].getPawn().getType() == PawnType.SUEDOIS
 								&& board[x][y].getPawn().getTypesuede() != TypeSuedois.KING)
@@ -844,7 +858,9 @@ public class Board {
 		int l =0;
 
 		int i = x + 1;
-		while (i < xBoard && board[i][y].getPawn().getType() == Pawn.PawnType.VIDE)
+		while (i < xBoard && (board[i][y].getPawn().getType() == Pawn.PawnType.VIDE 
+				|| board[i][y].getPawn().getType() == Pawn.PawnType.MOSCGHOST 
+				|| board[i][y].getPawn().getType() == Pawn.PawnType.VIKGHOST))
 		{
 			if (board[i][y].getState() == BlockState.FORTERESSE
 					|| board[i][y].getState() == BlockState.TRONE) {
@@ -982,7 +998,9 @@ public class Board {
 
 		i = x - 1;
 
-		while (i > -1 && board[i][y].getPawn().getType() == Pawn.PawnType.VIDE)
+		while (i > -1 && (board[i][y].getPawn().getType() == Pawn.PawnType.VIDE 
+				|| board[i][y].getPawn().getType() == Pawn.PawnType.MOSCGHOST 
+				|| board[i][y].getPawn().getType() == Pawn.PawnType.VIKGHOST))
 		{
 			if (board[i][y].getState() == BlockState.FORTERESSE
 					|| board[i][y].getState() == BlockState.TRONE) {
@@ -1120,7 +1138,9 @@ public class Board {
 
 		i = y + 1;
 
-		while (i < yBoard && board[x][i].getPawn().getType() == Pawn.PawnType.VIDE)
+		while (i < yBoard && (board[x][i].getPawn().getType() == Pawn.PawnType.VIDE 
+				|| board[x][i].getPawn().getType() == Pawn.PawnType.MOSCGHOST 
+				|| board[x][i].getPawn().getType() == Pawn.PawnType.VIKGHOST))
 		{
 			if (board[x][i].getState() == BlockState.FORTERESSE
 					|| board[x][i].getState() == BlockState.TRONE) 
@@ -1260,7 +1280,9 @@ public class Board {
 
 		i = y - 1;
 
-		while (i > - 1 && board[x][i].getPawn().getType() == Pawn.PawnType.VIDE)
+		while (i > - 1 && (board[x][i].getPawn().getType() == Pawn.PawnType.VIDE 
+				|| board[x][i].getPawn().getType() == Pawn.PawnType.MOSCGHOST 
+				|| board[x][i].getPawn().getType() == Pawn.PawnType.VIKGHOST))
 		{
 			if (board[x][i].getState() == BlockState.FORTERESSE
 					|| board[x][i].getState() == BlockState.TRONE) {

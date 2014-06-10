@@ -1,0 +1,367 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This file is a template using the "beamer" package to create slides for a talk or presentation
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% MODIFIED by Jonathan Kew, 2008-07-06
+% The header comments and encoding in this file were modified for inclusion with TeXworks.
+% The content is otherwise unchanged from the original distributed with the beamer package.
+
+\documentclass{beamer}
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Berkeley}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[UE PROG6] % (optional, use only with long paper titles)
+{Soutenance de projet}
+
+\subtitle
+{Interface conviviale pour le jeu du Tablut} % (optional)
+
+\author[] % (optional, use only with lots of authors)
+{B.~Berkati \and E.~Berthier \and A.~Canonne \and M.~Dufrenoy \and M.~Duplan \and L.~Postic}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+{
+  IM2AG - Département STS Informatique\\
+  Université Joseph Fourier
+ }
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[UET Animation scientifique] % (optional)
+{6 juin 2014 - IM2AG}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{Introduction}
+
+\begin{frame}{Introduction}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+\section{Contexte du projet}
+
+\subsection{Le Tablut}
+
+\begin{frame}{Le Tablut}{La famille des jeux de Tafl}
+  \begin{itemize}
+  \item Un plateau de jeu carré
+	\item Des cases marquées symétriquement
+	\item Des forces inégales
+	\item Un principe de prise par encadrement
+	\item Des objectifs de jeux différents
+	\item Une pièce particulière, le Roi
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Le Tablut}{Le plateau de jeu}
+ \begin{center}
+\includegraphics[width=6cm]{plateau.JPG}
+\end{center}
+\end{frame}
+
+\subsection{Choix de la technologie}
+
+\begin{frame}{Choix de la technologie}{LibGDX}
+  \begin{itemize}
+  \item Plusieurs plates-formes, un seul code
+	\item Performant
+	\item Très documenté
+	\item Nombreux widgets disponible
+	\item Open Source
+  \end{itemize}
+\end{frame}
+
+\section{Réalisation technique globale}
+
+\begin{frame}{Réalisation technique globale}{Modèle-Vue-Controlleur}
+ \begin{center}
+\includegraphics[width=10cm]{mvc.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Réalisation technique globale}{Architecture globale}
+\begin{center}
+\includegraphics[width=10cm]{uml.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Réalisation technique globale}{Widgets personnalisés}
+ \begin{itemize}
+  \item Indicateur de l'état du jeu
+	\item Historique des coups
+	\item Sélecteur des paramètres du joueur
+	\item Sélecteur des paramètres de la partie
+ \end{itemize}
+\end{frame}
+
+\section{IA}
+
+\subsection{Algorithmes et fonctions d'évaluation}
+
+\begin{frame}{Algorithmes et fonctions d'évaluation}{Algorithme min/max avec élagage alpha/bêta}
+  \begin{itemize}
+    \item Temps de calcul inférieur à 10 secondes
+    \item Profondeur de 6
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithmes et fonctions d'évaluation}{Fonctions d'évaluation}
+  \begin{itemize}
+   \item Pour chaque coup
+   \item Pour l'évaluation finale du plateau
+  \end{itemize}
+\newline
+ Fonctions légères, appelées souvant
+\end{frame}
+
+\subsection{Les différentes diffcultés}
+
+\begin{frame}{Les différentes diffcultés}{Généralités}
+4 niveaux : équilibré faible, aggressif, défensif, équilibré forte.
+\newline
+Modulation :
+  \begin{itemize}
+   \item Profondeur(4/5/5/6)
+   \item Evaluation
+  \end{itemize}
+\newline
+Temps de calcul inférieur à 10 secondes
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA équilibrée faible}
+\begin{itemize}
+ \item Profondeur 4
+ \item Poids normal pour la prise et la défense de pions 
+ \item Un peu trop forte pour les débutants
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+\begin{itemize}
+ \item Profondeur 5
+ \item Modulation du poids de la prise/perte des pions
+ \item Favorise le déplacement du roi pour l'IA agressive
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+Difficulté de ces IA :
+\begin{itemize}
+ \item Remplacent l'IA moyenne
+ \item Moins fortes que la difficile car prédictibles
+ \item Confirmées par les tests
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+Buts de ces IA :
+\begin{itemize}
+ \item Plus intéressantes
+ \item Transition entre facile et difficile
+ \item Apprentissage différent car réactions différentes
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA équilibrée forte}
+\begin{itemize}
+ \item Profondeur 6
+ \item Poids normaux pour la prise et la défense de pions
+ \item Favorise le déplacement du roi
+ \item Plus lente (de 5 à 10 secondes)
+\end{itemize}
+\end{frame}
+
+\subsection{Les tests}
+
+\begin{frame}{Les tests}{Principe}
+\begin{itemize}
+ \item Echantillon IA contre IA de 100 tests
+ \item Il apparaît une forte inégalité sur les règles choisies
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests}{Ratios}
+\includegraphics[width=10cm]{ratio.png}
+\newline
+Suédois avantagés par les règles
+\end{frame}
+
+\begin{frame}{Les tests}{Les retours}
+\begin{itemize}
+ \item IA bonnes dans l'ensemble
+ \item IA facile un peu trop forte quand suédoise
+ \item IA difficile forte ``mais abordable après quelques parties''
+\end{itemize}
+\end{frame}
+
+\section{IHM}
+
+\begin{frame}{IHM}{Inspiration}
+ \begin{itemize}
+  \item Jeu de tablut en ligne
+	\item Jeu d'echecs
+	\item Jeu de plateau en générale
+	\item Interface des jeux professionnels
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{IHM}{Validation}
+ \begin{itemize}
+  \item En interne : de manière empirique
+  \item En réunion : retour des professeurs
+  \item En externe : week-end de bêta-test
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{IHM}{Echantillon de la bêta-test}
+ \begin{center}
+\includegraphics[width=10cm]{echantillon.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Résultat de la bêta-test}
+ \begin{center}
+\includegraphics[width=10cm]{resBeta.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Menu principal
+\newline
+\includegraphics[width=10cm]{snapshot1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Menu de jeu : IA contre IA
+\newline
+\includegraphics[width=10cm]{snapshot3.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Ecran de jeu
+\newline
+\includegraphics[width=10cm]{snapshot5.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Options
+\newline
+\includegraphics[width=10cm]{snapshot7.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Règles
+\newline
+\includegraphics[width=10cm]{snapshot8.png}
+\end{center}
+\end{frame}
+
+\section{Bilan}
+
+\begin{frame}{Bilan}
+
+  % Keep the summary *very short*.
+  \begin{itemize}
+  \item La communication entre les membres du groupe
+  \item Utilisation des compétences apprises durant l'année
+  \item Division du projet efficace
+  \end{itemize}
+  
+	Retrouvez le projet sur https://github.com/Foelthanos/Obichouvine.
+ 
+\end{frame}
+
+
+\end{document}
+
+
