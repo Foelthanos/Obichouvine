@@ -122,13 +122,22 @@ public class GameRenderer {
 			if(block.getPawn().getType()==PawnType.MOSCOVITE)
 				spriteBatch.draw((!block.getPawn().getSurbri())?(!block.getPawn().getSpirit())?moscoPawn:moscoPawnOldPos:moscoPawnSelect, 
 						block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else if(block.getPawn().getType()==PawnType.SUEDOIS)
+			else if(block.getPawn().getType()==PawnType.SUEDOIS){
 				if(block.getPawn().getTypesuede()==TypeSuedois.KING)
 					spriteBatch.draw((!block.getPawn().getSurbri())?(!block.getPawn().getSpirit())?viKing:viKingOldPos:viKingSelect, 
 							block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
 				else if(block.getPawn().getTypesuede()==TypeSuedois.PION)
 					spriteBatch.draw((!block.getPawn().getSurbri())?(!block.getPawn().getSpirit())?vikingSoldier:vikingSoldierOldPos:vikingSoldierSelect, 
 							block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			}
+			else if(block.getPawn().getType()==PawnType.MOSCGHOST){
+				spriteBatch.draw(moscoPawnOldPos, 
+						block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			}
+			else if(block.getPawn().getType()==PawnType.VIKGHOST){
+				spriteBatch.draw(vikingSoldierOldPos, 
+						block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			}
 		}
 	}
 

@@ -6,7 +6,9 @@ public class Pawn {
 	{
 		VIDE(0),
 		SUEDOIS(1),
-		MOSCOVITE(2);
+		MOSCOVITE(2),
+		VIKGHOST(3),
+		MOSCGHOST(4);
 		  
 		final int val;
 			  

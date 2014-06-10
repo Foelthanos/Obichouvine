@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.27)  9 JUN 2014 16:59
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.27)  10 JUN 2014 07:09
 entering extended mode
 **soutenanceBeamG4.tex
 (C:\Users\Administrateur.Sls-PCAccueil\Documents\Devellopement\Prog6\Obichouvine\Documentation\soutenanceBeamG4.tex
@@ -1079,60 +1079,82 @@ LaTeX Info: Redefining \includegraphics on input line 94.
 
 ] [3
 
-]
-LaTeX Font Info:    Try loading font information for U+msa on input line 163.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 163.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 163.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 163.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 163.
+] <plateau.jpg, id=161, 287.57437pt x 293.59688pt>
+File: plateau.jpg Graphic file (type jpg)
+ <use plateau.jpg>
+Package pdftex.def Info: plateau.jpg used on input line 139.
+(pdftex.def)             Requested size: 170.71652pt x 174.29582pt.
  [4
 
-] [5
+ <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/plateau.jpg>] [5
+
+] <mvc.jpg, id=228, 453.0773pt x 247.9417pt>
+File: mvc.jpg Graphic file (type jpg)
+
+<use mvc.jpg>
+Package pdftex.def Info: mvc.jpg used on input line 160.
+(pdftex.def)             Requested size: 284.52756pt x 155.70848pt.
+ [6
+
+ <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/mvc.jpg>] <uml.jpg, id=2
+64, 553.31718pt x 368.1253pt>
+File: uml.jpg Graphic file (type jpg)
+ <use uml.jpg>
+Package pdftex.def Info: uml.jpg used on input line 167.
+(pdftex.def)             Requested size: 284.52756pt x 189.29736pt.
+ [7
+
+ <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/uml.jpg>] [8
+
+] [9
+
+] [10
+
+] <echantillon.jpg, id=401, 656.4525pt x 414.54875pt>
+File: echantillon.jpg Graphic file (type jpg)
+
+<use echantillon.jpg>
+Package pdftex.def Info: echantillon.jpg used on input line 201.
+(pdftex.def)             Requested size: 170.71652pt x 107.80542pt.
+ [11
+
+ <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/echantillon.jpg>] <resBe
+ta.jpg, id=435, 656.4525pt x 414.54875pt>
+File: resBeta.jpg Graphic file (type jpg)
+ <use resBeta.jpg>
+Package pdftex.def Info: resBeta.jpg used on input line 207.
+(pdftex.def)             Requested size: 170.71652pt x 107.80542pt.
+ [12
+
+ <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/resBeta.jpg>] [13
 
 ]
 \tf@nav=\write6
 \tf@toc=\write7
 \tf@snm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 185.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 185.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 228.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 228.
 
 (C:\Users\Administrateur.Sls-PCAccueil\Documents\Devellopement\Prog6\Obichouvine\Documentation\soutenanceBeamG4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 185.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 185.
-
-
-Package rerunfilecheck Warning: File `soutenanceBeamG4.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `soutenanceBeamG4.out':
-(rerunfilecheck)             Before: 7F6489390F8E5826559633E8D9084811;183
-(rerunfilecheck)             After:  355F404F6E3C9769CC73AECA417C9C76;419.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 185.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 228.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 228.
+Package rerunfilecheck Info: File `soutenanceBeamG4.out' has not changed.
+(rerunfilecheck)             Checksum: C75994FA8216CD47845DFB60C5F7712B;420.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 228.
  ) 
 Here is how much of TeX's memory you used:
- 16397 strings out of 493921
- 304193 string characters out of 3147212
- 376867 words of memory out of 3000000
- 19249 multiletter control sequences out of 15000+200000
- 34142 words of font info for 51 fonts, out of 3000000 for 9000
+ 16456 strings out of 493921
+ 305421 string characters out of 3147212
+ 376866 words of memory out of 3000000
+ 19303 multiletter control sequences out of 15000+200000
+ 25551 words of font info for 32 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,16n,56p,406b,551s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 56i,16n,64p,406b,551s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhv
 r8a.pfb>
-Output written on soutenanceBeamG4.pdf (5 pages, 47012 bytes).
+Output written on soutenanceBeamG4.pdf (13 pages, 374635 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 19 named destinations out of 1000 (max. 500000)
- 75 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 518 PDF objects out of 1000 (max. 8388607)
+ 35 named destinations out of 1000 (max. 500000)
+ 132 words of extra memory for PDF output out of 10000 (max. 10000000)
 

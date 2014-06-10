@@ -247,6 +247,8 @@ public class Board {
 		{
 			
 			board[c.getxArr()][c.getyArr()].setPawn(board[c.getxDep()][c.getyDep()].getPawn()); 
+			//board[c.getxDep()][c.getyDep()].setPawn(new Pawn(
+					//(board[c.getxDep()][c.getyDep()].getPawn().getType()==PawnType.MOSCOVITE)?PawnType.MOSCGHOST:PawnType.VIKGHOST));
 			board[c.getxDep()][c.getyDep()].setPawn(new Pawn(PawnType.VIDE));
 			if(manger(c)!=0)
 				this.eaten = true;

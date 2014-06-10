@@ -119,11 +119,11 @@
 
 \section{Contexte du projet}
 
-\subsection{Jeu du tablut}
+\subsection{Le Tablut}
 
-\begin{frame}{Jeu de Tafl}
+\begin{frame}{Le Tablut}{La famille des jeux de Tafl}
   \begin{itemize}
-  \item Un tablier de jeu carré
+  \item Un plateau de jeu carré
 	\item Des cases marquées symétriquement
 	\item Des forces inégales
 	\item Un principe de prise par encadrement
@@ -132,37 +132,79 @@
   \end{itemize}
 \end{frame}
 
-\subsection{Contexte du projet}
+\begin{frame}{Le Tablut}{Le plateau de jeu}
+ \begin{center}
+\includegraphics[width=6cm]{plateau.jpg}
+\end{center}
+\end{frame}
+
+\subsection{Choix de la technologie}
+
+\begin{frame}{Choix de la technologie}{LibGDX}
+  \begin{itemize}
+  \item Plusieurs plates-formes, un seul code
+	\item Performant
+	\item Très documenté
+	\item Nombreux widgets disponible
+	\item Open Source
+  \end{itemize}
+\end{frame}
 
 \section{Réalisation technique globale}
-\begin{frame}{Réalisation technique globale}{Le scénario}
 
-\begin{columns}
-
-\begin{column}{4cm}
-	Partie 1 :
-	\begin{itemize}
-		\item Objectif : Motiver les élèves
-		\item Utilisation d'un jeu par équipe
-		\item Fil rouge : Enigma
-		\item Conclusion : Logique, flexibilité et rigueur
-	\end{itemize}
-\end{column}
-
-\begin{column}{6cm}
-	Partie 2 :
-	\begin{itemize}
-		\item Objectif : Expliquer l'utilité des mathématiques
-		\item Utilisation d'exemples concrets : Informatique, cuisine, conduite
-		\item Conclusion : Vous utilisez et utiliserez ces compétences toute votre vie
-	\end{itemize}
-\end{column}
-
-\end{columns}
+\begin{frame}{Réalisation technique globale}{Modèle-Vue-Controlleur}
+ \begin{center}
+\includegraphics[width=10cm]{mvc.jpg}
+\end{center}
 
 \end{frame}
 
+\begin{frame}{Réalisation technique globale}{Architecture globale}
+\begin{center}
+\includegraphics[width=10cm]{uml.jpg}
+\end{center}
+
+\end{frame}
+
+\begin{frame}{Réalisation technique globale}{Widgets personnalisés}
+ \begin{itemize}
+  \item Indicateur de l'état du jeu
+	\item Historique des coups
+	\item Sélecteur des paramètres du joueur
+	\item Sélecteur des paramètres de la partie
+ \end{itemize}
+\end{frame}
+
 \section{IHM}
+
+\begin{frame}{IHM}{Conception}
+ \begin{itemize}
+  \item Inspiration de jeu existant
+	\item Historique des coups
+	\item Sélecteur des paramètres du joueur
+	\item Sélecteur des paramètres de la partie
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{IHM}{Validation}
+ \begin{itemize}
+  \item En interne : de manière empirique
+	\item En réunion : retour des professeurs
+	\item En externe : week-end de bêta-test
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{IHM}{Echantillon de la bêta-test}
+ \begin{center}
+\includegraphics[width=6cm]{echantillon.jpg}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Résultat de la bêta-test}
+ \begin{center}
+\includegraphics[width=6cm]{resBeta.jpg}
+\end{center}
+\end{frame}
 
 \section{IA}
 
@@ -173,11 +215,12 @@
 
   % Keep the summary *very short*.
   \begin{itemize}
-  \item Les élèves ont parfaitemet integrer les concepts lors du jeu
-  \item Certains élèves ont pris conscience de la place des mathématiques dans leur vie
-  \item Un groupe a réussi à recréer un chiffre de Vigenère et à l'utiliser !
+  \item Les règles du jeu ont été parfaitement intégré 
+  \item 
+  \item 
   \end{itemize}
   
+	Retrouvez le projet sur https://github.com/Foelthanos/Obichouvine.
  
 \end{frame}
 

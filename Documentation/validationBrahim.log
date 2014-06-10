@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.27)  9 JUN 2014 15:36
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.27)  10 JUN 2014 07:19
 entering extended mode
 **validationBrahim.tex
 (C:\Users\Administrateur.Sls-PCAccueil\Documents\Devellopement\Prog6\Obichouvine\Documentation\validationBrahim.tex
@@ -497,48 +497,48 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 62.
+(Font)              <12> on input line 63.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 62.
+(Font)              <8> on input line 63.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 62.
+(Font)              <6> on input line 63.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] <snapshot1.png, id=9, 602.25pt x 376.40625pt>
 File: snapshot1.png Graphic file (type png)
 
 <use snapshot1.png>
-Package pdftex.def Info: snapshot1.png used on input line 83.
+Package pdftex.def Info: snapshot1.png used on input line 84.
 (pdftex.def)             Requested size: 256.0748pt x 160.05382pt.
  <validDoc1.jpg, id=11, 803.0pt x 482.80376pt>
 File: validDoc1.jpg Graphic file (type jpg)
  <use validDoc1.jpg>
-Package pdftex.def Info: validDoc1.jpg used on input line 84.
+Package pdftex.def Info: validDoc1.jpg used on input line 85.
 (pdftex.def)             Requested size: 256.0748pt x 153.96992pt.
 
 <snapshot4.png, id=12, 603.75563pt x 380.17032pt>
 File: snapshot4.png Graphic file (type png)
  <use snapshot4.png>
-Package pdftex.def Info: snapshot4.png used on input line 94.
+Package pdftex.def Info: snapshot4.png used on input line 95.
 (pdftex.def)             Requested size: 199.16928pt x 125.41017pt.
  <validDoc2.jpg, id=13, 803.0pt x 482.80376pt>
 File: validDoc2.jpg Graphic file (type jpg)
 
 <use validDoc2.jpg>
-Package pdftex.def Info: validDoc2.jpg used on input line 95.
+Package pdftex.def Info: validDoc2.jpg used on input line 96.
 (pdftex.def)             Requested size: 199.16928pt x 119.75029pt.
  [2 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/snapshot1.png> <C:/Us
 ers/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/validDoc1.jpg>] <snapshot5.png,
  id=18, 601.4972pt x 377.91188pt>
 File: snapshot5.png Graphic file (type png)
  <use snapshot5.png>
-Package pdftex.def Info: snapshot5.png used on input line 103.
+Package pdftex.def Info: snapshot5.png used on input line 104.
 (pdftex.def)             Requested size: 284.52756pt x 178.7719pt.
  <validDoc3.jpg, id=19, 803.0pt x 482.80376pt>
 File: validDoc3.jpg Graphic file (type jpg)
 
 <use validDoc3.jpg>
-Package pdftex.def Info: validDoc3.jpg used on input line 104.
+Package pdftex.def Info: validDoc3.jpg used on input line 105.
 (pdftex.def)             Requested size: 284.52756pt x 171.07607pt.
  [3 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/snapshot4.png> <C:/Us
 ers/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/validDoc2.jpg> <C:/Users/Admini
@@ -547,73 +547,87 @@ ls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/validDoc3.j
 <snapshot8.png, id=25, 603.0028pt x 379.4175pt>
 File: snapshot8.png Graphic file (type png)
  <use snapshot8.png>
-Package pdftex.def Info: snapshot8.png used on input line 112.
+Package pdftex.def Info: snapshot8.png used on input line 114.
 (pdftex.def)             Requested size: 284.52756pt x 179.02676pt.
  <validDoc4.jpg, id=26, 803.0pt x 482.80376pt>
 File: validDoc4.jpg Graphic file (type jpg)
 
 <use validDoc4.jpg>
-Package pdftex.def Info: validDoc4.jpg used on input line 113.
+Package pdftex.def Info: validDoc4.jpg used on input line 115.
 (pdftex.def)             Requested size: 284.52756pt x 171.07607pt.
  [4 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/snapshot8.png> <C:/Us
 ers/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/validDoc4.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 128.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 128.
- [5]
-Overfull \hbox (25.95193pt too wide) in paragraph at lines 173--174
- [] \OT1/cmr/m/n/10.95 La val-i-da-tion dite "ex-terne" est di-vise en 2 categories : la val-i-da-tion du-rant le dev
-eloppement
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 130.
+LaTeX Font Info:    No file OMScmss.fd. on input line 130.
+
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 130.
+
+[5]
+Overfull \hbox (1.33466pt too wide) in paragraph at lines 170--171
+\OT1/cmss/m/n/10.95 plateau de jeu a son etat precedent le dernier coup joue. Les cas pos-si-bles sont un deplacem
+ent
  []
 
-[6] <echantillon.jpg, id=39, 656.4525pt x 414.54875pt>
+[6]
+Overfull \hbox (20.47691pt too wide) in paragraph at lines 179--180
+ [] \OT1/cmss/m/n/10.95 La val-i-da-tion dite "ex-terne" est di-vise en deux categories : la val-i-da-tion du-rant le 
+developpement
+ []
+
+<echantillon.jpg, id=38, 656.4525pt x 414.54875pt>
 File: echantillon.jpg Graphic file (type jpg)
  <use echantillon.jpg>
-Package pdftex.def Info: echantillon.jpg used on input line 180.
+Package pdftex.def Info: echantillon.jpg used on input line 186.
 (pdftex.def)             Requested size: 426.79134pt x 269.52307pt.
 
-Overfull \hbox (8.53766pt too wide) in paragraph at lines 180--181
+Overfull \hbox (8.53766pt too wide) in paragraph at lines 186--187
  [] 
  []
 
 [7 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/echantillon.jpg>]
-<resBeta.jpg, id=44, 656.4525pt x 414.54875pt>
+<resBeta.jpg, id=43, 656.4525pt x 414.54875pt>
 File: resBeta.jpg Graphic file (type jpg)
  <use resBeta.jpg>
-Package pdftex.def Info: resBeta.jpg used on input line 200.
+Package pdftex.def Info: resBeta.jpg used on input line 206.
 (pdftex.def)             Requested size: 426.79134pt x 269.52307pt.
 
-Overfull \hbox (8.53766pt too wide) in paragraph at lines 200--201
+Overfull \hbox (8.53766pt too wide) in paragraph at lines 206--207
  [] 
  []
 
-[8 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/resBeta.jpg>]
-! Too many }'s.
-l.207 \paragraph{}}
+[8]
+! Extra }, or forgotten \endgroup.
+l.213 \paragraph{}}
                    
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
 
-[9] (C:\Users\Administrateur.Sls-PCAccueil\Documents\Devellopement\Prog6\Obichouvine\Documentation\validationBrahim.aux)
+[9 <C:/Users/Administrateur.Sls-PCAccueil/Documents/Devellopement/Prog6/Obichouvine/Documentation/resBeta.jpg>] [10]
+(C:\Users\Administrateur.Sls-PCAccueil\Documents\Devellopement\Prog6\Obichouvine\Documentation\validationBrahim.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
  ) 
 Here is how much of TeX's memory you used:
- 3897 strings out of 493921
- 58063 string characters out of 3147212
+ 3888 strings out of 493921
+ 57859 string characters out of 3147212
  122023 words of memory out of 3000000
- 7146 multiletter control sequences out of 15000+200000
- 10253 words of font info for 36 fonts, out of 3000000 for 9000
+ 7138 multiletter control sequences out of 15000+200000
+ 10260 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 44i,10n,43p,560b,251s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,10n,43p,561b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on validationBrahim.pdf (9 pages, 1384921 bytes).
+amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Files/MiKTeX 2
+.9/fonts/type1/public/amsfonts/cm/cmss17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on validationBrahim.pdf (10 pages, 1365139 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 70 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

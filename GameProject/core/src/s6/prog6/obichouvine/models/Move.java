@@ -10,6 +10,8 @@ public class Move {
 	PawnType turn;
 	int turnNum;
 	
+	boolean eaten = false;
+	int xEaten, yEaten;
 	public Move(int x, int y, int x1, int y1)
 	{
 		xDep = x;

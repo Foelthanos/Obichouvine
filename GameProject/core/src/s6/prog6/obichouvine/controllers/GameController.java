@@ -33,6 +33,8 @@ public class GameController {
 
 	private Block selectedPawn;
 
+	private Vector2 lastOldPos;
+	
 	public boolean gameEnded;
 
 	public boolean gameStarted = false;
@@ -104,6 +106,7 @@ public class GameController {
 			return null;
 		}
 		if(this.isIATurn){
+			this.raichi = false;
 			/*try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -122,7 +125,14 @@ public class GameController {
 			}
 			res.setTurn(this.turn);
 			res.setTurnNum((int)this.turnNum);
+			
 			resMove = this.board.deplacement(res);
+			
+			if(this.lastOldPos != null)
+				this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.VIDE));
+			this.board.board[res.getxDep()][res.getyDep()].setPawn(new Pawn((board.board[res.getxArr()][res.getyArr()].getPawn().getType()==PawnType.MOSCOVITE)?PawnType.MOSCGHOST:PawnType.VIKGHOST));
+			this.lastOldPos = new Vector2(res.getxDep(), res.getyDep());
+			
 			if(resMove == 3 ){
 				System.out.println("Ca marche !!");
 			}
@@ -154,6 +164,8 @@ public class GameController {
 				int xStart = (int) ((this.selectedPawn.getPosition().x- board.getOffsetX())/Block.SIZE);
 				int yStart = (int) ((this.selectedPawn.getPosition().y- board.getOffsetY())/Block.SIZE);
 
+				
+				
 				if((xStart == (int)cursorPos.x) && (yStart == (int)cursorPos.y)){
 					this.selectedPawn = null;
 					this.board.highlightMoves(this.moves, false);
@@ -169,18 +181,24 @@ public class GameController {
 					this.board.lightPawn((int)cursorPos.x, (int)cursorPos.y);
 				}
 				else {
-					
+
 					this.resMove = board.deplacement(new Move(xStart,
 							yStart,
 							(int)cursorPos.x, 
 							(int)cursorPos.y));
+				
+					
 					this.processStatus();
 					if(resMove == 3 ){
 						System.out.println("Ca marche !!");
 					}
 					else{
+						this.raichi = false;
+						if(this.lastOldPos != null)
+							this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.VIDE));
+						this.board.board[xStart][yStart].setPawn(new Pawn((board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType()==PawnType.MOSCOVITE)?PawnType.MOSCGHOST:PawnType.VIKGHOST));
+						this.lastOldPos = new Vector2(xStart, yStart);
 						if(resMove == 4){
-							System.out.println("Victoire");
 							this.gameEnded = true;
 						}
 						else if(resMove == 2){

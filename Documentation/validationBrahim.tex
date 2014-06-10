@@ -59,6 +59,7 @@
          % otherwise the current date is printed 
 
 \begin{document}
+\begin{sffamily} 
 \maketitle
 
 \section{Introduction}
@@ -164,7 +165,11 @@ Heureusement pour les tests, il n'y a qu'une seule méthode à valider, switchTu
 \subsubsection{HistoryWidget}
 
 \paragraph{}
-
+Le HistoryWidget est composé d'écouteurs permettant la modification de son modèle mais il peut également recevoir des événements extérieurs. Lorsqu'un mouvement est effectué par le joueur ou l'IA, on appelle la méthode d'ajout. Ainsi, le widget modifie son modèle. La validation de la modification se fait de manière empirique. On joue un coup et ce coup doit apparaître dans l'historique. A chaque coup successif, l'historique ajoute le coup en haut de la liste. 
+\paragraph{}
+Les comportements des boutons sont plus subtils. Le premier doit remettre l'état du plateau de jeu à son état précédent le dernier coup joué. Les cas possibles sont un déplacement simple ou un déplacement induisant une capture. Le premier cas est simple mais le second doit sauvegarder l'information de la capture. Il y eu un bogue causé par la non-prise en compte de ce cas.
+\paragraph{}
+Le second bouton est plus simple. Si nous avons annuler un coup, une autre liste sauvegarde ce coup au cas où l'annulation était mal venu. Si nous jouons un coup, la liste doit être vidé. Comportement simple, validation simple.
 \section{Validation externe}
 \paragraph{}
 La validation externe a pour objectif d'améliorer l’expérience de l'utilisateur en recueillant les idées et critiques de personnes externes au projet.
@@ -211,4 +216,5 @@ La mise à jour suivante, nommée "Viking Night Update", à grandement améliore
 La dernière mise à jour du week-end a donc tenter d'améliorer l'explication des règles du jeu à travers un menu de règles plus précis et plus propre. L'utilisation des sprites du plateau de jeu permet un rappel visuel. Ce nouveau menu a été récompensé par une augmentation significative des notes en ce qui concerne l'explication des règles du jeu. 
 \paragraph{}
 En conclusion, la bêta-test a été concluante pour trouver les failles de l'interface, mais il reste encore du chemin.
+\end{sffamily} 
 \end{document}
