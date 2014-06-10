@@ -11,6 +11,7 @@ import s6.prog6.obichouvine.models.Move;
 import s6.prog6.obichouvine.models.Pawn;
 import s6.prog6.obichouvine.models.Block.BlockState;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
+import s6.prog6.obichouvine.models.Pawn.TypeSuedois;
 import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA;
@@ -195,7 +196,18 @@ public class GameController {
 					else{
 						this.raichi = false;
 						if(this.lastOldPos != null)
-							this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.VIDE));
+							if(board.board[(int)lastOldPos.x][(int)lastOldPos.y].getPawn().getType() == Pawn.PawnType.MOSCOVITE)
+								this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.MOSCOVITE));
+							else if (board.board[(int)lastOldPos.x][(int)lastOldPos.y].getPawn().getType() == Pawn.PawnType.SUEDOIS)
+							{
+								if (board.board[(int)lastOldPos.x][(int)lastOldPos.y].getPawn().getTypesuede() == TypeSuedois.PION)
+									this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.SUEDOIS, TypeSuedois.PION));
+								else if (board.board[(int)lastOldPos.x][(int)lastOldPos.y].getPawn().getTypesuede() == TypeSuedois.KING)
+									this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.SUEDOIS, TypeSuedois.KING));
+							}
+							else
+								this.board.board[(int)lastOldPos.x][(int)lastOldPos.y].setPawn(new Pawn(PawnType.VIDE));
+						
 						this.board.board[xStart][yStart].setPawn(new Pawn((board.board[(int)cursorPos.x][(int)cursorPos.y].getPawn().getType()==PawnType.MOSCOVITE)?PawnType.MOSCGHOST:PawnType.VIKGHOST));
 						this.lastOldPos = new Vector2(xStart, yStart);
 						if(resMove == 4){
