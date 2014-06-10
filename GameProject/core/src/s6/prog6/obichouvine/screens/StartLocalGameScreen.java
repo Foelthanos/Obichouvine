@@ -8,6 +8,7 @@ import s6.prog6.obichouvine.utils.DefaultInputListener;
 import s6.prog6.obichouvine.utils.OptionPane;
 import s6.prog6.obichouvine.utils.PlayerSelection;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.SplitPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,8 +17,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 public class StartLocalGameScreen extends AbstractScreen
 {
 	private SplitPane paramPane, mainPane;
-
-	
 	
 	private Table mainTable, buttonTable;
 	private OptionPane oPane;
@@ -98,7 +97,7 @@ public class StartLocalGameScreen extends AbstractScreen
 		paramPane.setSplitAmount((float) 0.25);
 
 		mainPane = new SplitPane(paramPane, buttonTable, true, getSkin());
-		mainPane.setSize(GAME_VIEWPORT_WIDTH, GAME_VIEWPORT_HEIGHT);
+		mainPane.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		mainPane.setMinSplitAmount((float) 0.87);
 		mainPane.setMaxSplitAmount((float) 0.8701);
 		mainPane.setSplitAmount((float) 0.87);

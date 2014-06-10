@@ -6,7 +6,7 @@ public class Parameter {
 
 	public enum FirstStrike {
 		
-		Moscovite("Moscovite"), Suedois("Suedois");
+		Moscovite("Moscovites"), Suedois("Vikings");
 		
 		public String text;
 
@@ -19,7 +19,7 @@ public class Parameter {
 	}
 	public enum EscapeMethod {
 
-		Edge("Bord"), Corner("Coin"), EdgeWithoutMosco("Bord sauf rouge");
+		Corner("Coin"), Edge("Bord"), EdgeWithoutMosco("Bord sauf rouge");
 
 		public String text;
 

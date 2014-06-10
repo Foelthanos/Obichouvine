@@ -16,7 +16,7 @@ public class IA extends Player{
 	boolean bougerRoi;
 
 	public enum IaType{
-		Difficile("Difficile"), Aggressive("Aggressive"), Defensive("Défensive"), Facile("Facile");
+		Difficile("Equilibré Forte"), Aggressive("Aggressive"), Defensive("Défensive"), Facile("Equilibré Faible");
 		
 		String label;
 		

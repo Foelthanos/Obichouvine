@@ -22,6 +22,7 @@ public class ObiDialog extends Dialog{
 	private void initialize() {  
 		padTop(60); // set padding on top of the dialog title  
 		getButtonTable().defaults().height(60); // set buttons height  
+		getButtonTable().defaults().width(120); 
 		setModal(true);  
 		setMovable(false);  
 		setResizable(false);  
@@ -38,10 +39,11 @@ public class ObiDialog extends Dialog{
 	 */  
 	public ObiDialog button(String buttonText, InputListener listener, boolean row) {  
 		TextButton button = new TextButton(buttonText, this.skin);  
-		button.addListener(listener);  
+		button.addListener(listener); 
+		button.setSize(100, 40);
 		button(button);  
 		if(row){
-			System.out.println("Test jklsdfhldfghl");
+			
 			this.row();
 		}
 		return this;  
@@ -49,7 +51,8 @@ public class ObiDialog extends Dialog{
 	
 	public ObiDialog button(String buttonText, InputListener listener) {  
 		TextButton button = new TextButton(buttonText, this.skin);  
-		button.addListener(listener);  
+		button.addListener(listener); 
+		button.setSize(100, 40);
 		button(button);  
 		return this;  
 	}  

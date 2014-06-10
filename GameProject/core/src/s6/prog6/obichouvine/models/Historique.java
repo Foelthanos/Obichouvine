@@ -16,7 +16,7 @@ public class Historique {
 	public LinkedList<Move> lRefaire ;
 	public ListIterator<Move> liRefaire;
 	String historiqueName;
-	
+
 	public Historique(String n)
 	{
 		historiqueName = n;
@@ -25,16 +25,21 @@ public class Historique {
 		lRefaire = new LinkedList<Move>();
 		liRefaire =  lRefaire.listIterator();
 	}
-	
+
 	public void ajouter(Move m)
 	{
 		li.add(m);
+		while(liRefaire.hasPrevious()){
+			liRefaire.previous();
+			liRefaire.remove();
+		}
 	}
-	
+
 	public void annuler()
 	{
 		if (li.hasPrevious())
 		{
+
 			liRefaire.add(li.previous());
 			li.remove();
 		}
@@ -43,7 +48,7 @@ public class Historique {
 			System.out.println("Historique est vide");
 		}
 	}
-	
+
 	public void refaire()
 	{
 		if (liRefaire.hasPrevious())
@@ -51,7 +56,7 @@ public class Historique {
 			Move cp = liRefaire.previous();
 			li.add(cp);
 			liRefaire.remove();
-			
+
 		}
 		else
 		{
@@ -59,7 +64,7 @@ public class Historique {
 
 		}
 	}
-	
+
 	public void sauver(int longueur, int largeur)
 	{
 		Move cp;
@@ -78,20 +83,20 @@ public class Historique {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public Board charger()
 	{
 		BufferedReader br = null;
 		int longueur = 0, largeur = 0;
-		
+
 		try {
- 
+
 			String sCurrentLine;
 			int i =0;
 			br = new BufferedReader(new FileReader(historiqueName));
-			
+
 			while ((sCurrentLine = br.readLine()) != null) {
 				if (i>=1)
 				{
@@ -123,5 +128,5 @@ public class Historique {
 		return plat ;
 	}
 
-	
+
 }

@@ -15,6 +15,8 @@ import s6.prog6.obichouvine.ObichouvineGame;
 import s6.prog6.obichouvine.controllers.MusicManager.ObiMusic;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Block;
+import s6.prog6.obichouvine.models.Board;
+import s6.prog6.obichouvine.models.GameState;
 import s6.prog6.obichouvine.utils.DefaultInputListener;
 
 public class MenuScreen extends AbstractScreen {
@@ -73,7 +75,7 @@ public class MenuScreen extends AbstractScreen {
 		table.add(startGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
 		table.row();
 		// register the button "new game"
-		TextButton startOnlineGameButton = new TextButton("Partie en réseau", this.getSkin());
+		TextButton startOnlineGameButton = new TextButton("Charger partie", this.getSkin());
 		startOnlineGameButton.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -85,7 +87,8 @@ public class MenuScreen extends AbstractScreen {
 			{
 				super.touchUp(event, x, y, pointer, button);
 				game.getSoundManager().play( ObiSound.CLICK );
-				game.setScreen(game.getStartOnlineGameScreen());
+				Board b = GameState.Charger();
+				game.setScreen(game.getGameScreen(b.GetParameter(), b.p1, b.p2));
 			}
 		} );
 		table.add(startOnlineGameButton).size(this.BUTTONW, this.BUTTONH).uniform().spaceBottom(10).right();
@@ -148,7 +151,7 @@ public class MenuScreen extends AbstractScreen {
 	public void render(float delta) {
 		super.render(delta);
 		batch.begin();
-		batch.draw(menuImage, 0, 0);
+		batch.draw(menuImage, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		batch.end();
 		this.stage.draw();
 	}

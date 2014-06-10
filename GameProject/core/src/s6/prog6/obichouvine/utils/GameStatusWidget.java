@@ -1,6 +1,7 @@
 package s6.prog6.obichouvine.utils;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.controllers.GameController;
 import s6.prog6.obichouvine.models.Pawn.PawnType;
 import s6.prog6.obichouvine.models.Player;
 import s6.prog6.obichouvine.models.ia.IA;
@@ -30,6 +31,8 @@ public class GameStatusWidget extends Table{
 
 	public float stateTime;
 	public PawnType turn;
+	
+	public GameController gCon;
 	
 	public boolean p1Computing, p2Computing;
 	
@@ -148,9 +151,9 @@ public class GameStatusWidget extends Table{
 		else
 			p2Load.setVisible(false);
 		
-		p1Current.setDrawable(new TextureRegionDrawable((turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon));
+		p1Current.setDrawable(new TextureRegionDrawable((gCon.turn==PawnType.MOSCOVITE)?p1IconHighlight:p1Icon));
 		p1Load.setDrawable(new TextureRegionDrawable(anim.getKeyFrame(stateTime)));
-		p2Current.setDrawable(new TextureRegionDrawable((turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon));
+		p2Current.setDrawable(new TextureRegionDrawable((gCon.turn==PawnType.SUEDOIS)?p2IconHighlight:p2Icon));
 		p2Load.setDrawable(new TextureRegionDrawable(anim.getKeyFrame(stateTime)));
 		
 		

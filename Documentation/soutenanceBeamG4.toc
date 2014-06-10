@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.32pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Contexte du projet}{3}{0}{2}
+\beamer@subsectionintoc {2}{1}{Jeu du tablut}{3}{0}{2}
+\beamer@subsectionintoc {2}{2}{Contexte du projet}{4}{0}{2}
+\beamer@sectionintoc {3}{R\IeC {\'e}alisation technique globale}{4}{0}{3}
+\beamer@sectionintoc {4}{IHM}{5}{0}{4}
+\beamer@sectionintoc {5}{IA}{5}{0}{5}
+\beamer@sectionintoc {6}{Bilan}{5}{0}{6}

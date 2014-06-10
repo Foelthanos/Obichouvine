@@ -16,8 +16,11 @@ import s6.prog6.obichouvine.models.ia.AlphaBeta;
 import s6.prog6.obichouvine.models.ia.IA;
 
 public class GameController {
-	private Board board;
+	public Board board;
 
+	public boolean raichi = false;
+	public boolean tuichi = false;
+	
 	private Move moves[];
 
 	public boolean p1Computing = false, p2Computing = false;
@@ -57,12 +60,12 @@ public class GameController {
 		
 		this.mosc = 16;
 		this.vik = 9;
-		System.out.println(p1.getTeam());
-		System.out.println(p2.getTeam());
-		System.out.println(turn);
 		this.isIATurn = this.nextTurnIa();
 		this.turnNum = (float) 1;
 
+		this.board.p1 = this.p1;
+		this.board.p2 = this.p2;
+		
 	}
 
 	public Move update(float delta) {
@@ -180,6 +183,13 @@ public class GameController {
 							System.out.println("Victoire");
 							this.gameEnded = true;
 						}
+						else if(resMove == 2){
+							this.gameEnded = true;
+							this.tuichi = true;
+						}
+						else if(resMove == 1){
+							this.raichi = true;
+						}
 						this.selectedPawn = null;
 						
 						res = new Move(xStart,
@@ -211,7 +221,7 @@ public class GameController {
 		return false;
 	}
 
-	private void switchTurn() {
+	public void switchTurn() {
 		// TODO Auto-generated method stub
 		turn = (turn==PawnType.MOSCOVITE)? PawnType.SUEDOIS : PawnType.MOSCOVITE;
 	}

@@ -1,5 +1,7 @@
 package s6.prog6.obichouvine.screens;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
@@ -52,8 +54,6 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 	private Board board;
 	private GameStatusWidget status;
 
-	private char[] alphabet = {'A','B','C','D','E','F','G','H','I','J','K','L','M'};
-	private char[] number = {'1','2','3','4','5','6','7','8','9','0','1','1'};
 
 	public GameScreen(ObichouvineGame game, Parameter param, Player p1, Player p2) {
 		super(game);
@@ -73,10 +73,13 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 
 		gameStateButtons = new GameStateButtonGroup(getSkin());
 
+		
 		history = new HistoryWidget(this.getSkin());
 		history.board = this.board;
+		history.gCon = gController;
 		status = new GameStatusWidget(this.getSkin(), p1, p2);
 		this.status.turn = gController.turn;
+		status.gCon = gController;
 
 		//this.saveAndLoad = 
 	}
@@ -88,6 +91,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		multiplexer.addProcessor(stage);
 		multiplexer.addProcessor(this);
 
+		gameStateButtons.save.addListener(new DefaultInputListener() { // button to exit app  
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+				try {
+					GameState.Sauver(board);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return true;
+			}  
+		});
 		quit.addListener(new DefaultInputListener() {
 			@Override
 			public void touchUp(
@@ -103,18 +117,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 				.button("Abandonner", new DefaultInputListener() { // button to exit app  
 					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
 						game.setScreen(game.getMenuScreen());
-						System.out.println("ALLLLLLEZZ !!!!!!!!");
 						return true;
 					}  
 				}, true) 
 				.rowT()
 				.button("Recommencer", new DefaultInputListener() { // button to exit app  
 					public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
-						
+						game.setScreen(game.getGameScreen(gController.board.GetParameter(), gController.p1, gController.p2));
 						return true;
 					}  
 				}, true) 
-				.button("Continuer") // button that simply closes the dialog  
+				.button("   Continuer   ") // button that simply closes the dialog  
 				.show(stage); // actually show the dialog  ;
 			}
 		} );
@@ -127,8 +140,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		table.add(status).expand().fill().left().width(Block.SIZE*5).height(Block.SIZE*9);
 		table.add(history).expand().fill().right().width(Block.SIZE*5).height(Block.SIZE*9);
 		table.row();
-		table.add(quit).left().expandX();
-		table.add(gameStateButtons).right().expandX();
+		table.add(quit).left().expandX().size(150, 40);
+		table.add(gameStateButtons).right();
 		table.row();
 		Gdx.input.setInputProcessor(multiplexer);
 		gController.gameStarted = true;
@@ -146,8 +159,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		else if(gController.turn.equals(gController.p2.getTeam()) && gController.p2 instanceof IA){
 			gController.p2Computing =true;
 		}
-		
-		this.headMessage.setText("Tour : "+(int)this.gController.turnNum);
+
+			this.headMessage.setText("Tour : "+(int)this.gController.turnNum+""+((this.gController.raichi)?" - Raichi !":""));
 
 
 		if(gController.p1Computing == true)
@@ -169,17 +182,26 @@ public class GameScreen extends AbstractScreen implements InputProcessor{
 		gRenderer.render();
 		this.stage.draw();
 		if(this.gController.gameEnded){
-			/*ObiDialog dialog = new ObiDialog("Test", this.getSkin())
-			.text("Leave the game?") // text appearing in the dialog  
-			.button("EXIT", new InputListener() { // button to exit app  
+			new ObiDialog("Victoire des "+((gController.turn==PawnType.SUEDOIS)?"Moscovites !":"Vikings !")+((gController.tuichi)?" Victoire par TUICHI !":""), this.getSkin())
+			.button("     Quitter      ", new InputListener() { // button to exit app  
 				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
-					Gdx.app.exit();  
+					game.setScreen(game.getMenuScreen()); 
 					return false;  
 				}  
 			}) 
-			.button("Keep playing") // button that simply closes the dialog  
-			.show(stage); // actually show the dialog  ;*/
-			game.setScreen(game.getStartLocalGameScreen());
+			.button("    Recommencer    ", new DefaultInputListener() { // button to exit app  
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+					game.setScreen(game.getGameScreen(gController.board.GetParameter(), gController.p1, gController.p2));
+					return true;
+				}  
+			}, true)
+			.button(" Nouvelle Partie ", new InputListener() { // button to exit app  
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {  
+					game.setScreen(game.getStartLocalGameScreen()); 
+					return false;  
+				}  
+			}) 
+			.show(stage); // actually show the dialog  ;
 		}
 	}
 

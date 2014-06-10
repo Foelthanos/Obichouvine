@@ -3,6 +3,7 @@ package s6.prog6.obichouvine.screens;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -32,14 +33,16 @@ public class RulesScreen extends AbstractScreen {
 		rules.add(new TextureRegion(atlas.findRegion("rules1")));
 		rules.add(new TextureRegion(atlas.findRegion("rules2")));
 		rules.add(new TextureRegion(atlas.findRegion("rules3")));
-		rules.add(new TextureRegion(atlas.findRegion("rules4")));
 		rules.add(new TextureRegion(atlas.findRegion("rules5")));
+		rules.add(new TextureRegion(atlas.findRegion("rules6")));
+		rules.add(new TextureRegion(atlas.findRegion("rules7")));
+		rules.add(new TextureRegion(atlas.findRegion("rules8")));
 		
 		rule = new Image(rules.get(index));
 		
 		backButton = new TextButton( "Retour au menu principal", getSkin() );
-		rightB = new TextButton( "Droite", getSkin() );
-		leftB = new TextButton( "Gauche", getSkin() );
+		rightB = new TextButton( "Suivant", getSkin() );
+		leftB = new TextButton( "Précédent", getSkin() );
 	}
 	
 	public void loadWidget(){
@@ -57,6 +60,7 @@ public class RulesScreen extends AbstractScreen {
 				if(index<0)
 					index = 0;
 				rule.setDrawable(new TextureRegionDrawable(rules.get(index)));
+				updateWidgets();
 			}
 		} );
 		rightB.addListener( new DefaultInputListener() {
@@ -70,9 +74,11 @@ public class RulesScreen extends AbstractScreen {
 			{
 				super.touchUp( event, x, y, pointer, button );
 				index ++;
-				if(index>4)
-					index = 4;
+				if(index>6)
+					index = 6;
 				rule.setDrawable(new TextureRegionDrawable(rules.get(index)));
+				updateWidgets();
+				
 			}
 		} );
 		backButton.addListener( new DefaultInputListener() {
@@ -94,29 +100,39 @@ public class RulesScreen extends AbstractScreen {
 	public void printRule(){
 		table.clear();
 		
-
 		table.add(leftB).size(60,60);
 
-		if(index==0)
-			leftB.setDisabled(true);
-		else
-			leftB.setDisabled(false);
 		
 		table.add(rule);
 		
 
 		table.add(rightB).size(60,60);
 		
-		if(index==4)
-			rightB.setDisabled(true);
-		else
-			rightB.setDisabled(false);
 		table.row();
 
 		
 		table.add(backButton).size(250,60).colspan(3).padTop(-50);
 	}
 
+	public void updateWidgets(){
+		if(index==0){
+			leftB.setDisabled(true);
+			leftB.setText("");
+		}
+		else{
+			leftB.setDisabled(false);
+			leftB.setText("Précédent");
+		}
+		if(index==6){
+			rightB.setDisabled(true);
+			rightB.setText("");
+		}
+		else{
+			rightB.setDisabled(false);
+			rightB.setText("Suivant");
+		}
+	}
+	
 	@Override
 	public void show()
 	{
@@ -127,6 +143,7 @@ public class RulesScreen extends AbstractScreen {
 		
 		this.loadWidget();
 		this.printRule();
+		this.updateWidgets();
 	}
 
 

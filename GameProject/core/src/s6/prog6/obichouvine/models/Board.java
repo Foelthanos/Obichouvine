@@ -24,7 +24,7 @@ public class Board {
 	private Historique histo;
 	private boolean spiritPawn, surbriPawn;
 	public boolean eaten = false;
-
+	public Player p1, p2;
 	public Board(int x ,int y, Parameter p)
 	{
 		Board.parameter =p;

@@ -48,6 +48,7 @@ public class OptionsScreen extends AbstractScreen {
 			public void keyTyped(TextField textField, char c) {
 				// TODO Auto-generated method stub
 				String changedPseudo = pseudoTextField.getText();
+				System.out.println("test pseudo "+changedPseudo);
                 game.getPreferencesManager().setPseudo(changedPseudo);
 			}
 		});
@@ -56,12 +57,13 @@ public class OptionsScreen extends AbstractScreen {
         table.add(pseudoTextField).colspan(2).left().fillX();
         
         final TextField pseudo2TextField = new TextField(game.getPreferencesManager().getPseudoP2(), getSkin());
-        pseudoTextField.setTextFieldListener(new TextFieldListener() {
+        pseudo2TextField.setTextFieldListener(new TextFieldListener() {
 			
 			@Override
 			public void keyTyped(TextField textField, char c) {
 				// TODO Auto-generated method stub
 				String changedPseudo = pseudo2TextField.getText();
+				System.out.println("test pseudo 2 "+changedPseudo);
                 game.getPreferencesManager().setPseudoP2(changedPseudo);
 			}
 		});

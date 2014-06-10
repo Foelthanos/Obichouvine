@@ -195,3 +195,34 @@ rules5
   orig: 640, 480
   offset: 0, 0
   index: -1
+
+pages4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rules6
+  rotate: false
+  xy: 2, 484
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1
+rules7
+  rotate: false
+  xy: 2, 2
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1
+
+pages5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+rules8
+  rotate: false
+  xy: 2, 2
+  size: 640, 480
+  orig: 640, 480
+  offset: 0, 0
+  index: -1

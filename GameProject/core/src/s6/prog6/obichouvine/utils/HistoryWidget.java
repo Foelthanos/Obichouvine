@@ -3,6 +3,7 @@ package s6.prog6.obichouvine.utils;
 import java.util.Iterator;
 
 import s6.prog6.obichouvine.ObichouvineGame;
+import s6.prog6.obichouvine.controllers.GameController;
 import s6.prog6.obichouvine.controllers.SoundManager.ObiSound;
 import s6.prog6.obichouvine.models.Block;
 import s6.prog6.obichouvine.models.Board;
@@ -25,6 +26,8 @@ public class HistoryWidget extends Table{
 	
 	public Board board;
 	
+	public GameController gCon;
+	
 	public HistoryWidget(Skin skin){
 		super();
 		if( ObichouvineGame.DEV_MODE ) {
@@ -36,12 +39,27 @@ public class HistoryWidget extends Table{
 		this.moveArea.setDisabled(true);
 		this.mainPane = new ScrollPane(moveArea);
 		this.mainPane.setScrollbarsOnTop(true);
-		//this.mainPane.set
+
 		this.history = new Historique("Historiques");
 		this.cancel = new TextButton("Annuler", skin);
 		this.redo = new TextButton("Refaire", skin);
-		this.redo.setDisabled(this.history.lRefaire.isEmpty());
 		
+		if(this.history.lRefaire.isEmpty()){
+			this.redo.setDisabled(true);
+			this.redo.setText("");
+		}
+		else{
+			this.redo.setDisabled(false);
+			this.redo.setText("Refaire");
+		}
+		if(this.history.l.isEmpty()){
+			this.cancel.setDisabled(true);
+			this.cancel.setText("");
+		}
+		else{
+			this.cancel.setDisabled(false);
+			this.cancel.setText("Annuler");
+		}
 		
 		this.cancel.addListener(new DefaultInputListener() {
 			@Override
@@ -53,7 +71,24 @@ public class HistoryWidget extends Table{
 					int button )
 			{
 				super.touchUp(event, x, y, pointer, button);
-				history.annuler();
+				if(!history.l.isEmpty())
+					cancel();
+				refreshWidget();
+			}
+		} );
+		
+		this.redo.addListener(new DefaultInputListener() {
+			@Override
+			public void touchUp(
+					InputEvent event,
+					float x,
+					float y,
+					int pointer,
+					int button )
+			{
+				super.touchUp(event, x, y, pointer, button);
+				if(!history.lRefaire.isEmpty())
+					redo();
 				refreshWidget();
 			}
 		} );
@@ -66,10 +101,21 @@ public class HistoryWidget extends Table{
 		
 	}
 	
-	public Move cancel(){
+	public void redo(){
+		Move c = history.lRefaire.getLast();
+		gCon.board.deplacementsansverif(c);
+		history.refaire();
+		gCon.switchTurn();
+		gCon.turnNum+= 0.5;
+	}
+	
+	public void cancel(){
 		history.annuler();
+		Move c = history.lRefaire.getLast();
+		gCon.board.deplacementsansverif(new Move(c.getxArr(), c.getyArr(), c.getxDep(), c.getyDep()));
+		gCon.switchTurn();
+		gCon.turnNum-= 0.5;
 		
-		return null;
 	}
 	
 	public void refreshWidget(){
@@ -82,11 +128,28 @@ public class HistoryWidget extends Table{
 			res = c+"\n"+res;
 		}
 		this.moveArea.setText(res);
+		
+		if(this.history.lRefaire.isEmpty()){
+			this.redo.setDisabled(true);
+			this.redo.setText("");
+		}
+		else{
+			this.redo.setDisabled(false);
+			this.redo.setText("Refaire");
+		}
+		if(this.history.l.isEmpty()){
+			this.cancel.setDisabled(true);
+			this.cancel.setText("");
+		}
+		else{
+			this.cancel.setDisabled(false);
+			this.cancel.setText("Annuler");
+		}
 	}
 	
 	public void add(Move c){
 		System.out.println("Ajout historique");
-		this.history.l.add(c);
+		this.history.ajouter(c);
 		this.refreshWidget();
 	}
 	
