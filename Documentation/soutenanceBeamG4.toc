@@ -1,10 +1,13 @@
-\beamer@endinputifotherversion {3.32pt}
+\beamer@endinputifotherversion {3.10pt}
 \select@language {english}
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \beamer@sectionintoc {2}{Contexte du projet}{3}{0}{2}
 \beamer@subsectionintoc {2}{1}{Le Tablut}{3}{0}{2}
 \beamer@subsectionintoc {2}{2}{Choix de la technologie}{5}{0}{2}
 \beamer@sectionintoc {3}{R\IeC {\'e}alisation technique globale}{6}{0}{3}
-\beamer@sectionintoc {4}{IHM}{9}{0}{4}
-\beamer@sectionintoc {5}{IA}{13}{0}{5}
-\beamer@sectionintoc {6}{Bilan}{13}{0}{6}
+\beamer@sectionintoc {4}{IA}{9}{0}{4}
+\beamer@subsectionintoc {4}{1}{Algorithmes et fonctions d'\IeC {\'e}valuation}{9}{0}{4}
+\beamer@subsectionintoc {4}{2}{Les diff\IeC {\'e}rentes diffcult\IeC {\'e}s}{11}{0}{4}
+\beamer@subsectionintoc {4}{3}{Les tests}{17}{0}{4}
+\beamer@sectionintoc {5}{IHM}{20}{0}{5}
+\beamer@sectionintoc {6}{Bilan}{29}{0}{6}

@@ -9,10 +9,10 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		//System.setProperty("org.lwjgl.opengl.Window.undecorated", "true");
 		config.title = "Obichouvine";
-		config.fullscreen = false;
+		config.fullscreen = true;
 		config.resizable = false;
-		config.width = 800;
-		config.height = 480;
+		/*config.width = 800;
+		config.height = 480;*/
 		new LwjglApplication(new ObichouvineGame(), config);
 	}
 }

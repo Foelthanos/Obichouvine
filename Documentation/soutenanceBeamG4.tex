@@ -134,7 +134,7 @@
 
 \begin{frame}{Le Tablut}{Le plateau de jeu}
  \begin{center}
-\includegraphics[width=6cm]{plateau.jpg}
+\includegraphics[width=6cm]{plateau.JPG}
 \end{center}
 \end{frame}
 
@@ -175,39 +175,176 @@
  \end{itemize}
 \end{frame}
 
+\section{IA}
+
+\subsection{Algorithmes et fonctions d'évaluation}
+
+\begin{frame}{Algorithmes et fonctions d'évaluation}{Algorithme min/max avec élagage alpha/bêta}
+  \begin{itemize}
+    \item Temps de calcul inférieur à 10 secondes
+    \item Profondeur de 6
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithmes et fonctions d'évaluation}{Fonctions d'évaluation}
+  \begin{itemize}
+   \item Pour chaque coup
+   \item Pour l'évaluation finale du plateau
+  \end{itemize}
+\newline
+ Fonctions légères, appelées souvant
+\end{frame}
+
+\subsection{Les différentes diffcultés}
+
+\begin{frame}{Les différentes diffcultés}{Généralités}
+4 niveaux : équilibré faible, aggressif, défensif, équilibré forte.
+\newline
+Modulation :
+  \begin{itemize}
+   \item Profondeur(4/5/5/6)
+   \item Evaluation
+  \end{itemize}
+\newline
+Temps de calcul inférieur à 10 secondes
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA équilibrée faible}
+\begin{itemize}
+ \item Profondeur 4
+ \item Poids normal pour la prise et la défense de pions 
+ \item Un peu trop forte pour les débutants
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+\begin{itemize}
+ \item Profondeur 5
+ \item Modulation du poids de la prise/perte des pions
+ \item Favorise le déplacement du roi pour l'IA agressive
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+Difficulté de ces IA :
+\begin{itemize}
+ \item Remplacent l'IA moyenne
+ \item Moins fortes que la difficile car prédictibles
+ \item Confirmées par les tests
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA aggressive et défensive}
+Buts de ces IA :
+\begin{itemize}
+ \item Plus intéressantes
+ \item Transition entre facile et difficile
+ \item Apprentissage différent car réactions différentes
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les différentes diffcultés}{IA équilibrée forte}
+\begin{itemize}
+ \item Profondeur 6
+ \item Poids normaux pour la prise et la défense de pions
+ \item Favorise le déplacement du roi
+ \item Plus lente (de 5 à 10 secondes)
+\end{itemize}
+\end{frame}
+
+\subsection{Les tests}
+
+\begin{frame}{Les tests}{Principe}
+\begin{itemize}
+ \item Echantillon IA contre IA de 100 tests
+ \item Il apparaît une forte inégalité sur les règles choisies
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Les tests}{Ratios}
+\includegraphics[width=10cm]{ratio.png}
+\newline
+Suédois avantagés par les règles
+\end{frame}
+
+\begin{frame}{Les tests}{Les retours}
+\begin{itemize}
+ \item IA bonnes dans l'ensemble
+ \item IA facile un peu trop forte quand suédoise
+ \item IA difficile forte ``mais abordable après quelques parties''
+\end{itemize}
+\end{frame}
+
 \section{IHM}
 
-\begin{frame}{IHM}{Conception}
+\begin{frame}{IHM}{Inspiration}
  \begin{itemize}
-  \item Inspiration de jeu existant
-	\item Historique des coups
-	\item Sélecteur des paramètres du joueur
-	\item Sélecteur des paramètres de la partie
+  \item Jeu de tablut en ligne
+	\item Jeu d'echecs
+	\item Jeu de plateau en générale
+	\item Interface des jeux professionnels
  \end{itemize}
 \end{frame}
 
 \begin{frame}{IHM}{Validation}
  \begin{itemize}
   \item En interne : de manière empirique
-	\item En réunion : retour des professeurs
-	\item En externe : week-end de bêta-test
+  \item En réunion : retour des professeurs
+  \item En externe : week-end de bêta-test
  \end{itemize}
 \end{frame}
 
 \begin{frame}{IHM}{Echantillon de la bêta-test}
  \begin{center}
-\includegraphics[width=6cm]{echantillon.jpg}
+\includegraphics[width=10cm]{echantillon.jpg}
 \end{center}
 \end{frame}
 
 \begin{frame}{IHM}{Résultat de la bêta-test}
  \begin{center}
-\includegraphics[width=6cm]{resBeta.jpg}
+\includegraphics[width=10cm]{resBeta.jpg}
 \end{center}
 \end{frame}
 
-\section{IA}
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Menu principal
+\newline
+\includegraphics[width=10cm]{snapshot1.png}
+\end{center}
+\end{frame}
 
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Menu de jeu : IA contre IA
+\newline
+\includegraphics[width=10cm]{snapshot3.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Ecran de jeu
+\newline
+\includegraphics[width=10cm]{snapshot5.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Options
+\newline
+\includegraphics[width=10cm]{snapshot7.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{IHM}{Evolution}
+\begin{center}
+Règles
+\newline
+\includegraphics[width=10cm]{snapshot8.png}
+\end{center}
+\end{frame}
 
 \section{Bilan}
 
@@ -215,9 +352,9 @@
 
   % Keep the summary *very short*.
   \begin{itemize}
-  \item Les règles du jeu ont été parfaitement intégré 
-  \item 
-  \item 
+  \item La communication entre les membres du groupe
+  \item Utilisation des compétences apprises durant l'année
+  \item Division du projet efficace
   \end{itemize}
   
 	Retrouvez le projet sur https://github.com/Foelthanos/Obichouvine.

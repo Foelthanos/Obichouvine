@@ -28,7 +28,7 @@ public class MenuScreen extends AbstractScreen {
 	private TextureRegion menuImage;
 	
 	private Label title = new Label("Obichouvine "+ObichouvineGame.VER, this.getSkin());
-	private Label subtitle = new Label("EXTENDED CUT", this.getSkin());
+	private Label subtitle = new Label("THE DRAKKAR UPDATE", this.getSkin());
 	public MenuScreen(ObichouvineGame game) {
 		super(game);
 		// TODO Auto-generated constructor stub
